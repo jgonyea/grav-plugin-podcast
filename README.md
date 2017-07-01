@@ -2,7 +2,7 @@
 
 **This README.md file should be modified to describe the features, installation, configuration, and general usage of this plugin.**
 
-The **Podcast** Plugin is for [Grav CMS](http://github.com/getgrav/grav). Creates a Podcast Content type and podcast RSS feed[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[C[3~c[F
+The **Podcast** Plugin is for [Grav CMS](http://github.com/getgrav/grav). Creates a Podcast Content type and podcast RSS feed
 
 ## Installation
 
@@ -18,7 +18,7 @@ This will install the Podcast plugin into your `/user/plugins` directory within 
 
 ### Manual Installation
 
-To install this plugin, just download the zip version of this repository and unzip it under `/your/site/grav/user/plugins`. Then, rename the folder to `podcast`. You can find these files on [GitHub](https://github.com/jeremy-gonyea/grav-plugin-podcast) or via [GetGrav.org](http://getgrav.org/downloads/plugins#extras).
+To install this plugin, just download the zip version of this repository and unzip it under `/your/site/grav/user/plugins`. Then, rename the folder to `podcast`. You can find these files on [GitHub](https://github.com//grav-plugin-podcast) or via [GetGrav.org](http://getgrav.org/downloads/plugins#extras).
 
 You should now have all the plugin files under
 
@@ -46,5 +46,10 @@ enabled: true
 
 ## To Do
 
-- [ ] Future plans, if any
+- New content type for overall podcast feed
+- [Podcast categories](https://help.apple.com/itc/podcasts_connect/#/itc9267a2f12)
+- New content type for individual podcasts
+- Admin form blueprints
+- RSS podcast feed (itunes compatible)
+- [ID3 integration](http://getid3.sourceforge.net/)
 

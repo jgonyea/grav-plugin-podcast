@@ -1,0 +1,50 @@
+title: Podcast
+'@extends':
+    type: default
+    context: blueprints://podcast-entry
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        content:
+          type: tab
+          ordering@: 0
+          title: Podcast
+          
+          fields:
+            header.podcast.audio:
+              type: file
+              label: Podcast Audio
+              destination: '@self'
+              multiple: true
+              filesize: 150
+              accept:
+                - .mp3
+              help: Upload the MP3 audio file here
+            uploads:
+              unset@: true
+        gallery:
+          type: tab
+          ordering@: 1
+          title: Podcast Metadata
+          
+          fields:
+            header.an_example_text_field:
+              type: text
+              label: Add a number
+              default: 5
+              validate:
+                required: true
+                type: int
+
+            header.an_example_select_box:
+              type: select
+              label: Select one of the following
+              default: one
+              options:
+                one: One
+                two: Two
+                three: Three

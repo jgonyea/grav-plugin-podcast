@@ -1,0 +1,100 @@
+title: Podcast
+'@extends':
+    type: default
+    context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        content:
+          type: tab
+          ordering@: 0
+          title: Podcast Page Content
+          fields:
+            header.title:
+              type: text
+              label: Channel Title
+        
+        channelMeta:
+          type: tab
+          ordering@: 1
+          title: Channel Meta
+          fields:
+            helptext:
+              type: spacer
+              title: 
+              text: Metadata related to the podcast's channel section.
+              underline: true
+            uploads:
+              unset@: true
+            header.description:
+              type: markdown
+              label: Channel Description
+              ordering@: 0
+            header.link:
+              type: text
+              label: Channel URL
+              default: 'https://www.podcast.com'
+            header.channelLanguage:
+              type: text
+              label: Channel Language
+              default: en-us
+            header.copyright:
+              type: text
+              label: Copyright
+              default: 2013
+
+        itunesMeta:
+          type: tab
+          ordering@: 2
+          title: iTunes Meta
+          fields:
+            helptext:
+              type: spacer
+              title: 
+              text: Metadata related to the podcast's itunes section.
+              underline: true
+            header.subtitle:
+              type: text
+              label: iTunes Subtitle
+              default: 'A show about everything...'
+            header.author: 
+              type: text
+              label: Author
+            header.ownerName: 
+              type: text
+              label: Owner Name
+            header.ownerEmail: 
+              type: email
+              label: Owner Email
+            header.summary:
+              type: markdown
+              help: "This can duplicate the Channel Description"
+              label: Summary
+              ordering@: 0
+            header.image:
+              type: file
+              label: Channel Image
+              destination: 'self@'
+              multiple: false
+              fileszie: 5
+              accept:
+                - image/*
+            header.category:
+              type: selectize
+              style: horizontal
+              label: Category
+            header.explicit:
+              type: toggle
+              label: Explicit Content
+              highlight: 0
+              default: 0
+              help: PLUGIN_ADMIN.ENABLED_HELP
+              options:
+                  1: PLUGIN_ADMIN.YES
+                  0: PLUGIN_ADMIN.NO
+              validate:
+                  type: bool

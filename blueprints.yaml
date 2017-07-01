@@ -1,12 +1,11 @@
 name: Podcast
 version: 0.1.0
-description: Creates a Podcast Content type and podcast RSS feed[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[C[3~c[F
-icon: plug
+description: Creates a Podcast Content type and podcast RSS feed
+icon: microphone
 author:
   name: Jeremy Gonyea
   email: jeremy.gonyea@gmail.com
 homepage: https://github.com/jgonyea/grav-plugin-podcast
-demo: http://demo.yoursite.com
 keywords: grav, plugin, etc
 bugs: https://github.com/jgonyea/grav-plugin-podcast/issues
 docs: https://github.com/jgonyea/grav-plugin-podcast/blob/develop/README.md
@@ -25,7 +24,3 @@ form:
         0: Disabled
       validate:
         type: bool
-    text_var:
-      type: text
-      label: Text Variable
-      help: Text to add to the top of a page
