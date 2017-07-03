@@ -42,7 +42,7 @@ enabled: true
 
 ## Credits
 
-**Did you incorporate third-party code? Want to thank somebody?**
+- RSS structure based on [iTunes RSS Feed Sample](https://help.apple.com/itc/podcasts_connect/#/itcbaf351599)
 
 ## To Do
 

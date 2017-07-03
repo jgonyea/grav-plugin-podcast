@@ -16,7 +16,11 @@ form:
           fields:
             header.title:
               type: text
-              label: Channel Title
+              label: Page Title
+              help: This does not necessarily need to be the same as your podcast channel title
+            header.feed.podcast:
+              type: hidden
+              default: 'true'
         
         channelMeta:
           type: tab
@@ -30,19 +34,27 @@ form:
               underline: true
             uploads:
               unset@: true
-            header.description:
+            header.podcast.title:
+              type: text
+              label: Podcast Title
+              data-default@: \Grav\Plugin\Podcast::getTitle'
+            header.podcast.itunes.subtitle:
+              type: text
+              label: iTunes Subtitle
+              help: 'Example: "A show about everything..."'
+            header.podcast.description:
               type: markdown
               label: Channel Description
               ordering@: 0
-            header.link:
+            header.podcast.link:
               type: text
               label: Channel URL
               default: 'https://www.podcast.com'
-            header.channelLanguage:
+            header.podcast.channelLanguage:
               type: text
               label: Channel Language
               default: en-us
-            header.copyright:
+            header.podcast.copyright:
               type: text
               label: Copyright
               default: 2013
@@ -57,44 +69,41 @@ form:
               title: 
               text: Metadata related to the podcast's itunes section.
               underline: true
-            header.subtitle:
-              type: text
-              label: iTunes Subtitle
-              default: 'A show about everything...'
-            header.author: 
+            header.podcast.itunes.author: 
               type: text
               label: Author
-            header.ownerName: 
+              help: 'Example: "John Doe"'
+            header.podcast.itunes.owner.name: 
               type: text
               label: Owner Name
-            header.ownerEmail: 
+              help: 'Example: "John Doe"'
+            header.podcast.itunes.owner.email: 
               type: email
               label: Owner Email
+              help: 'Example: "jdoe@example.com"'
             header.summary:
-              type: markdown
-              help: "This can duplicate the Channel Description"
+              type: textarea
+              help: This can duplicate the Channel Description
               label: Summary
               ordering@: 0
-            header.image:
+            header.podcast.itunes.image:
               type: file
               label: Channel Image
               destination: 'self@'
-              multiple: false
+              multiple: true
               fileszie: 5
               accept:
                 - image/*
-            header.category:
+            header.itunes.category:
               type: selectize
               style: horizontal
               label: Category
-            header.explicit:
+            header.itunes.explicit:
               type: toggle
               label: Explicit Content
               highlight: 0
-              default: 0
-              help: PLUGIN_ADMIN.ENABLED_HELP
+              default: no
+              help: Does this podcast contain content that might be inappropriate for children?
               options:
-                  1: PLUGIN_ADMIN.YES
-                  0: PLUGIN_ADMIN.NO
-              validate:
-                  type: bool
+                  yes: Yes
+                  no: No
