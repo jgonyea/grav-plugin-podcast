@@ -25,7 +25,6 @@ class PodcastPlugin extends Plugin
   {
     return [
       'onPluginsInitialized' => ['onPluginsInitialized', 0],
-      'onGetPageTemplates' => ['onGetPageTemplates', 0],  
       ];
   }
 
@@ -36,11 +35,14 @@ class PodcastPlugin extends Plugin
   {
     // Don't proceed if we are in the admin plugin
     if ($this->isAdmin()) {
+      $this->enable([
+        'onGetPageTemplates' => ['onGetPageTemplates', 0],  
+      ]);
       return;
     }
 
     // Enable the main event we are interested in
-    $this->enable([
+    $this->enable([      
       'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0],
     ]);
   }
@@ -53,6 +55,7 @@ class PodcastPlugin extends Plugin
     $types = $event->types;
     $locator = Grav::instance()['locator'];
     $types->scanBlueprints($locator->findResource('plugin://' . $this->name . '/blueprints'));
+    $types->scanTemplates($locator->findResource('plugin://' . $this->name . '/templates'));
   }
     
   /**

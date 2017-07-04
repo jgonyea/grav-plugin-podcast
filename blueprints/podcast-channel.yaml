@@ -81,11 +81,6 @@ form:
               type: email
               label: Owner Email
               help: 'Example: "jdoe@example.com"'
-            header.summary:
-              type: textarea
-              help: This can duplicate the Channel Description
-              label: Summary
-              ordering@: 0
             header.podcast.itunes.image:
               type: file
               label: Channel Image
@@ -98,7 +93,7 @@ form:
               type: selectize
               style: horizontal
               label: Category
-            header.itunes.explicit:
+            header.podcast.itunes.explicit:
               type: toggle
               label: Explicit Content
               highlight: 0
