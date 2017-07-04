@@ -1,7 +1,7 @@
 {% set collection = collection|default(page.collection) %}
 {% set channelImage = (uri.base ~ (page.media.images | first).url) %}
 <?xml version="1.0" encoding="utf-8"?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:itunesu="http://www.itunesu.com/feed" version="2.0">
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">
   <channel>
     <title>{{ header.podcast.title }}</title>
     <link>{{ header.podcast.link }}</link>
@@ -28,8 +28,8 @@
     <item>
         <title>{{ item.header.podcast.title ?: item.title }}</title>
         <itunes:author>{{ item.header.podcast.itunes.author }}</itunes:author>
-        <itunes:subtitle>{{ item.summary|truncate(255) }}</itunes:subtitle>
-        <itunes:summary>{{ item.summary }}</itunes:summary>
+        <itunes:subtitle>{{ item.summary|truncate(255)|striptags }}</itunes:subtitle>
+        <itunes:summary>{{ item.summary|striptags }}</itunes:summary>
         <itunes:image href ="{{ (uri.base ~ '/' ~ (item.header.podcast.itunes.image | first).path) }}"/>
         <enclosure length="{{ length }}" url="{{ (uri.base ~ '/' ~ (item.header.podcast.audio | first).path) }}" type="audio/mpeg"  />
         <guid>{{ item.header.podcast.guid }}</guid>

@@ -24,7 +24,11 @@ You should now have all the plugin files under
 
     /your/site/grav/user/plugins/podcast
 	
-> NOTE: This plugin is a modular component for Grav which requires [Grav](http://github.com/getgrav/grav) and the [Error](https://github.com/getgrav/grav-plugin-error) and [Problems](https://github.com/getgrav/grav-plugin-problems) to operate.
+> NOTE: This plugin is a modular component for Grav which requires the following to operate:
+* [Grav](http://github.com/getgrav/grav)
+* [Error](https://github.com/getgrav/grav-plugin-error)
+* [Problems](https://github.com/getgrav/grav-plugin-problems)
+* [Feed](https://github.com/getgrav/grav-plugin-feed)
 
 ## Configuration
 
@@ -46,10 +50,8 @@ enabled: true
 
 ## To Do
 
-- New content type for overall podcast feed
+- Documentation
 - [Podcast categories](https://help.apple.com/itc/podcasts_connect/#/itc9267a2f12)
-- New content type for individual podcasts
-- Admin form blueprints
-- RSS podcast feed (itunes compatible)
 - [ID3 integration](http://getid3.sourceforge.net/)
+- GUID must be full URL, not randomly generated
 
