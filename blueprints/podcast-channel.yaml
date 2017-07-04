@@ -9,7 +9,7 @@ form:
       type: tabs
       active: 1
       fields:
-        content:
+        contentTab:
           type: tab
           ordering@: 0
           title: Podcast Page Content
@@ -21,8 +21,23 @@ form:
             header.feed.podcast:
               type: hidden
               default: 'true'
+            header.content.items: 
+              type: hidden
+              default: '@self.children'
+            header.content.limit:
+              type: hidden
+              default: 5
+            header.content.order.by:
+              type: hidden
+              default: date
+            header.content.order.dir:
+              type: hidden
+              default: desc
+            header.content.url_taxonomy_filters:
+              type: hidden
+              default: 'true'
         
-        channelMeta:
+        channelMetaTab:
           type: tab
           ordering@: 1
           title: Channel Meta
@@ -59,7 +74,7 @@ form:
               label: Copyright
               default: 2013
 
-        itunesMeta:
+        itunesMetaTab:
           type: tab
           ordering@: 2
           title: iTunes Meta
@@ -85,7 +100,7 @@ form:
               type: file
               label: Channel Image
               destination: 'self@'
-              multiple: true
+              multiple: false
               fileszie: 5
               accept:
                 - image/*

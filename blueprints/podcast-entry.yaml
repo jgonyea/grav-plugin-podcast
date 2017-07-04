@@ -13,38 +13,34 @@ form:
           type: tab
           ordering@: 0
           title: Podcast
-          
           fields:
+            uploads:
+              unset@: true
+            header.title:
+              type: text
+              label: Page/ Podcast Title
+            header.podcast.itunes.author:
+              type: text
+              label: Episode Author
+              help: 'Example: "John Doe"'
+            header.podcast.itunes.image:
+              type: file
+              label: Episode Image
+              destination: 'self@'
+              multiple: false
+              fileszie: 5
+              accept:
+                - image/*
             header.podcast.audio:
               type: file
               label: Podcast Audio
               destination: '@self'
               multiple: true
-              filesize: 150
+              filesize: 50
+              limit: 1
               accept:
                 - .mp3
               help: Upload the MP3 audio file here
-            uploads:
-              unset@: true
-        gallery:
-          type: tab
-          ordering@: 1
-          title: Podcast Metadata
-          
-          fields:
-            header.an_example_text_field:
-              type: text
-              label: Add a number
-              default: 5
-              validate:
-                required: true
-                type: int
-
-            header.an_example_select_box:
-              type: select
-              label: Select one of the following
-              default: one
-              options:
-                one: One
-                two: Two
-                three: Three
+            header.podcast.guid:
+              type: hidden
+              data-default@: '\Grav\Plugin\PodcastPlugin::generateGuid'
