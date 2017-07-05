@@ -1,8 +1,9 @@
 # Podcast Plugin
 
-**This README.md file should be modified to describe the features, installation, configuration, and general usage of this plugin.**
-
-The **Podcast** Plugin is for [Grav CMS](http://github.com/getgrav/grav). Creates a Podcast Content type and podcast RSS feed
+The **Podcast** Plugin is for [Grav CMS](http://github.com/getgrav/grav). This plugin creates the following:
+- Page template for Podcast Channel
+- Page template Podcast Episode
+- An iTunes compatible podcast RSS feed
 
 ## Installation
 
@@ -30,6 +31,8 @@ You should now have all the plugin files under
 * [Problems](https://github.com/getgrav/grav-plugin-problems)
 * [Feed](https://github.com/getgrav/grav-plugin-feed)
 
+> While technically not required, using the [Admin](https://github.com/getgrav/grav-plugin-admin) plugin will assist in adding new content.
+
 ## Configuration
 
 Before configuring this plugin, you should copy the `user/plugins/podcast/podcast.yaml` to `user/config/plugins/podcast.yaml` and only edit that copy.
@@ -42,16 +45,43 @@ enabled: true
 
 ## Usage
 
-**Describe how to use the plugin.**
+After installing and enabling the plugin, the admin form should now have two new page templates:
+- Podcast Channel
+- Podcast Episode
+
+### Podcast Channel
+
+A podcast RSS feed is created at PAGENAME.rss.  RSS tags are filled with the appropriate data submitted in the admin form for a podcast channel/ episode.
+Example:
+If a podcast channel is created at  at http://www.example.com/mypodcast, then the url for the podcast RSS feed is found at http://www.example.com/mypodcast.rss
+
+A partial is included for use on a podcast channel page.  Place the following:
+```
+{{ include 'partials/podcast_archive_list.html.twig' }} 
+```
+in a podcast channel page's markdown for a listing of that channel's latest podcasts.  Ensure to add the following to the header of the podcast channel:
+```
+process:
+    markdown: true
+    twig: true
+twig_first: true
+```
+
+### Podcast Episode
+
+These should be created as child pages of a podcast channel.  Note: Episodes won't show up in the RSS feed or the partial if there is no podcast audio attached.
 
 ## Credits
 
 - RSS structure based on [iTunes RSS Feed Sample](https://help.apple.com/itc/podcasts_connect/#/itcbaf351599)
+- Thanks to [flaviocopes](https://github.com/flaviocopes) who assisted me with the initial groundwork from the feeds plugin
 
 ## To Do
 
-- Documentation
-- [Podcast categories](https://help.apple.com/itc/podcasts_connect/#/itc9267a2f12)
+- [Podcast categories and sub-categories](https://help.apple.com/itc/podcasts_connect/#/itc9267a2f12)
 - [ID3 integration](http://getid3.sourceforge.net/)
-- GUID must be full URL, not randomly generated
+- Better media player integration (playlist?)
+- Language selection list on podcast channel
+- GUID must be a full URL to the episode, not randomly generated
+- Fix incorrect <itunes:duration> and partials length calculation
 

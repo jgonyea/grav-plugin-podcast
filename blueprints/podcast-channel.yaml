@@ -9,7 +9,7 @@ form:
       type: tabs
       active: 1
       fields:
-        contentTab:
+        content:
           type: tab
           ordering@: 0
           title: Podcast Page Content

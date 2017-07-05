@@ -20,21 +20,20 @@
         <itunes:category text="{{ header.podcast.itunes.subcategory }}" />
     </itunes:category>
     <itunes:explicit>{{ header.podcast.itunes.explicit }}</itunes:explicit>
-    {% for item in page.collection %}
-    {% if item.header.podcast.audio %}
-      {% set length = (item.header.podcast.audio | first).size %}
-      {% set epImage = (uri.base ~ '/' ~ (item.header.podcast.itunes.image | first).path) %}
-      {{ dump (epImage) }}
+    {% for episode in page.collection %}
+    {% if episode.header.podcast.audio %}
+      {% set length = (episode.header.podcast.audio | first).size %}
+      {% set epImage = (uri.base ~ '/' ~ (episode.header.podcast.itunes.image | first).path) %}
     <item>
-        <title>{{ item.header.podcast.title ?: item.title }}</title>
-        <itunes:author>{{ item.header.podcast.itunes.author }}</itunes:author>
-        <itunes:subtitle>{{ item.summary|truncate(255)|striptags }}</itunes:subtitle>
-        <itunes:summary>{{ item.summary|striptags }}</itunes:summary>
-        <itunes:image href ="{{ (uri.base ~ '/' ~ (item.header.podcast.itunes.image | first).path) }}"/>
-        <enclosure length="{{ length }}" url="{{ (uri.base ~ '/' ~ (item.header.podcast.audio | first).path) }}" type="audio/mpeg"  />
-        <guid>{{ item.header.podcast.guid }}</guid>
+        <title>{{ episode.title }}</title>
+        <itunes:author>{{ episode.header.podcast.itunes.author }}</itunes:author>
+        <itunes:subtitle>{{ episode.summary|truncate(255)|striptags }}</itunes:subtitle>
+        <itunes:summary>{{ episode.summary|striptags }}</itunes:summary>
+        <itunes:image href ="{{ (uri.base ~ '/' ~ (episode.header.podcast.itunes.image | first).path) }}"/>
+        <enclosure length="{{ length }}" url="{{ (uri.base ~ '/' ~ (episode.header.podcast.audio | first).path) }}" type="audio/mpeg"  />
+        <guid>{{ episode.header.podcast.guid }}</guid>
         <itunes:duration>{{ length }}</itunes:duration>
-        <pubDate>{{ item.header.podcast.pubDate ?: item.date|date('D, d M Y H:i:s O') }}</pubDate>
+        <pubDate>{{ episode.date|date('D, d M Y H:i:s O') }}</pubDate>
     </item>
     {% endif %}
     {% endfor %}
