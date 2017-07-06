@@ -6,13 +6,12 @@
   {% for episode in page.collection %}
 
     {% if episode.header.podcast.audio %}
-        {% set striping = cycle(["even", "odd"], loop.index) %}      
+        {% set striping = cycle(["even", "odd"], loop.index) %}
         {% set foundItems = TRUE %}
-        {{ dump(episode.path) }}
         <li class = 'podcast-meta {{ striping }}'>
-          <a href="{{ episode.uri|absolute_url }}"><h3>{{ episode.title }}</h2></a>
-          <p class="date">{{ episode.date|date(' d M Y ') }}</p>
-          <p class="length">Length: </p>
+          <a href="{{ episode.url|absolute_url }}"><h3>{{ episode.title }}</h2></a>
+          <p class="date">{{ (episode.header.publish_date ?: episode.header.date)|date(' d M Y ') }}</p>
+          <p class="length">Length: {{ ((episode.header.podcast.audio)|first).duration }} </p>
         </li>
 
     {% endif %}
