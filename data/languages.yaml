@@ -1,448 +1,616 @@
-af
-af-ZA
-am
-am-ET
-ar
-ar-145
-ar-AE
-ar-BH
-ar-DZ
-ar-EG
-ar-IQ
-ar-JO
-ar-KW
-ar-LB
-ar-LY
-ar-MA
-arn
-arn-CL
-ar-OM
-ar-Ploc-SA
-ar-QA
-ar-SA
-ar-SY
-ar-TN
-ar-YE
-as
-as-IN
-az
-az-Cyrl
-az-Cyrl-AZ
-az-Latn
-az-Latn-AZ
-ba
-ba-RU
-be
-be-BY
-bg
-bg-BG
-bin
-bin-NG
-bn
-bn-BD
-bn-IN
-bo
-bo-BT
-bo-CN
-br
-br-FR
-bs
-bs, hr, or sr
-bs-Cyrl
-bs-Cyrl-BA
-bs-Latn
-bs-Latn-BA
-ca
-ca-ES
-ca-ES-valencia
-chr
-chr-Cher
-chr-Cher-US
-co
-co-FR
-cs
-cs-CZ
-cy
-cy-GB
-da
-da-DK
-de
-de-AT
-de-CH
-de-DE
-de-LI
-de-LU
-dsb
-dsb or hsb
-dsb-DE
-dv
-dv-MV
-dz-BT
-el
-el-GR
-en
-en-029
-en-AE
-en-AU
-en-BH
-en-BZ
-en-CA
-en-EG
-en-GB
-en-HK
-en-ID
-en-IE
-en-IN
-en-JM
-en-JO
-en-KW
-en-MY
-en-NZ
-en-PH
-en-SG
-en-TR
-en-TT
-en-US
-en-YE
-en-ZA
-en-ZW
-es
-es-419
-es-AR
-es-BO
-es-CL
-es-CO
-es-CR
-es-CU
-es-DO
-es-EC
-es-ES
-es-ES_tradnl
-es-GT
-es-HN
-es-MX
-es-NI
-es-PA
-es-PE
-es-PR
-es-PY
-es-SV
-es-US
-es-UY
-es-VE
-et
-et-EE
-eu
-eu-ES
-fa
-fa-IR
-ff
-ff-Latn
-ff-Latn-SN
-fi
-fi-FI
-fil
-fil-PH
-fo
-fo-FO
-fr
-fr-BE
-fr-CA
-fr-CD
-fr-CH
-fr-CI
-fr-CM
-fr-FR
-fr-HT
-fr-LU
-fr-MA
-fr-MC
-fr-ML
-fr-RE
-fr-SN
-fuv-NG
-fy
-fy-NL
-ga
-ga-IE
-gd
-gd-GB
-gl
-gl-ES
-gn
-gn-PY
-gsw
-gsw-FR
-gu
-gu-IN
-ha
-ha-Latn
-ha-Latn-NG
-haw
-haw-US
-he
-he-IL
-hi
-hi-IN
-hr-BA
-hr-HR
-hsb-DE
-hu
-hu-HU
-hy
-hy-AM
-ibb
-ibb-NG
-id
-id-ID
-ig
-ig-NG
-ii
-ii-CN
-is
-is-IS
-it
-it-CH
-it-IT
-iu
-iu-Cans
-iu-Cans-CA
-iu-Latn
-iu-Latn-CA
-ja
-ja-JP
-ja-Ploc-JP
-ka
-ka-GE
-khb-Talu-CN
-kk
-kk-KZ
-kl
-kl-GL
-km
-km-KH
-kn
-kn-IN
-ko
-kok
-kok-IN
-ko-KR
-kr
-kr-NG
-ks
-ks-Arab
-ks-Deva
-ku
-ku-Arab
-ku-Arab-IQ
-ky
-ky-KG
-la
-la-Latn
-lb
-lb-LU
-lo
-lo-LA
-lt
-lt-LT
-lv
-lv-LV
-mi
-mi-NZ
-mk
-mk-MK
-ml
-ml-IN
-mn
-mn-Cyrl
-mni
-mni-IN
-mn-MN
-mn-Mong
-mn-Mong-CN
-mn-Mong-MN
-moh
-moh-CA
-mr
-mr-IN
-ms
-ms-BN
-ms-MY
-mt
-mt-MT
-my
-my-MM
-nb
-nb-NO
-ne
-ne-IN
-ne-NP
-nl
-nl-BE
-nl-NL
-nn
-nn-NO
-nso
-nso-ZA
-oc
-oc-FR
-om
-om-ET
-or
-or-IN
-pa
-pa-Arab
-pa-Arab-PK
-pa-IN
-pap
-pap-029
-pl
-pl-PL
-plt-MG
-prs
-prs-AF
-ps
-ps-AF
-pt
-pt-BR
-pt-PT
-qps-ploc
-qps-ploca
-qps-plocm
-quc
-quc-CO
-qut
-qut-GT
-quz
-quz-BO
-quz-EC
-quz-PE
-rm
-rm-CH
-ro
-ro-MD
-ro-RO
-ru
-ru-MD
-ru-RU
-rw
-rw-RW
-sa
-sah
-sah-RU
-sa-IN
-sd
-sd-Arab
-sd-Arab-PK
-sd-Deva-IN
-se
-se-FI
-se-NO
-se-SE
-si
-si-LK
-sk
-sk-SK
-sl
-sl-SI
-sma
-sma-NO
-sma-SE
-smj
-smj-NO
-smj-SE
-smn
-smn-FI
-sms
-sms-FI
-so
-so-SO
-sq
-sq-AL
-sr
-sr-Cyrl
-sr-Cyrl-BA
-sr-Cyrl-CS
-sr-Cyrl-ME
-sr-Cyrl-RS
-sr-Latn
-sr-Latn-BA
-sr-Latn-CS
-sr-Latn-ME
-sr-Latn-RS
-st
-st-ZA
-sv
-sv-FI
-sv-SE
-sw
-sw-KE
-syr
-syr-SY
-ta
-ta-IN
-ta-LK
-tdd-Tale-CN
-te
-te-IN
-tg
-tg-Cyrl
-tg-Cyrl-TJ
-th
-th-TH
-ti
-ti-ER
-ti-ET
-tk
-tk-TM
-tmz-MA
-tn
-tn-BW
-tn-ZA
-tr
-tr-TR
-ts
-ts-ZA
-tt
-tt-RU
-tzm
-tzm-Arab-MA
-tzm-Latn
-tzm-Latn-DZ
-tzm-Tfng
-tzm-Tfng-MA
-ug
-ug-CN
-uk
-uk-UA
-ur
-ur-IN
-ur-PK
-uz
-uz-Cyrl
-uz-Cyrl-UZ
-uz-Latn
-uz-Latn-UZ
-ve
-ve-ZA
-vi
-vi-VN
-wo
-wo-SN
-xh
-xh-ZA
-yi
-yi-Hebr
-yo
-yo-NG
-zh
-zh-CN
-zh-Hans
-zh-Hant
-zh-HK
-zh-MO
-zh-SG
-zh-TW
-zh-yue-HK
-zu
-zu-ZA
+---
+-
+    ISO 639 Code: aa
+    English Name: Afar
+-
+    ISO 639 Code: ab
+    English Name: Abkhazian
+-
+    ISO 639 Code: ae
+    English Name: Avestan
+-
+    ISO 639 Code: af
+    English Name: Afrikaans
+-
+    ISO 639 Code: ak
+    English Name: Akan
+-
+    ISO 639 Code: am
+    English Name: Amharic
+-
+    ISO 639 Code: an
+    English Name: Aragonese
+-
+    ISO 639 Code: ar
+    English Name: Arabic
+-
+    ISO 639 Code: as
+    English Name: Assamese
+-
+    ISO 639 Code: av
+    English Name: Avaric
+-
+    ISO 639 Code: ay
+    English Name: Aymara
+-
+    ISO 639 Code: az
+    English Name: Azerbaijani
+-
+    ISO 639 Code: ba
+    English Name: Bashkir
+-
+    ISO 639 Code: be
+    English Name: Belarusian
+-
+    ISO 639 Code: bg
+    English Name: Bulgarian
+-
+    ISO 639 Code: bh
+    English Name: Bihari languages
+-
+    ISO 639 Code: bi
+    English Name: Bislama
+-
+    ISO 639 Code: bm
+    English Name: Bambara
+-
+    ISO 639 Code: bn
+    English Name: Bengali
+-
+    ISO 639 Code: bo
+    English Name: Tibetan
+-
+    ISO 639 Code: bo
+    English Name: Tibetan
+-
+    ISO 639 Code: br
+    English Name: Breton
+-
+    ISO 639 Code: bs
+    English Name: Bosnian
+-
+    ISO 639 Code: ca
+    English Name: Catalan; Valencian
+-
+    ISO 639 Code: ce
+    English Name: Chechen
+-
+    ISO 639 Code: ch
+    English Name: Chamorro
+-
+    ISO 639 Code: co
+    English Name: Corsican
+-
+    ISO 639 Code: cr
+    English Name: Cree
+-
+    ISO 639 Code: cs
+    English Name: Czech
+-
+    ISO 639 Code: cs
+    English Name: Czech
+-
+    ISO 639 Code: cu
+    English Name: Church Slavic; Old Slavonic; Church Slavonic; Old Bulgarian; Old Church Slavonic
+-
+    ISO 639 Code: cv
+    English Name: Chuvash
+-
+    ISO 639 Code: cy
+    English Name: Welsh
+-
+    ISO 639 Code: cy
+    English Name: Welsh
+-
+    ISO 639 Code: da
+    English Name: Danish
+-
+    ISO 639 Code: de
+    English Name: German
+-
+    ISO 639 Code: de
+    English Name: German
+-
+    ISO 639 Code: dv
+    English Name: Divehi; Dhivehi; Maldivian
+-
+    ISO 639 Code: dz
+    English Name: Dzongkha
+-
+    ISO 639 Code: ee
+    English Name: Ewe
+-
+    ISO 639 Code: el
+    English Name: Greek Modern (1453-)
+-
+    ISO 639 Code: el
+    English Name: Greek Modern (1453-)
+-
+    ISO 639 Code: en
+    English Name: English
+-
+    ISO 639 Code: eo
+    English Name: Esperanto
+-
+    ISO 639 Code: es
+    English Name: Spanish; Castilian
+-
+    ISO 639 Code: et
+    English Name: Estonian
+-
+    ISO 639 Code: eu
+    English Name: Basque
+-
+    ISO 639 Code: eu
+    English Name: Basque
+-
+    ISO 639 Code: fa
+    English Name: Persian
+-
+    ISO 639 Code: fa
+    English Name: Persian
+-
+    ISO 639 Code: ff
+    English Name: Fulah
+-
+    ISO 639 Code: fi
+    English Name: Finnish
+-
+    ISO 639 Code: fj
+    English Name: Fijian
+-
+    ISO 639 Code: fo
+    English Name: Faroese
+-
+    ISO 639 Code: fr
+    English Name: French
+-
+    ISO 639 Code: fr
+    English Name: French
+-
+    ISO 639 Code: fy
+    English Name: Western Frisian
+-
+    ISO 639 Code: ga
+    English Name: Irish
+-
+    ISO 639 Code: gd
+    English Name: Gaelic; Scottish Gaelic
+-
+    ISO 639 Code: gl
+    English Name: Galician
+-
+    ISO 639 Code: gn
+    English Name: Guarani
+-
+    ISO 639 Code: gu
+    English Name: Gujarati
+-
+    ISO 639 Code: gv
+    English Name: Manx
+-
+    ISO 639 Code: ha
+    English Name: Hausa
+-
+    ISO 639 Code: he
+    English Name: Hebrew
+-
+    ISO 639 Code: hi
+    English Name: Hindi
+-
+    ISO 639 Code: ho
+    English Name: Hiri Motu
+-
+    ISO 639 Code: hr
+    English Name: Croatian
+-
+    ISO 639 Code: ht
+    English Name: Haitian; Haitian Creole
+-
+    ISO 639 Code: hu
+    English Name: Hungarian
+-
+    ISO 639 Code: hy
+    English Name: Armenian
+-
+    ISO 639 Code: hy
+    English Name: Armenian
+-
+    ISO 639 Code: hz
+    English Name: Herero
+-
+    ISO 639 Code: ia
+    English Name: Interlingua (International Auxiliary Language Association)
+-
+    ISO 639 Code: id
+    English Name: Indonesian
+-
+    ISO 639 Code: ie
+    English Name: Interlingue; Occidental
+-
+    ISO 639 Code: ig
+    English Name: Igbo
+-
+    ISO 639 Code: ii
+    English Name: Sichuan Yi; Nuosu
+-
+    ISO 639 Code: ik
+    English Name: Inupiaq
+-
+    ISO 639 Code: io
+    English Name: Ido
+-
+    ISO 639 Code: is
+    English Name: Icelandic
+-
+    ISO 639 Code: is
+    English Name: Icelandic
+-
+    ISO 639 Code: iso 639-1 code
+    English Name: English name of Language
+-
+    ISO 639 Code: it
+    English Name: Italian
+-
+    ISO 639 Code: iu
+    English Name: Inuktitut
+-
+    ISO 639 Code: ja
+    English Name: Japanese
+-
+    ISO 639 Code: jv
+    English Name: Javanese
+-
+    ISO 639 Code: ka
+    English Name: Georgian
+-
+    ISO 639 Code: ka
+    English Name: Georgian
+-
+    ISO 639 Code: kg
+    English Name: Kongo
+-
+    ISO 639 Code: ki
+    English Name: Kikuyu; Gikuyu
+-
+    ISO 639 Code: kj
+    English Name: Kuanyama; Kwanyama
+-
+    ISO 639 Code: kk
+    English Name: Kazakh
+-
+    ISO 639 Code: kl
+    English Name: Kalaallisut; Greenlandic
+-
+    ISO 639 Code: km
+    English Name: Central Khmer
+-
+    ISO 639 Code: kn
+    English Name: Kannada
+-
+    ISO 639 Code: ko
+    English Name: Korean
+-
+    ISO 639 Code: kr
+    English Name: Kanuri
+-
+    ISO 639 Code: ks
+    English Name: Kashmiri
+-
+    ISO 639 Code: ku
+    English Name: Kurdish
+-
+    ISO 639 Code: kv
+    English Name: Komi
+-
+    ISO 639 Code: kw
+    English Name: Cornish
+-
+    ISO 639 Code: ky
+    English Name: Kirghiz; Kyrgyz
+-
+    ISO 639 Code: la
+    English Name: Latin
+-
+    ISO 639 Code: lb
+    English Name: Luxembourgish; Letzeburgesch
+-
+    ISO 639 Code: lg
+    English Name: Ganda
+-
+    ISO 639 Code: li
+    English Name: Limburgan; Limburger; Limburgish
+-
+    ISO 639 Code: ln
+    English Name: Lingala
+-
+    ISO 639 Code: lo
+    English Name: Lao
+-
+    ISO 639 Code: lt
+    English Name: Lithuanian
+-
+    ISO 639 Code: lu
+    English Name: Luba-Katanga
+-
+    ISO 639 Code: lv
+    English Name: Latvian
+-
+    ISO 639 Code: mg
+    English Name: Malagasy
+-
+    ISO 639 Code: mh
+    English Name: Marshallese
+-
+    ISO 639 Code: mi
+    English Name: Maori
+-
+    ISO 639 Code: mi
+    English Name: Maori
+-
+    ISO 639 Code: mk
+    English Name: Macedonian
+-
+    ISO 639 Code: mk
+    English Name: Macedonian
+-
+    ISO 639 Code: ml
+    English Name: Malayalam
+-
+    ISO 639 Code: mn
+    English Name: Mongolian
+-
+    ISO 639 Code: mr
+    English Name: Marathi
+-
+    ISO 639 Code: ms
+    English Name: Malay
+-
+    ISO 639 Code: ms
+    English Name: Malay
+-
+    ISO 639 Code: mt
+    English Name: Maltese
+-
+    ISO 639 Code: my
+    English Name: Burmese
+-
+    ISO 639 Code: my
+    English Name: Burmese
+-
+    ISO 639 Code: na
+    English Name: Nauru
+-
+    ISO 639 Code: nb
+    English Name: Norwegian Bokmål
+-
+    ISO 639 Code: nd
+    English Name: North Ndebele
+-
+    ISO 639 Code: ne
+    English Name: Nepali
+-
+    ISO 639 Code: ng
+    English Name: Ndonga
+-
+    ISO 639 Code: nl
+    English Name: Dutch; Flemish
+-
+    ISO 639 Code: nl
+    English Name: Dutch; Flemish
+-
+    ISO 639 Code: nn
+    English Name: Nynorsk; Norwegian
+-
+    ISO 639 Code: no
+    English Name: Norwegian
+-
+    ISO 639 Code: nr
+    English Name: South Ndebele
+-
+    ISO 639 Code: nv
+    English Name: Navajo; Navaho
+-
+    ISO 639 Code: ny
+    English Name: Chichewa; Chewa; Nyanja
+-
+    ISO 639 Code: oc
+    English Name: Occitan (post 1500)
+-
+    ISO 639 Code: oj
+    English Name: Ojibwa
+-
+    ISO 639 Code: om
+    English Name: Oromo
+-
+    ISO 639 Code: or
+    English Name: Oriya
+-
+    ISO 639 Code: os
+    English Name: Ossetian; Ossetic
+-
+    ISO 639 Code: pa
+    English Name: Panjabi; Punjabi
+-
+    ISO 639 Code: pi
+    English Name: Pali
+-
+    ISO 639 Code: pl
+    English Name: Polish
+-
+    ISO 639 Code: ps
+    English Name: Pushto; Pashto
+-
+    ISO 639 Code: pt
+    English Name: Portuguese
+-
+    ISO 639 Code: qu
+    English Name: Quechua
+-
+    ISO 639 Code: rm
+    English Name: Romansh
+-
+    ISO 639 Code: rn
+    English Name: Rundi
+-
+    ISO 639 Code: ro
+    English Name: Romanian; Moldavian; Moldovan
+-
+    ISO 639 Code: ro
+    English Name: Romanian; Moldavian; Moldovan
+-
+    ISO 639 Code: ru
+    English Name: Russian
+-
+    ISO 639 Code: rw
+    English Name: Kinyarwanda
+-
+    ISO 639 Code: sa
+    English Name: Sanskrit
+-
+    ISO 639 Code: sc
+    English Name: Sardinian
+-
+    ISO 639 Code: sd
+    English Name: Sindhi
+-
+    ISO 639 Code: se
+    English Name: Northern Sami
+-
+    ISO 639 Code: sg
+    English Name: Sango
+-
+    ISO 639 Code: si
+    English Name: Sinhala; Sinhalese
+-
+    ISO 639 Code: sk
+    English Name: Slovak
+-
+    ISO 639 Code: sk
+    English Name: Slovak
+-
+    ISO 639 Code: sl
+    English Name: Slovenian
+-
+    ISO 639 Code: sm
+    English Name: Samoan
+-
+    ISO 639 Code: sn
+    English Name: Shona
+-
+    ISO 639 Code: so
+    English Name: Somali
+-
+    ISO 639 Code: sq
+    English Name: Albanian
+-
+    ISO 639 Code: sq
+    English Name: Albanian
+-
+    ISO 639 Code: sr
+    English Name: Serbian
+-
+    ISO 639 Code: ss
+    English Name: Swati
+-
+    ISO 639 Code: st
+    English Name: Sotho Southern
+-
+    ISO 639 Code: su
+    English Name: Sundanese
+-
+    ISO 639 Code: sv
+    English Name: Swedish
+-
+    ISO 639 Code: sw
+    English Name: Swahili
+-
+    ISO 639 Code: ta
+    English Name: Tamil
+-
+    ISO 639 Code: te
+    English Name: Telugu
+-
+    ISO 639 Code: tg
+    English Name: Tajik
+-
+    ISO 639 Code: th
+    English Name: Thai
+-
+    ISO 639 Code: ti
+    English Name: Tigrinya
+-
+    ISO 639 Code: tk
+    English Name: Turkmen
+-
+    ISO 639 Code: tl
+    English Name: Tagalog
+-
+    ISO 639 Code: tn
+    English Name: Tswana
+-
+    ISO 639 Code: to
+    English Name: Tonga (Tonga Islands)
+-
+    ISO 639 Code: tr
+    English Name: Turkish
+-
+    ISO 639 Code: ts
+    English Name: Tsonga
+-
+    ISO 639 Code: tt
+    English Name: Tatar
+-
+    ISO 639 Code: tw
+    English Name: Twi
+-
+    ISO 639 Code: ty
+    English Name: Tahitian
+-
+    ISO 639 Code: ug
+    English Name: Uighur; Uyghur
+-
+    ISO 639 Code: uk
+    English Name: Ukrainian
+-
+    ISO 639 Code: ur
+    English Name: Urdu
+-
+    ISO 639 Code: uz
+    English Name: Uzbek
+-
+    ISO 639 Code: ve
+    English Name: Venda
+-
+    ISO 639 Code: vi
+    English Name: Vietnamese
+-
+    ISO 639 Code: vo
+    English Name: Volapük
+-
+    ISO 639 Code: wa
+    English Name: Walloon
+-
+    ISO 639 Code: wo
+    English Name: Wolof
+-
+    ISO 639 Code: xh
+    English Name: Xhosa
+-
+    ISO 639 Code: yi
+    English Name: Yiddish
+-
+    ISO 639 Code: yo
+    English Name: Yoruba
+-
+    ISO 639 Code: za
+    English Name: Zhuang; Chuang
+-
+    ISO 639 Code: zh
+    English Name: Chinese
+-
+    ISO 639 Code: zh
+    English Name: Chinese
+-
+    ISO 639 Code: zu
+    English Name: Zulu

@@ -1,3 +1,12 @@
+# v0.9.1
+## 07/06/2017
+1. [](#new)
+    * Language selection now follows the codes found [here](http://www.loc.gov/standards/iso639-2/php/code_list.php)
+2. [](#improved)
+    * Podcast category and sub-categories now populate into the RSS feed.
+3. [](#bugfix)
+    * Removed non-working call in podcast channel blueprint.
+
 # v0.9.0
 ## 07/05/2017
 1. [](#new)

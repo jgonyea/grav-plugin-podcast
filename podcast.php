@@ -5,6 +5,7 @@ use Grav\Common\Grav;
 use Grav\Common\Plugin;
 use RocketTheme\Toolbox\Event\Event;
 use RocketTheme\Toolbox\File\File;
+use Symfony\Component\Yaml\Yaml;
 
 /**
  * Class PodcastPlugin
@@ -112,7 +113,6 @@ class PodcastPlugin extends Plugin
     return "2:30";
   }
 
-
   /**
    * Generate GUID for podcast entry.
    */
@@ -124,4 +124,70 @@ class PodcastPlugin extends Plugin
     }
     return $str;
   }
+
+  /**
+   * Finds list of available iTunes categories.
+   *
+   * @return array
+   *   Array of options for select list.
+   */
+  public static function getCategoryOptions()
+  {
+    $options = array();
+    $data_file_path = __DIR__ . DS . 'data' . DS . 'iTunesCategories.yaml';
+    $file = File::instance($data_file_path);
+    $data = Yaml::parse($file->content());
+    $keys = array_keys($data);
+
+    foreach($keys as $option){
+      $options[$option] = $option;
+    }
+
+    return $options;
+  }
+
+  /**
+   * Finds list of available iTunes subcategories.
+   *
+   * @return array
+   *   Array of options for select list.
+   */
+  public static function getSubCategoryOptions()
+  {
+    $options = array();
+    $data_file_path = __DIR__ . DS . 'data' . DS . 'iTunesCategories.yaml';
+    $file = File::instance($data_file_path);
+    $data = Yaml::parse($file->content());
+    foreach($data as $key => $category){
+      if ($category != NULL){
+        foreach ($category as $sub){
+          $options[$sub] = $sub;
+        }
+      }
+      else{
+        $options[$key] = $key;
+      }
+    }
+
+    return $options;
+  }
+
+  /**
+   * Finds list of available language options.
+   *
+   * @return array
+   *   Array of options for select list.
+   */
+  public static function getLanguageOptions()
+  {
+    $options = array();
+    $data_file_path = __DIR__ . DS . 'data' . DS . 'languages.yaml';
+    $file = File::instance($data_file_path);
+    $languages = Yaml::parse($file->content());
+    foreach ($languages as $language) {
+      $options[$language['ISO 639 Code']] = $language['English Name'] . " (" . $language['ISO 639 Code'] . ")";
+    }
+    return $options;
+  }
+
 }

@@ -52,7 +52,6 @@ form:
             header.podcast.title:
               type: text
               label: Podcast Title
-              data-default@: \Grav\Plugin\Podcast::getTitle'
             header.podcast.itunes.subtitle:
               type: text
               label: iTunes Subtitle
@@ -66,9 +65,10 @@ form:
               label: Channel URL
               default: 'https://www.podcast.com'
             header.podcast.channelLanguage:
-              type: text
+              type: select
               label: Channel Language
-              default: en-us
+              default: 'en'
+              data-options@: '\Grav\Plugin\PodcastPlugin::getLanguageOptions'
             header.podcast.copyright:
               type: text
               label: Copyright
@@ -104,10 +104,17 @@ form:
               fileszie: 5
               accept:
                 - image/*
-            header.itunes.category:
-              type: selectize
-              style: horizontal
+            header.podcast.itunes.category:
+              type: select
+              size: long
+              classes: fancy
               label: Category
+              data-options@: '\Grav\Plugin\PodcastPlugin::getCategoryOptions'
+            header.podcast.itunes.subcategory:
+              type: select
+              label: Sub-Category
+              data-options@: '\Grav\Plugin\PodcastPlugin::getSubCategoryOptions'
+
             header.podcast.itunes.explicit:
               type: toggle
               label: Explicit Content

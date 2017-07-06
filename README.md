@@ -78,10 +78,8 @@ These should be created as child pages of a podcast channel.  Note: Episodes won
 
 ## To Do
 
-- [Podcast categories and sub-categories](https://help.apple.com/itc/podcasts_connect/#/itc9267a2f12)
 - [ID3 integration](http://getid3.sourceforge.net/)
 - Better media player integration (playlist?)
-- Language selection list on podcast channel
 - GUID must be a full URL to the episode, not randomly generated
 - Fix incorrect <itunes:duration> and partials length calculation
 
