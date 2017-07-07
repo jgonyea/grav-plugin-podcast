@@ -82,4 +82,5 @@ These should be created as child pages of a podcast channel.  Note: Episodes won
 - Better media player integration (playlist?)
 - GUID must be a full URL to the episode, not randomly generated
 - Fix incorrect <itunes:duration> and partials length calculation
+- Add podcast meta field validations as required
 
