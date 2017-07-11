@@ -1,5 +1,19 @@
+# v0.9.2
+## 07/11/2017
+1. [](#new)
+    
+2. [](#improved)
+    * GUID now properly defined
+    
+3. [](#bugfix)
+    * Fixed typo in README file
+    * Spacing issue on rss feed item tag
+    * Updated blueprints.yaml to match correct version
+    * Added sub categories underneath some of the entries in iTunesCategories.yaml
+
 # v0.9.1
 ## 07/06/2017
+
 1. [](#new)
     * Language selection now follows the codes found [here](http://www.loc.gov/standards/iso639-2/php/code_list.php)
 2. [](#improved)
@@ -9,6 +23,7 @@
 
 # v0.9.0
 ## 07/05/2017
+
 1. [](#new)
     * Groundwork for calculating episode duration.
     * CSS striping added to podcast_archive_list.html.twig partial.

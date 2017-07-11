@@ -20,10 +20,10 @@
         <itunes:category text="{{ header.podcast.itunes.subcategory }}" />
     </itunes:category>
     <itunes:explicit>{{ header.podcast.itunes.explicit }}</itunes:explicit>
-    {% for episode in page.collection %}
-    {% if episode.header.podcast.audio %}
-      {% set length = (episode.header.podcast.audio | first).size %}
-      {% set epImage = (uri.base ~ '/' ~ (episode.header.podcast.itunes.image | first).path) %}
+{% for episode in page.collection %}
+{% if episode.header.podcast.audio %}
+{% set length = (episode.header.podcast.audio | first).size %}
+{% set epImage = (uri.base ~ '/' ~ (episode.header.podcast.itunes.image | first).path) %}
     <item>
         <title>{{ episode.title }}</title>
         <itunes:author>{{ episode.header.podcast.itunes.author }}</itunes:author>
@@ -31,12 +31,12 @@
         <itunes:summary>{{ episode.summary|striptags }}</itunes:summary>
         <itunes:image href ="{{ (uri.base ~ '/' ~ (episode.header.podcast.itunes.image | first).path) }}"/>
         <enclosure length="{{ length }}" url="{{ (uri.base ~ '/' ~ (episode.header.podcast.audio | first).path) }}" type="audio/mpeg"  />
-        <guid>{{ episode.header.podcast.guid }}</guid>
+        <guid>{{ uri.base ~ episode.url }}</guid>
         <itunes:duration>{{ ((episode.header.podcast.audio)|first).duration }}</itunes:duration>
         <pubDate>{{ (episode.header.publish_date ?: episode.header.date)|date('D, d M Y H:i:s O') }}</pubDate>
     </item>
-    {% endif %}
-    {% endfor %}
+{% endif %}
+{% endfor %}
     <atom:link href="{{ uri.base ~ base_url ~ page.route ~ '.rss' }}" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

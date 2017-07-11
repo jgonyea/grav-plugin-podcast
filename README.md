@@ -57,7 +57,7 @@ If a podcast channel is created at  at http://www.example.com/mypodcast, then th
 
 A partial is included for use on a podcast channel page.  Place the following:
 ```
-{{ include 'partials/podcast_archive_list.html.twig' }} 
+{% include 'partials/podcast_archive_list.html.twig' %}
 ```
 in a podcast channel page's markdown for a listing of that channel's latest podcasts.  Ensure to add the following to the header of the podcast channel:
 ```
@@ -80,7 +80,5 @@ These should be created as child pages of a podcast channel.  Note: Episodes won
 
 - [ID3 integration](http://getid3.sourceforge.net/)
 - Better media player integration (playlist?)
-- GUID must be a full URL to the episode, not randomly generated
 - Fix incorrect <itunes:duration> and partials length calculation
-- Add podcast meta field validations as required
-
+- Set podcast meta field validations as required

@@ -12,6 +12,7 @@ Business:
   - Management &amp; Marketing
   - Shopping
 Comedy:
+  - Comedy
 Education:
   - Educational Technology
   - Higher Education
@@ -35,16 +36,18 @@ Health:
   - Self-Help
   - Sexuality
 Kids &amp; Family:
+  - Kids &amp; Family
 Music:
+  - Music
 News &amp; Politics:
 Religion &amp; Spirituality:
-  -  Buddhism
-  -  Christianity
-  -  Hinduism
-  -  Islam
-  -  Judaism
-  -  Other
-  -  Spirituality
+  - Buddhism
+  - Christianity
+  - Hinduism
+  - Islam
+  - Judaism
+  - Other
+  - Spirituality
 Science &amp; Medicine:
   - Medicine
   - Natural Sciences
@@ -65,3 +68,4 @@ Technology:
   - Podcasting
   - Software How-To
 TV &amp; Film:
+  - TV &amp; Film
