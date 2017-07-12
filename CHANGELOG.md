@@ -1,5 +1,19 @@
+# v1.0.0
+## 07/12/2017
+
+1. [](#new)
+    * Audio duration now calculated via get-id3 Grav plugin
+    * Dependencies added to blueprints.yaml
+    
+2. [](#improved)
+    * Unessential GUID PHP functions removed
+    
+3. [](#bugfix)
+    * Spacing for duration meta data insertion fixed
+
 # v0.9.2
 ## 07/11/2017
+
 1. [](#new)
     
 2. [](#improved)

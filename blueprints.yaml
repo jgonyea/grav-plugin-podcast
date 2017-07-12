@@ -11,6 +11,10 @@ bugs: https://github.com/jgonyea/grav-plugin-podcast/issues
 docs: https://github.com/jgonyea/grav-plugin-podcast/blob/develop/README.md
 license: MIT
 
+dependencies:
+  - github: https://github.com/jgonyea/grav-plugin-get-id3
+  - feed
+
 form:
   validation: strict
   fields:

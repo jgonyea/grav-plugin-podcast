@@ -41,6 +41,3 @@ form:
               accept:
                 - .mp3
               help: Upload the MP3 audio file here
-            header.podcast.guid:
-              type: hidden
-              data-default@: '\Grav\Plugin\PodcastPlugin::generateGuid'

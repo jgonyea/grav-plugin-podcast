@@ -6,6 +6,7 @@ use Grav\Common\Plugin;
 use RocketTheme\Toolbox\Event\Event;
 use RocketTheme\Toolbox\File\File;
 use Symfony\Component\Yaml\Yaml;
+use Grav\Plugin\GetID3Plugin;
 
 /**
  * Class PodcastPlugin
@@ -77,7 +78,7 @@ class PodcastPlugin extends Plugin
         $page = $this->grav['page'];
         $header = $page->header();
         // Only process podcast pages with audio attached.
-        if (isset($header->podcast['audio']) && $page->name() == 'podcast-episode.md') {
+        if (!empty($header->podcast['audio']) && $page->name() == 'podcast-episode.md') {
             // Find array key for podcast audio.
             $key = array_keys($header->podcast['audio']);
 
@@ -90,7 +91,7 @@ class PodcastPlugin extends Plugin
                 $duration = $this->retreiveAudioDuration($key[0]);
                 $raw = $file->raw();
                 $orig = "type: audio/mpeg\n";
-                $replace = $orig . "                        duration: $duration\n";
+                $replace = $orig . "            duration: $duration\n";
                 $raw = str_replace($orig, $replace, $raw);
 
                 $file->save($raw);
@@ -109,21 +110,8 @@ class PodcastPlugin extends Plugin
      */
     public static function retreiveAudioDuration($file)
     {
-        //todo: change fixed value to calcuated one.
-        return "2:30";
-    }
-
-    /**
-     * Generate GUID for podcast entry.
-     */
-    public static function generateGuid($length = 20, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
-    {
-        $str = '';
-        $max = mb_strlen($keyspace, '8bit') - 1;
-        for ($i = 0; $i < $length; ++$i) {
-                $str .= $keyspace[random_int(0, $max)];
-        }
-        return $str;
+        $id3 = GetID3Plugin::analyzeFile($file);
+        return ($id3['playtime_string']);
     }
 
     /**
@@ -169,7 +157,7 @@ class PodcastPlugin extends Plugin
             }
         }
 
-    return $options;
+        return $options;
     }
 
     /**

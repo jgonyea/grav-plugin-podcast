@@ -78,7 +78,5 @@ These should be created as child pages of a podcast channel.  Note: Episodes won
 
 ## To Do
 
-- [ID3 integration](http://getid3.sourceforge.net/)
 - Better media player integration (playlist?)
-- Fix incorrect <itunes:duration> and partials length calculation
 - Set podcast meta field validations as required
