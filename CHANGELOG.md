@@ -1,3 +1,16 @@
+# v1.0.1
+## 08/05/2017
+
+1. [](#new)
+    * No new features.
+    
+2. [](#improved)
+    * Cleaned up code for media display of individual podcast.
+    
+3. [](#bugfix)
+    * Version number in blueprints updated correctly.
+
+
 # v1.0.0
 ## 07/12/2017
 

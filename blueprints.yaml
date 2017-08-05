@@ -1,5 +1,5 @@
 name: Podcast
-version: 0.9.2
+version: 1.0.1
 description: Creates a Podcast Content type and podcast RSS feed
 icon: microphone
 author:
@@ -12,7 +12,7 @@ docs: https://github.com/jgonyea/grav-plugin-podcast/blob/develop/README.md
 license: MIT
 
 dependencies:
-  - github: https://github.com/jgonyea/grav-plugin-get-id3
+  - get-id3
   - feed
 
 form:
