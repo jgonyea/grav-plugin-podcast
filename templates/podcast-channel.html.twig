@@ -1,5 +1,45 @@
 {% extends 'partials/base.html.twig' %}
 
 {% block content %}
-    {{ page.content }}
+
+    <div>
+        <div class = "podcast-header">
+            <div class = "podcast-channel-image">
+                {% set channel_image = ((header.podcast.itunes.image)|first) %}
+                {{ page.media[channel_image.name].resize(400, 400).html() }}
+
+            </div>
+            <div class = "channel-meta">
+                <h1>{{ header.title }}</h1>
+                <p class = "owner">by {{ header.podcast.itunes.owner.name}}</p>
+                <p class = "description">{{page.header.podcast.description}}</p>
+            </div>
+
+            {{ dump(page) }}
+        </div>
+        {% if (page.content) %}
+        <div class = "channel-content">
+            <p>
+                {{page.content}}
+            </p>
+        </div>
+        {% endif %}
+        <div id = "episodes">
+            {% set series = [] %}
+            <ul>
+            {% for p in page.collection %}
+
+                {% if p.name == 'podcast-episode.md' %}
+                    <li>{{ p.title }}</li>
+                {% elseif p.name == 'podcast-series.md' %}
+                     {% set series = series|merge({(p.title) : (p.title) })  %}
+                {% endif %}
+
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% include 'partials/podcast_series_list.html.twig' %}
+
+
 {% endblock %}

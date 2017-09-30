@@ -1,0 +1,67 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/*
+    Created on : Sep 29, 2017, 4:57:01 PM
+    Author     : jgonyea
+*/
+/* line 11, ../sass/podcast.scss */
+.podcast-header {
+  clear: both;
+  box-sizing: inherit;
+  width: 100%;
+  display: inline-block;
+  border-bottom: 3px solid #000;
+}
+
+/* line 18, ../sass/podcast.scss */
+.podcast-channel-image {
+  width: 25%;
+  float: left;
+  display: inline-block;
+  border: 1px solid #000;
+}
+
+/* line 25, ../sass/podcast.scss */
+.channel-meta {
+  width: 74%;
+  float: left;
+  display: inline-block;
+}
+/* line 29, ../sass/podcast.scss */
+.channel-meta h1 {
+  margin: 0;
+}
+/* line 32, ../sass/podcast.scss */
+.channel-meta p.owner {
+  text-align: center;
+  margin: -1em 0 0 0;
+}
+/* line 37, ../sass/podcast.scss */
+.channel-meta p.description {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* line 49, ../sass/podcast.scss */
+#episodes {
+  width: 75%;
+  float: left;
+}
+
+/* line 53, ../sass/podcast.scss */
+#podcast-series {
+  background: #ccc;
+  width: 24%;
+  float: right;
+  min-height: 16em;
+}
+/* line 58, ../sass/podcast.scss */
+#podcast-series h2 {
+  font-size: 20px;
+  text-align: center;
+}

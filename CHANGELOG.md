@@ -1,12 +1,24 @@
+# v2.0.0
+## 09/29/2017
+1. [](#new)
+    * New page type for podcast-series.  Folder structure follows Channel->Series->Episode.
+
+2. [](#improved)
+    * Vastly improved Twig templates for all three page types
+
+3. [](#bugfix)
+    * Removed references to "speaker" (Issue #5)
+
+
 # v1.0.1
 ## 08/05/2017
 
 1. [](#new)
     * No new features.
-    
+
 2. [](#improved)
     * Cleaned up code for media display of individual podcast.
-    
+
 3. [](#bugfix)
     * Version number in blueprints updated correctly.
 
@@ -17,10 +29,10 @@
 1. [](#new)
     * Audio duration now calculated via get-id3 Grav plugin
     * Dependencies added to blueprints.yaml
-    
+
 2. [](#improved)
     * Unessential GUID PHP functions removed
-    
+
 3. [](#bugfix)
     * Spacing for duration meta data insertion fixed
 
@@ -28,10 +40,10 @@
 ## 07/11/2017
 
 1. [](#new)
-    
+
 2. [](#improved)
     * GUID now properly defined
-    
+
 3. [](#bugfix)
     * Fixed typo in README file
     * Spacing issue on rss feed item tag

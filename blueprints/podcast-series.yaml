@@ -1,0 +1,5 @@
+title: Podcast Series
+'@extends':
+    type: default
+    context: blueprints://podcast-series
+    

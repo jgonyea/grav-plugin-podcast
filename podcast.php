@@ -46,7 +46,8 @@ class PodcastPlugin extends Plugin
 
         // Enable the main event we are interested in
         $this->enable([
-            'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0],
+            'onTwigTemplatePaths' => ['onTwigTemplatePaths', 1],
+            'onTwigSiteVariables' => ['onTwigSiteVariables', 0],
             'onPageInitialized' => ['onPageInitialized', 0],
         ]);
     }
@@ -70,6 +71,12 @@ class PodcastPlugin extends Plugin
         $this->grav['twig']->twig_paths[] = __DIR__ . '/templates';
     }
 
+    public function onTwigSiteVariables()
+    {
+     $this->grav['assets']
+            ->addCss('plugin://podcast/assets/css/podcast.css');
+    }
+    
     /**
      * Set metadata in header for podcast if audio file is attached.
      */
