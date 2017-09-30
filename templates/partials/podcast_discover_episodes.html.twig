@@ -1,0 +1,9 @@
+{% set series = [] %}
+{% set episodes = [] %}
+{% for p in page.collection %}
+    {% if p.name == 'podcast-episode.md' %}
+        {% set episodes = episodes|merge ({ (p.route):(p)   }) %}
+    {% elseif p.name == 'podcast-series.md' %}
+        {% set series = series|merge({(p.title) : (p.title) })  %}
+    {% endif %}
+{% endfor %}

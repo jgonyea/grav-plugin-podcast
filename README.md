@@ -24,7 +24,7 @@ To install this plugin, just download the zip version of this repository and unz
 You should now have all the plugin files under
 
     /your/site/grav/user/plugins/podcast
-	
+
 > NOTE: This plugin is a modular component for Grav which requires the following to operate:
 * [Grav](http://github.com/getgrav/grav)
 * [Error](https://github.com/getgrav/grav-plugin-error)
@@ -77,6 +77,7 @@ These should be created as child pages of a podcast channel.  Note: Episodes won
 - Thanks to [flaviocopes](https://github.com/flaviocopes) who assisted me with the initial groundwork from the feeds plugin
 
 ## To Do
+There is a Trello board of backlog and progress of items found [here](https://trello.com/b/jIKLMt5K/grav-plugin-podcast).
 
 - Better media player integration (playlist?)
 - Set podcast meta field validations as required

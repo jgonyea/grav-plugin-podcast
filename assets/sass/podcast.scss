@@ -1,14 +1,12 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/*
-    Created on : Sep 29, 2017, 4:57:01 PM
-    Author     : jgonyea
-*/
+/* Styling for podcast related content */
+@import "compass/css3";
+@import "compass/utilities";
 
-.podcast-header {
+
+$series-foreground: #000;
+$series-background: #ccc;
+
+.podcast-channel-header {
     clear: both;
     box-sizing: inherit;
     width: 100%;
@@ -42,6 +40,10 @@ and open the template in the editor.
     }
 
 }
+.channel-links {
+    float: left;
+    margin-left: 2em;
+}
 
 .channel-content {
 
@@ -49,14 +51,24 @@ and open the template in the editor.
 #episodes{
     width: 75%;
     float: left;
+    ul {
+        list-style-type: none;
+    }
 }
 #podcast-series{
-    background: #ccc;
+    @include border-radius(15px);
+    background: $series-background;
     width: 24%;
     float: right;
     min-height: 16em;
     h2 {
         font-size: 20px;
         text-align: center;
+    }
+    a {
+        color: $series-foreground;
+    }
+    a:hover {
+        font-weight: bold;
     }
 }

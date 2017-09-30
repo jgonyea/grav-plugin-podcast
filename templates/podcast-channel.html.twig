@@ -1,12 +1,20 @@
 {% extends 'partials/base.html.twig' %}
 
 {% block content %}
-
+    {% set series = [] %}
+    {% set episodes = [] %}
+    {% for p in page.collection %}
+        {% if p.name == 'podcast-episode.md' %}
+            {% set episodes = episodes|merge ({ (p.route):(p)   }) %}
+        {% elseif p.name == 'podcast-series.md' %}
+            {% set series = series|merge({(p.route) : (p) })  %}
+        {% endif %}
+    {% endfor %}
     <div>
-        <div class = "podcast-header">
+        <div class = "podcast-channel-header">
             <div class = "podcast-channel-image">
                 {% set channel_image = ((header.podcast.itunes.image)|first) %}
-                {{ page.media[channel_image.name].resize(400, 400).html() }}
+                {{ page.media[channel_image.name].cropResize(400, 400).html() }}
 
             </div>
             <div class = "channel-meta">
@@ -14,32 +22,26 @@
                 <p class = "owner">by {{ header.podcast.itunes.owner.name}}</p>
                 <p class = "description">{{page.header.podcast.description}}</p>
             </div>
+            <div class="channel-links">
+                <a href="{{self.route}}.rss"><i class="fa fa-music" aria-hidden="true"></i>iTunes</a>
 
-            {{ dump(page) }}
+            </div>
+
         </div>
-        {% if (page.content) %}
+        {% if (page.content) %}a
         <div class = "channel-content">
             <p>
                 {{page.content}}
             </p>
         </div>
         {% endif %}
-        <div id = "episodes">
-            {% set series = [] %}
-            <ul>
-            {% for p in page.collection %}
 
-                {% if p.name == 'podcast-episode.md' %}
-                    <li>{{ p.title }}</li>
-                {% elseif p.name == 'podcast-series.md' %}
-                     {% set series = series|merge({(p.title) : (p.title) })  %}
-                {% endif %}
+        {% include 'partials/podcast_episodes_list.html.twig' %}
+        {% include 'partials/podcast_series_list.html.twig' %}
 
-            {% endfor %}
-            </ul>
-        </div>
     </div>
-    {% include 'partials/podcast_series_list.html.twig' %}
 
+{% endblock %}
 
+{% block footer %}
 {% endblock %}

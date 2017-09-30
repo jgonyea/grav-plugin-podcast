@@ -1,0 +1,42 @@
+<div id = "episodes">
+    <ul>
+        {% for episode in episodes %}
+            {{ dump (episode) }}
+            <li>
+                <div class="episode-image">
+                    {% if ((episode.header.podcast.itunes.image)|first) %}
+                        {{ page.find(episode.route).media[ (((episode.header.podcast.itunes.image)|first).name) ].cropResize(200, 200).html}}
+                    {% else %}
+                        <img src="{{ url("plugin://podcast/assets/images/default.jpg") }}" />
+                    {% endif %}
+                </div>
+                <a href ="{{ episode.route }}">
+                <h2>{{ episode.title }}
+                    {% if (((episode.header.podcast.audio)|first).duration) %}
+                        <small>( {{ ((episode.header.podcast.audio)|first).duration }} )</small>
+                    {% else %}
+                        <small>( No Audio )</small>
+                    {% endif %}
+                </h2>
+                </a>
+                <p class = "episode-date">
+                    {{ (episode.modified)|date('Y-m-d')|nicetime(false) }}
+                </p>
+                <p pass = "episode-description">
+                    {% if episode.summary %}
+                        {{ (episode.summary)|truncate(120) }}
+                    {% else %}
+                        No summary available.
+                    {% endif %}
+                </p>
+                <p class = "podcast-episode-audio">
+
+                    {{ page.find(episode.route).media[ (((episode.header.podcast.audio)|first).name) ].html}}
+
+
+                </p>
+
+            </li>
+        {% endfor %}
+    </ul>
+</div>

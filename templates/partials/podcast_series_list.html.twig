@@ -2,7 +2,10 @@
         <h2>Podcast Series</h2>
         <ul>
         {% for s in series %}
-            <li>{{ s }}</li>
+            {{ dump (s) }}
+            <li>
+                <a href="{{ s.route }}">{{ s.title }}</a>
+            </li>
         {% endfor %}
         </ul>
     </div>
