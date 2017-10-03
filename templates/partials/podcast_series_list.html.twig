@@ -1,11 +1,13 @@
-    <div id = "podcast-series">
-        <h2>Podcast Series</h2>
-        <ul>
-        {% for s in series %}
-            {{ dump (s) }}
-            <li>
-                <a href="{{ s.route }}">{{ s.title }}</a>
-            </li>
-        {% endfor %}
-        </ul>
-    </div>
+{# Only display the series div if there are actual series #}
+{% if count(series) > 0 %}
+<div id = "podcast-series">
+    <h2>Podcast Series</h2>
+    <ul>
+    {% for s in series %}
+        <li>
+            <a href="{{base_url_simple}}{{ s.route }}">{{ s.title }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+{% endif %}

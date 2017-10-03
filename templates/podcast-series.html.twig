@@ -1,10 +1,11 @@
 {% extends 'partials/base.html.twig' %}
 
 {% block content %}
-    {% set series = page.parent.collection('series') %}
-    {% set episodes = page.collection('episodes') %}
+    {% set series = page.parent.collection({ 'items': '@self.descendants', 'order': {'by': 'date', 'dir': 'desc'}} ).ofType('podcast-series') %}
+    {% set episodes = page.collection({ 'items': '@self.descendants', 'order': {'by': 'date', 'dir': 'desc'}} ).ofType('podcast-episode') %}
     
-
+    
+    {{ dump (count(episodes)) }}
     <div class="podcast-channel-header">
         <div class = "podcast-channel-image">
             {% if not (page.header.series.image) %}
@@ -24,7 +25,6 @@
             {% else %}
                 {% set description = page.content %}
             {% endif %}
-            {{ dump(description) }}
             <p class = "description">{{ description }}</p>
         </div>
         <div class="channel-links">

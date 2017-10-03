@@ -1,5 +1,6 @@
 <div id = "episodes">
     <ul>
+                    
         {% for episode in episodes %}
             {{ dump (episode) }}
             <li>
@@ -10,7 +11,7 @@
                         <img src="{{ url("plugin://podcast/assets/images/default.jpg") }}" />
                     {% endif %}
                 </div>
-                <a href ="{{ episode.route }}">
+                <a href ="{{ episode.url }}">
                 <h2>{{ episode.title }}
                     {% if (((episode.header.podcast.audio)|first).duration) %}
                         <small>( {{ ((episode.header.podcast.audio)|first).duration }} )</small>

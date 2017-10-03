@@ -2,14 +2,10 @@
 
 {% block content %}
     <h1>{{ header.title }}</h1>
+    <h2>An episode in the series {{page.parent.title}}</h2>
+    <h3>Posted {{ header.date|date('Y-m-d')|nicetime(false) }}</h3>
     {{ page.content }}
-    <div class="podcast-meta">
-        <h2>{{ header.date|truncate(10, true) }}</h2>
-        <h2>{{ header.taxonomy.speaker[0] }}</h2>
-
-    </div>
-
-    {{ page.media[ (page.header.podcast|first|first).name ].html() }}
+    {{ page.media[ (page.header.podcast.audio|first).name ].html() }}
 
 
 {% endblock %}

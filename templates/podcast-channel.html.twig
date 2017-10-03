@@ -1,13 +1,8 @@
 {% extends 'partials/base.html.twig' %}
 
 {% block content %}
-    {% set series = page.collection('series') %}
-    {% set episodes = [] %}
-    {% for p in page.collection('episodes') %}
-        {% if p.name == 'podcast-episode.md' %}
-            {% set episodes = episodes|merge ({ (p.route):(p)   }) %}
-        {% endif %}
-    {% endfor %}
+    {% set series = page.collection({ 'items': '@self.descendants', 'order': {'by': 'date', 'dir': 'desc'}} ).ofType('podcast-series') %}
+    {% set episodes = page.collection({ 'items': '@self.descendants', 'order': {'by': 'date', 'dir': 'desc'}} ).ofType('podcast-episode') %}
     <div class="podcast-channel-header">
         <div class = "podcast-channel-image">
             {% set channel_image = ((header.podcast.itunes.image)|first) %}

@@ -25,25 +25,6 @@ form:
               type: hidden
               default: '@self.children'
 
-            header.episodes.items:
-              type: hidden
-              default: '@self.children'
-            header.episodes.order.by:
-              type: hidden
-              default: 'date'
-            header.episodes.order.dir:
-              type: hidden
-              default: 'desc'
-              
-            header.series.items:
-              type: hidden
-              default: '@self.children'
-            header.series.order.by:
-              type: hidden
-              default: 'date'
-            header.series.order.dir:
-              type: hidden
-              default: 'desc'
             header.series.image:
               type: file
               @ordering: 2
