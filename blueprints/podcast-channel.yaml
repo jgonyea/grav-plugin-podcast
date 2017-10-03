@@ -17,26 +17,34 @@ form:
             header.title:
               type: text
               label: Page Title
-              help: This does not necessarily need to be the same as your podcast channel title
-            header.feed.podcast:
+
+            header.feed.rss:
               type: hidden
               default: 'true'
-            header.content.items: 
+            header.feed.items:
+              type: hidden
+              default: '@self.descendants'
+
+            header.episodes.items:
+              type: hidden
+              default: '@self.descendants'
+            header.episodes.order.by:
+              type: hidden
+              default: 'date'
+            header.episodes.order.dir:
+              type: hidden
+              default: 'desc'
+              
+            header.series.items:
               type: hidden
               default: '@self.children'
-            header.content.limit:
+            header.series.order.by:
               type: hidden
-              default: 5
-            header.content.order.by:
+              default: 'date'
+            header.series.order.dir:
               type: hidden
-              default: date
-            header.content.order.dir:
-              type: hidden
-              default: desc
-            header.content.url_taxonomy_filters:
-              type: hidden
-              default: 'true'
-        
+              default: 'desc'
+
         channelMetaTab:
           type: tab
           ordering@: 1
@@ -44,7 +52,7 @@ form:
           fields:
             helptext:
               type: spacer
-              title: 
+              title:
               text: Metadata related to the podcast's channel section.
               underline: true
             uploads:
@@ -81,18 +89,18 @@ form:
           fields:
             helptext:
               type: spacer
-              title: 
+              title:
               text: Metadata related to the podcast's itunes section.
               underline: true
-            header.podcast.itunes.author: 
+            header.podcast.itunes.author:
               type: text
               label: Author
               help: 'Example: "John Doe"'
-            header.podcast.itunes.owner.name: 
+            header.podcast.itunes.owner.name:
               type: text
               label: Owner Name
               help: 'Example: "John Doe"'
-            header.podcast.itunes.owner.email: 
+            header.podcast.itunes.owner.email:
               type: email
               label: Owner Email
               help: 'Example: "jdoe@example.com"'
