@@ -1,5 +1,55 @@
-title: Podcast Series
+title: Series
 '@extends':
     type: default
-    context: blueprints://podcast-series
-    
+    context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        content:
+          type: tab
+          ordering@: 0
+          title: Podcast Series Content
+          fields:
+            header.title:
+              type: text
+              label: Series Title
+
+            header.feed.rss:
+              type: hidden
+              default: 'true'
+            header.feed.items:
+              type: hidden
+              default: '@self.children'
+
+            header.episodes.items:
+              type: hidden
+              default: '@self.children'
+            header.episodes.order.by:
+              type: hidden
+              default: 'date'
+            header.episodes.order.dir:
+              type: hidden
+              default: 'desc'
+              
+            header.series.items:
+              type: hidden
+              default: '@self.children'
+            header.series.order.by:
+              type: hidden
+              default: 'date'
+            header.series.order.dir:
+              type: hidden
+              default: 'desc'
+            header.series.image:
+              type: file
+              @ordering: 3
+              label: Series Image
+              destination: 'self@'
+              multiple: false
+              fileszie: 5
+              accept:
+                - image/*
