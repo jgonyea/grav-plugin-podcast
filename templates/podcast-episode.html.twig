@@ -2,7 +2,9 @@
 
 {% block content %}
     <h1>{{ header.title }}</h1>
-    <h2>An episode in the series {{page.parent.title}}</h2>
+    {% if page.parent.name == 'podcast-series.md' %}
+        <h2>An episode in the series {{page.parent.title}}</h2>
+    {% endif %}
     <h3>Posted {{ header.date|date('Y-m-d')|nicetime(false) }}</h3>
     {{ page.content }}
     {{ page.media[ (page.header.podcast.audio|first).name ].html() }}
