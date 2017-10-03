@@ -46,7 +46,7 @@ form:
               default: 'desc'
             header.series.image:
               type: file
-              @ordering: 3
+              @ordering: 2
               label: Series Image
               destination: 'self@'
               multiple: false

@@ -7,9 +7,8 @@ $series-foreground: #000;
 $series-background: #ccc;
 
 .podcast-channel-header {
-    clear: both;
-    box-sizing: inherit;
     width: 100%;
+    clear: both;
     display: inline-block;
     border-bottom: 3px solid #000;
 }
@@ -25,7 +24,11 @@ $series-background: #ccc;
     float: left;
     display: inline-block;
     h1 {
+        text-align: center;
         margin: 0;
+    }
+    h2 {
+        text-align: center;
     }
     p.owner {
         text-align: center;
@@ -43,20 +46,30 @@ $series-background: #ccc;
 .channel-links {
     float: left;
     margin-left: 2em;
+
 }
 
 .channel-content {
-
+    display: inline-block;
 }
-#episodes{
+
+#episodes {
+    display: inline-block;
+    clear: both;
     width: 75%;
     float: left;
     ul {
         list-style-type: none;
     }
 }
-#podcast-series{
-    @include border-radius(15px);
+
+.clearfix {
+    clear: both;
+}
+
+#podcast-series {
+    @include border-radius(2px);
+    display: inline-block;
     background: $series-background;
     width: 24%;
     float: right;

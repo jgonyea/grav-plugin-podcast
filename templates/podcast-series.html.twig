@@ -1,9 +1,43 @@
 {% extends 'partials/base.html.twig' %}
 
 {% block content %}
-    <h1>{{ header.title }}</h1>
-    {{ page.content }}
-
-
+    {% set series = page.parent.collection('series') %}
+    {% set episodes = page.collection('episodes') %}
     
+
+    <div class="podcast-channel-header">
+        <div class = "podcast-channel-image">
+            {% if not (page.header.series.image) %}
+                {% set featured_image = ((page.parent.header.podcast.itunes.image)|first) %}
+                {{ page.parent.media[featured_image.name].resize(200, 200).html() }}
+            {% else %}
+                {% set featured_image = ((page.header.series.image)|first) %}
+                {{ page.media[featured_image.name].resize(200, 200).html() }}
+            {% endif %}
+
+        </div>
+        <div class="channel-meta">
+            <h1>{{ page.parent.header.title }} - {{header.title}}</h1>
+            <p class = "owner">by {{ page.parent.header.podcast.itunes.owner.name}}</p>
+            {% if not page.content %}
+                {% set description = page.parent.header.podcast.description %}
+            {% else %}
+                {% set description = page.content %}
+            {% endif %}
+            {{ dump(description) }}
+            <p class = "description">{{ description }}</p>
+        </div>
+        <div class="channel-links">
+            <a href="{{base_url_simple}}{{page.route}}.rss"><i class="fa fa-rss" aria-hidden="true"></i> {{page.title}} Podcast</a>
+
+        </div>
+
+    </div>
+
+
+    {% include 'partials/podcast_episodes_list.html.twig' %}
+    {% include 'partials/podcast_series_list.html.twig' %}
+    <div class="clearfix"></div>
+
+
 {% endblock %}
