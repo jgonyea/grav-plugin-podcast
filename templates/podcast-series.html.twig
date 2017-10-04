@@ -4,8 +4,6 @@
     {% set series = page.parent.collection({ 'items': '@self.descendants', 'order': {'by': 'date', 'dir': 'desc'}} ).ofType('podcast-series') %}
     {% set episodes = page.collection({ 'items': '@self.descendants', 'order': {'by': 'date', 'dir': 'desc'}} ).ofType('podcast-episode') %}
     
-    
-    {{ dump (count(episodes)) }}
     <div class="podcast-channel-header">
         <div class = "podcast-channel-image">
             {% if not (page.header.series.image) %}

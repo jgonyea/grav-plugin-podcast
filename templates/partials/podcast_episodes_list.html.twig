@@ -2,7 +2,6 @@
     <ul>
                     
         {% for episode in episodes %}
-            {{ dump (episode) }}
             <li>
                 <div class="episode-image">
                     {% if ((episode.header.podcast.itunes.image)|first) %}
