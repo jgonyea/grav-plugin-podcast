@@ -14,6 +14,8 @@ form:
           ordering@: 0
           title: Podcast Page Content
           fields:
+            uploads:
+              unset@: true
             header.title:
               type: text
               label: Page Title
@@ -51,7 +53,7 @@ form:
             header.podcast.link:
               type: text
               label: Channel URL
-              default: 'https://www.podcast.com'
+              default: 'https://www.example.com'
             header.podcast.channelLanguage:
               type: select
               label: Channel Language
@@ -60,7 +62,7 @@ form:
             header.podcast.copyright:
               type: text
               label: Copyright
-              default: 2013
+              default: 2017 Example.com
 
         itunesMetaTab:
           type: tab

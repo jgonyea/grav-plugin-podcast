@@ -17,8 +17,33 @@ form:
             uploads:
               unset@: true
             header.title:
+              @ordering: 0
               type: text
-              label: Page/ Podcast Title
+              label: Episode Title
+            header.subtitle:
+              @ordering: 1
+              type: text
+              label: Episode subtitle
+            header.podcast.audio:
+              type: file
+              label: Podcast Audio
+              destination: '@self'
+              multiple: false
+              filesize: 50
+              limit: 1
+              accept:
+                - .mp3
+              help: Upload the MP3 audio file here
+        itunesMetaTab:
+          type: tab
+          ordering@: 1
+          title: iTunes Episode Meta
+          fields:
+            helptext:
+              type: spacer
+              title:
+              text: Metadata related to the podcast episode
+              underline: true
             header.podcast.itunes.author:
               type: text
               label: Episode Author
@@ -31,13 +56,13 @@ form:
               fileszie: 5
               accept:
                 - image/*
-            header.podcast.audio:
-              type: file
-              label: Podcast Audio
-              destination: '@self'
-              multiple: true
-              filesize: 50
-              limit: 1
-              accept:
-                - .mp3
-              help: Upload the MP3 audio file here
+            header.podcast.itunes.explicit:
+              type: toggle
+              label: Explicit Content
+              highlight: 0
+              default: no
+              help: Does this podcast contain content that might be inappropriate for children?
+              options:
+                  yes: Yes
+                  no: No
+

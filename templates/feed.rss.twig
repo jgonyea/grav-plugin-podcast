@@ -1,42 +1,45 @@
-{% set collection = collection|default(page.collection) %}
-{% set channelImage = (uri.base ~ (page.media.images | first).url) %}
-<?xml version="1.0" encoding="utf-8"?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">
-  <channel>
-    <title>{{ header.podcast.title }}</title>
-    <link>{{ header.podcast.link }}</link>
-    <language>{{ header.podcast.channelLanguage }}</language>
-    <copyright>{{ header.podcast.copyright }}</copyright>
-    <itunes:subtitle>{{ header.podcast.itunes.subtitle }}</itunes:subtitle>
-    <itunes:author>{{ header.podcast.itunes.author }}</itunes:author>
-    <itunes:summary>{{ header.podcast.description }}</itunes:summary>
-    <description>{{ header.podcast.description }}</description>
-    <itunes:owner>
-        <itunes:name>{{ header.podcast.itunes.owner.name }}</itunes:name>
-        <itunes:email>{{ header.podcast.itunes.owner.email }}</itunes:email>
-    </itunes:owner>
-    <itunes:image {{"href='#{channelImage}' />"|absolute_url }}
-    <itunes:category text="{{ header.podcast.itunes.category }}">
-        <itunes:category text="{{ header.podcast.itunes.subcategory }}" />
-    </itunes:category>
-    <itunes:explicit>{{ header.podcast.itunes.explicit }}</itunes:explicit>
-{% for episode in page.collection %}
-{% if episode.header.podcast.audio %}
-{% set length = (episode.header.podcast.audio | first).size %}
-{% set epImage = (uri.base ~ '/' ~ (episode.header.podcast.itunes.image | first).path) %}
-    <item>
-        <title>{{ episode.title }}</title>
-        <itunes:author>{{ episode.header.podcast.itunes.author }}</itunes:author>
-        <itunes:subtitle>{{ episode.summary|truncate(255)|striptags }}</itunes:subtitle>
-        <itunes:summary>{{ episode.summary|striptags }}</itunes:summary>
-        <itunes:image href ="{{ (uri.base ~ '/' ~ (episode.header.podcast.itunes.image | first).path) }}"/>
-        <enclosure length="{{ length }}" url="{{ (uri.base ~ '/' ~ (episode.header.podcast.audio | first).path) }}" type="audio/mpeg"  />
-        <guid>{{ uri.base ~ episode.url }}</guid>
-        <itunes:duration>{{ ((episode.header.podcast.audio)|first).duration }}</itunes:duration>
-        <pubDate>{{ (episode.header.publish_date ?: episode.header.date)|date('D, d M Y H:i:s O') }}</pubDate>
-    </item>
+{# Need to find if we're at the channel or a series page #}
+{% if page.name == 'podcast-channel.md' %}
+{% set channel = page %}
+{% elseif page.name == 'podcast-series.md' %}
+{% set channel = page.parent %}
 {% endif %}
+{% if channel %}
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+<channel>
+<title>{{ channel.title }}</title>
+<link>{{ page.url }}</link>
+<language>{{ channel.header.podcast.channelLanguage }}</language>
+<copyright>{{ channel.header.podcast.copyright }}</copyright>
+<itunes:subtitle>{{ channel.header.podcast.itunes.subtitle }}</itunes:subtitle>
+<itunes:author>{{ channel.header.podcast.itunes.author }}</itunes:author>
+<itunes:summary>{{ channel.content ? channel.content : channel.header.podcast.description }}</itunes:summary>
+<description>{{ channel.header.podcast.description }}</description>
+<itunes:owner>
+<itunes:name>{{ channel.header.podcast.itunes.owner.name }}</itunes:name>
+<itunes:email>{{ channel.header.podcast.itunes.owner.email }}</itunes:email>
+</itunes:owner>
+<itunes:image href="{{ (channel.header.podcast.itunes.image)|first.path|absolute_url }}"/>
+<itunes:category text="{{ channel.header.podcast.itunes.category }}">
+<itunes:category text="{{ channel.header.podcast.itunes.subcategory }}"/>
+</itunes:category>
+<itunes:explicit>{{ channel.header.podcast.itunes.explicit }}</itunes:explicit>
+{% set episodes = page.collection({ 'items': '@self.descendants', 'order': {'by': 'date', 'dir': 'desc'}} ).ofType('podcast-episode') %}
+{% for episode in episodes %}
+<item>
+<title>{{episode.title}}</title>
+<itunes:author>{{ episode.header.podcast.itunes.author }}</itunes:author>
+<itunes:subtitle>{{ episdoe.header.podcast.subtitle }}</itunes:subtitle>
+<itunes:summary>{{episode.content|striptags|safe_truncate(120)}}</itunes:summary>
+<itunes:image href="{{base_url_simple}}/{{ (episode.header.podcast.itunes.image)|first.path|absolute_url }}"/>
+<enclosure length="{{episode.header.podcast.audio|first.size}}" type="{{episode.header.podcast.audio|first.type}}" url="{{base_url_simple}}/{{episode.header.podcast.audio|first.path|absolute_url}}"/>
+<guid>{{base_url_simple}}/{{episode.header.podcast.audio|first.path|absolute_url}}</guid>
+<pubDate>{{ episode.header.publish_date ? episode.header.publish_date|date('D, d M Y H:i:s T') : episode.date|date('D, d M Y H:i:s e')}}</pubDate>
+<itunes:duration>{{episode.header.podcast.audio|first.duration}}</itunes:duration>
+<itunes:explicit>{{episode.header.podcast.itunes.explicit}}</itunes:explicit>
+</item>
 {% endfor %}
-    <atom:link href="{{ uri.base ~ base_url ~ page.route ~ '.rss' }}" rel="self" type="application/rss+xml" />
-  </channel>
+</channel>
 </rss>
+{% endif %}
