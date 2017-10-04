@@ -1,7 +1,8 @@
 # v2.0.0
-## 09/29/2017
+## 10/03/2017
 1. [](#new)
-    * New page type for podcast-series.  Folder structure follows Channel->Series->Episode.
+    * New page type for podcast-series.  Folder structure follows Channel->Series->Episode. (Issue #4)
+    * New RSS feed available at podcast-series for child episodes of a series.
 
 2. [](#improved)
     * Vastly improved Twig templates for all three page types
