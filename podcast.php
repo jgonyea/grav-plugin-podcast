@@ -84,25 +84,59 @@ class PodcastPlugin extends Plugin
     {
         $page = $this->grav['page'];
         $header = $page->header();
-        // Only process podcast pages with audio attached.
-        if (!empty($header->podcast['audio']) && $page->name() == 'podcast-episode.md') {
-            // Find array key for podcast audio.
-            $key = array_keys($header->podcast['audio']);
 
-            if (!isset($header->podcast['audio'][$key[0]]['duration'])) {
-                $audio = $header->podcast['audio'];
-                $dir = $page->path();
-                $fullFileName = $dir. DS . 'podcast-episode.md';
-                $file = File::instance($fullFileName);
+        // Only working with podcast episodes pages
+        if($page->name() == 'podcast-episode.md'){
+            // Only process podcast pages with audio attached
+            if (!empty($header->podcast['audio'])){
+                //extracting the audio array so we can modify it later
+                $audio = array_shift($header->podcast['audio']);
+                
+                // Checking for uploaded audio file duration
+                if (!isset($audio['duration']))
+                {
+                    $file = $page->file();
+                    $path = $audio['path'];
 
-                $duration = $this->retreiveAudioDuration($key[0]);
-                $raw = $file->raw();
-                $orig = "type: audio/mpeg\n";
-                $replace = $orig . "            duration: $duration\n";
-                $raw = str_replace($orig, $replace, $raw);
+                    $duration = $this->retreiveAudioDuration($path);
 
-                $file->save($raw);
-                $this->grav['log']->info("Added duration to ");
+                    //adding duration to our extracted array and then putting our array back into the header object the way we found it
+                    $audio["duration"] = $duration;
+                    $header->podcast['audio'][$path] = $audio;
+
+                    $page->save();
+                    $this->grav['log']->info("Added duration to ". $page->title());
+                }
+            }
+
+            // Adding this in here as a secondary if statement in case someone wants to use both, CDN file and local mp3 as a redundancy.
+            // They can both be stored in the header
+
+            // Checking for external file audio duration
+            if (!empty($header->podcast['audio_url'])){
+                if(!isset($header->podcast['audio_duration'])){
+                    $file = $page->file();
+
+                    // Download the remote file temporarily 
+                    $path = $this->getRemoteAudio($header->podcast['audio_url']);
+
+                    if($path){
+
+                        $duration = $this->retreiveAudioDuration($path);
+                        $length = $this->retreiveAudioLength($path);
+                        
+                        //adding duration to our extracted array and then putting our array back into the header object the way we found it
+                        $header->podcast["duration"] = $duration;
+                        $header->podcast["length"] = $length;
+
+                        $page->save();
+                        $this->grav['log']->info("Added duration and length to ". $page->title());
+
+                        // Delete temporary remote file
+                        unlink($path);
+                    }
+                    
+                }
             }
         }
     }
@@ -119,48 +153,6 @@ class PodcastPlugin extends Plugin
     {
         $id3 = GetID3Plugin::analyzeFile($file);
         return ($id3['playtime_string']);
-    }
-
-    /**
-     * Retrieve audio metadata filesize.
-     *
-     * @param string $file
-     *     Path to audio file.
-     * @return string
-     *     Audio filesize.
-     */
-    public static function retreiveAudioLength($file)
-    {
-        $id3 = GetID3Plugin::analyzeFile($file);
-        return ($id3['filesize']);
-    }
- 
-    /**
-     * Retrieve remote audio file to /tmp directory
-     *
-     * @param string $url
-     *     url audio file.
-     * @return string
-     *     Audio filesize.
-     */
-    public static function getRemoteAudio($url)
-    {
-        if ($fp_remote = fopen($url, 'rb')) 
-        {
-            $localtempfilename = tempnam('/tmp', 'getID3');
-            if ($fp_local = fopen($localtempfilename, 'wb'))
-            {
-                while ($buffer = fread($fp_remote, 8192)) 
-                {
-                    fwrite($fp_local, $buffer);
-                }
-                fclose($fp_local);
-
-                return $localtempfilename;
-            }
-            fclose($fp_remote);
-        }
-        
     }
 
     /**
