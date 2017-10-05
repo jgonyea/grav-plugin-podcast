@@ -156,6 +156,48 @@ class PodcastPlugin extends Plugin
     }
 
     /**
+     * Retrieve audio metadata filesize.
+     *
+     * @param string $file
+     *     Path to audio file.
+     * @return string
+     *     Audio filesize.
+     */
+    public static function retreiveAudioLength($file)
+    {
+        $id3 = GetID3Plugin::analyzeFile($file);
+        return ($id3['filesize']);
+    }
+ 
+    /**
+     * Retrieve remote audio file to /tmp directory
+     *
+     * @param string $url
+     *     url audio file.
+     * @return string
+     *     Audio filesize.
+     */
+    public static function getRemoteAudio($url)
+    {
+        if ($fp_remote = fopen($url, 'rb')) 
+        {
+            $localtempfilename = tempnam('/tmp', 'getID3');
+            if ($fp_local = fopen($localtempfilename, 'wb'))
+            {
+                while ($buffer = fread($fp_remote, 8192)) 
+                {
+                    fwrite($fp_local, $buffer);
+                }
+                fclose($fp_local);
+
+                return $localtempfilename;
+            }
+            fclose($fp_remote);
+        }
+        
+    }
+
+    /**
      * Finds list of available iTunes categories.
      *
      * @return array
