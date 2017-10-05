@@ -12,7 +12,7 @@
                 </div>
                 <a href ="{{ episode.url }}">
                 <h2>{{ episode.title }}
-                    {% if (((episode.header.podcast.audio)|first).duration) %}
+                    {% if (((episode.header.podcast.audio)|first).duration | episode.header.podcast.audio_url) %}
                         <small>( {{ ((episode.header.podcast.audio)|first).duration }} )</small>
                     {% else %}
                         <small>( No Audio )</small>

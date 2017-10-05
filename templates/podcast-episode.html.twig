@@ -7,7 +7,12 @@
     {% endif %}
     <h3>Posted {{ header.date|date('Y-m-d')|nicetime(false) }}</h3>
     {{ page.content }}
-    {{ page.media[ (page.header.podcast.audio|first).name ].html() }}
+    {% if page.header.podcast.audio %}
+        {% set audio_file = page.header.podcast.audio|first.name  %}
+    {% elseif page.header.podcast.audio %}
+        {% set audio_file = page.header.podcast.audio_url  %}
+    {% endif %}
+    {{ page.media[ audio_file ].html() }}
 
 
 {% endblock %}
