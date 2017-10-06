@@ -126,8 +126,8 @@ class PodcastPlugin extends Plugin
                         $length = $this->retreiveAudioLength($path);
                         
                         //adding duration to our extracted array and then putting our array back into the header object the way we found it
-                        $header->podcast["duration"] = $duration;
-                        $header->podcast["length"] = $length;
+                        $header->podcast["audio_duration"] = $duration;
+                        $header->podcast["audio_length"] = $length;
 
                         $page->save();
                         $this->grav['log']->info("Added duration and length to ". $page->title());
@@ -179,20 +179,18 @@ class PodcastPlugin extends Plugin
      */
     public static function getRemoteAudio($url)
     {
-        if ($fp_remote = fopen($url, 'rb')) 
-        {
-            $localtempfilename = tempnam('/tmp', 'getID3');
-            if ($fp_local = fopen($localtempfilename, 'wb'))
-            {
-                while ($buffer = fread($fp_remote, 8192)) 
-                {
-                    fwrite($fp_local, $buffer);
-                }
-                fclose($fp_local);
+        //making sure the url is not 404
+        if ($remote_file = fopen($url, 'rb')){
 
-                return $localtempfilename;
-            }
-            fclose($fp_remote);
+            $local_file = tempnam('/tmp', 'getID3');
+
+            $contents = stream_get_contents($remote_file);
+            fwrite($local_file, $contents);
+
+            fclose($remote_file);
+            fclose($local_file);
+
+            return $local_file;
         }
         
     }

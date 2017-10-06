@@ -42,9 +42,6 @@ form:
               type: text
               label: Audio URL
               help: External link to your MP3 audio file
-            header.podcast.audio_length:
-              type: text
-              label: Audio MP3 length in bytes
         itunesMetaTab:
           type: tab
           ordering@: 1
