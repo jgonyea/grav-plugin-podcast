@@ -34,6 +34,14 @@ form:
               accept:
                 - .mp3
               help: Upload the MP3 audio file here
+            external_audio:
+              type: spacer
+              title: External Files
+              text: If you host your MP3 audio files on another server/CDN use the fields below
+            header.podcast.audio_url:
+              type: text
+              label: Audio URL
+              help: External link to your MP3 audio file
         itunesMetaTab:
           type: tab
           ordering@: 1
