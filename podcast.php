@@ -183,12 +183,12 @@ class PodcastPlugin extends Plugin
         if ($remote_file = fopen($url, 'rb')){
 
             $local_file = tempnam('/tmp', 'getID3');
-
+            $handle = fopen($local_file, "w");
             $contents = stream_get_contents($remote_file);
-            fwrite($local_file, $contents);
 
+            fwrite($handle, $contents);
             fclose($remote_file);
-            fclose($local_file);
+            fclose($handle);
 
             return $local_file;
         }
