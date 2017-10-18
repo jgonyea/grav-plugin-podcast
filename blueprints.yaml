@@ -29,3 +29,8 @@ form:
         0: Disabled
       validate:
         type: bool
+    remote file temp folder:
+      type: text
+      label: Remote File Temp Folder
+      default: "/tmp"
+      validate: strict

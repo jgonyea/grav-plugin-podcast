@@ -40,6 +40,7 @@ class PodcastPlugin extends Plugin
         if ($this->isAdmin()) {
             $this->enable([
                 'onGetPageTemplates' => ['onGetPageTemplates', 0],
+                'onAdminSave' => ['onAdminSave', 0],
             ]);
             return;
         }
@@ -73,7 +74,7 @@ class PodcastPlugin extends Plugin
 
     public function onTwigSiteVariables()
     {
-     $this->grav['assets']
+        $this->grav['assets']
             ->addCss('plugin://podcast/assets/css/podcast.css');
     }
     
@@ -107,6 +108,57 @@ class PodcastPlugin extends Plugin
         }
     }
 
+    public function onAdminSave($event)
+    {
+        $obj = $event['object'];
+        // Process only podcast episodes with podcast audio filled out.
+        if (!($obj instanceof Page) || $obj->name() != 'podcast-episode.md') {
+            return;
+        }
+
+        $header = $obj->header();
+
+        
+        
+        if (!isset($header->podcast['audio']['local'])) {
+            // Use local file for meta calculations, if present.
+            $header->testJD['internal'] = true ;// Need to create a temporary array to perform the array_shift on.
+            $temp = $header->podcast['audio']['local'];
+            $temp = array_shift($temp);
+            
+            $audio_meta['guid'] = $temp['path'];
+            $audio_meta['duration'] = $this->retreiveAudioDuration($audio_meta['guid']);
+            $audio_meta['enclosure_length'] = filesize($audio_meta['guid']);
+        } elseif (isset($header->podcast['audio']['remote'])) {
+            // Use external URL field if no local file is present.
+            $handle = fopen($header->podcast['audio']['remote']);
+            
+            // Download fle from external url to temporary location.
+        } else {
+            // todo: check if I need to remove the meta field.
+        }
+
+        
+
+        $fh = fopen('k:\Documents\Projects\public_html\grav-pluginDev\logs\debug.log', 'w');
+        fwrite($fh, print_r($header, true));
+        fwrite($fh, print_r($this->config()['remote'], true));
+        fclose($fh);
+        
+        // Determine if remote file is configured.
+        if (isset($header->podcast['remoteURL'])) {
+            
+        }
+        
+        // Prepare $obj to return new header data.
+        if (isset($audio_meta)) {
+            $header->podcast['audio']['meta'] = $audio_meta;
+        }
+        $obj->header($header);
+        
+        return $obj;
+    }
+    
     /**
      * Retrieve audio metadata duration.
      *
@@ -121,6 +173,22 @@ class PodcastPlugin extends Plugin
         return ($id3['playtime_string']);
     }
 
+    public static function getRemoteAudio($url)
+    {
+        // Making sure the url is not 404.
+        if ($remote_file = fopen($url, 'rb')) {
+            $local_file = tempnam('/tmp', 'podcast');
+            $handle = fopen($local_file, "w");
+            $contents = stream_get_contents($remote_file);
+ 
+            fwrite($handle, $contents);
+            fclose($remote_file);
+            fclose($handle);
+ 
+            return $local_file;
+        }
+    }
+    
     /**
      * Finds list of available iTunes categories.
      *

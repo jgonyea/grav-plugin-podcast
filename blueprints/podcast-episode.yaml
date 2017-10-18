@@ -17,26 +17,42 @@ form:
             uploads:
               unset@: true
             header.title:
-              @ordering: 0
+              ordering@: 0
               type: text
               label: Episode Title
             header.subtitle:
-              @ordering: 1
+              ordering@: 1
               type: text
               label: Episode subtitle
-            header.podcast.audio:
-              type: file
-              label: Podcast Audio
-              destination: '@self'
-              multiple: false
-              filesize: 50
-              limit: 1
-              accept:
-                - .mp3
-              help: Upload the MP3 audio file here
+        podcastAudio:
+            type: tab
+            title: Podcast Audio
+            ordering@: 1
+            fields:
+                locally_hosted:
+                    type: spacer
+                    title: Locally Hosted Files
+                    text: If you host your MP3 audio files on <strong>this</strong> server, upload the media below
+                header.podcast.audio.local:
+                    type: file
+                    label: Local Podcast Audio
+                    destination: '@self'
+                    multiple: false
+                    filesize: 50
+                    limit: 1
+                    accept:
+                      - .mp3
+                external_cdn:
+                    type: spacer
+                    title: External Files
+                    text: If you host your MP3 audio files on <strong>another</strong> server/CDN, fill in the field below
+                header.podcast.audio.remote:
+                    type: text
+                    label: Remote Podcast URL
+                    help: Remote files will take precendence over locally hosted when viewed on a page.
         itunesMetaTab:
           type: tab
-          ordering@: 1
+          ordering@: 2
           title: iTunes Episode Meta
           fields:
             helptext:
