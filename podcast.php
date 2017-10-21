@@ -36,7 +36,7 @@ class PodcastPlugin extends Plugin
      */
     public function onPluginsInitialized()
     {
-        // Don't proceed if we are in the admin plugin
+        // If in an Admin page.
         if ($this->isAdmin()) {
             $this->enable([
                 'onGetPageTemplates' => ['onGetPageTemplates', 0],
@@ -44,12 +44,10 @@ class PodcastPlugin extends Plugin
             ]);
             return;
         }
-
-        // Enable the main event we are interested in
+        // If not in an Admin page.
         $this->enable([
             'onTwigTemplatePaths' => ['onTwigTemplatePaths', 1],
             'onTwigSiteVariables' => ['onTwigSiteVariables', 0],
-            'onPageInitialized' => ['onPageInitialized', 0],
         ]);
     }
 
@@ -78,76 +76,45 @@ class PodcastPlugin extends Plugin
             ->addCss('plugin://podcast/assets/css/podcast.css');
     }
     
-    /**
-     * Set metadata in header for podcast if audio file is attached.
-     */
-    public function onPageInitialized($event)
-    {
-        $page = $this->grav['page'];
-        $header = $page->header();
-        // Only process podcast pages with audio attached.
-        if (!empty($header->podcast['audio']) && $page->name() == 'podcast-episode.md') {
-            // Find array key for podcast audio.
-            $key = array_keys($header->podcast['audio']);
-
-            if (!isset($header->podcast['audio'][$key[0]]['duration'])) {
-                $audio = $header->podcast['audio'];
-                $dir = $page->path();
-                $fullFileName = $dir. DS . 'podcast-episode.md';
-                $file = File::instance($fullFileName);
-
-                $duration = $this->retreiveAudioDuration($key[0]);
-                $raw = $file->raw();
-                $orig = "type: audio/mpeg\n";
-                $replace = $orig . "            duration: $duration\n";
-                $raw = str_replace($orig, $replace, $raw);
-
-                $file->save($raw);
-                $this->grav['log']->info("Added duration to ");
-            }
-        }
-    }
-
     public function onAdminSave($event)
     {
         $obj = $event['object'];
-        // Process only podcast episodes with podcast audio filled out.
-        if (!($obj instanceof Page) || $obj->name() != 'podcast-episode.md') {
+        // Process only podcast episodes page types.
+        if (!($obj instanceof \Grav\Common\Page\Page) || $obj->name() != 'podcast-episode.md') {
             return;
         }
 
         $header = $obj->header();
 
+        // Use local file for meta calculations, if present.
+        // Else use remote file for meta, if present.
+        // Else cleanup media entry in markdown header.
         
-        
-        if (!isset($header->podcast['audio']['local'])) {
-            // Use local file for meta calculations, if present.
-            $header->testJD['internal'] = true ;// Need to create a temporary array to perform the array_shift on.
-            $temp = $header->podcast['audio']['local'];
-            $temp = array_shift($temp);
+        if (isset($header->podcast['audio']['local'])) {
+            // Need to create a temporary array to perform the array_shift on.
+            $local_audio = $header->podcast['audio']['local'];
+            $local_audio = array_shift($local_audio);
             
-            $audio_meta['guid'] = $temp['path'];
+            $audio_meta['guid'] = $local_audio['path'];
             $audio_meta['duration'] = $this->retreiveAudioDuration($audio_meta['guid']);
             $audio_meta['enclosure_length'] = filesize($audio_meta['guid']);
         } elseif (isset($header->podcast['audio']['remote'])) {
-            // Use external URL field if no local file is present.
-            $handle = fopen($header->podcast['audio']['remote']);
-            
             // Download fle from external url to temporary location.
+            $path = $this->getRemoteAudio($header->podcast['audio']['remote']);
+
+            if ($path) {
+                $audio_meta['guid'] = $header->podcast['audio']['remote'];
+                $audio_meta['duration'] = $this->retreiveAudioDuration($path);
+                $audio_meta['enclosure_length'] = $this->retreiveAudioLength($path);
+
+                // Delete temporary remote file.
+                unlink($path);
+            }
         } else {
-            // todo: check if I need to remove the meta field.
-        }
-
-        
-
-        $fh = fopen('k:\Documents\Projects\public_html\grav-pluginDev\logs\debug.log', 'w');
-        fwrite($fh, print_r($header, true));
-        fwrite($fh, print_r($this->config()['remote'], true));
-        fclose($fh);
-        
-        // Determine if remote file is configured.
-        if (isset($header->podcast['remoteURL'])) {
-            
+            // Cleanup any leftover data if neither local or remote file are set.
+            if (isset($header->podcast['audio']['meta'])) {
+                unset($header->podcast['audio']);
+            }
         }
         
         // Prepare $obj to return new header data.
@@ -159,6 +126,20 @@ class PodcastPlugin extends Plugin
         return $obj;
     }
     
+    /**
+     * Retrieve audio metadata filesize.
+     *
+     * @param string $file
+     *    Path to audio file.
+     * @return type
+     *    Audio filesize
+     */
+    public static function retreiveAudioLength($file)
+    {
+        $id3 = GetID3Plugin::analyzeFile($file);
+        return ($id3['filesize']);
+    }
+
     /**
      * Retrieve audio metadata duration.
      *
@@ -173,9 +154,19 @@ class PodcastPlugin extends Plugin
         return ($id3['playtime_string']);
     }
 
+    /**
+     * Retrieve audio from remote source.
+     *
+     * @param string $url
+     *     http(s) path to audio file.
+     * @return string
+     *     filepath to temp file.
+     */
     public static function getRemoteAudio($url)
     {
-        // Making sure the url is not 404.
+        // todo: Make sure the url is not 404.
+        
+        // Download file to temp location.
         if ($remote_file = fopen($url, 'rb')) {
             $local_file = tempnam('/tmp', 'podcast');
             $handle = fopen($local_file, "w");
