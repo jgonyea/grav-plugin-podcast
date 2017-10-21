@@ -110,6 +110,10 @@ class PodcastPlugin extends Plugin
                 // Delete temporary remote file.
                 unlink($path);
             }
+            else{
+                // Remove previously calculated meta if remote file is not found.
+                unset($header->podcast['audio']['meta']);
+            }
         } else {
             // Cleanup any leftover data if neither local or remote file are set.
             if (isset($header->podcast['audio']['meta'])) {
@@ -162,9 +166,23 @@ class PodcastPlugin extends Plugin
      * @return string
      *     filepath to temp file.
      */
-    public static function getRemoteAudio($url)
+    public function getRemoteAudio($url)
     {
-        // todo: Make sure the url is not 404.
+        // Make sure the url is reachable.
+        $ch = curl_init($url);
+
+        curl_setopt($ch, CURLOPT_NOBODY, true);
+        curl_exec($ch);
+        $retcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+        
+        // $retcode >= 400 -> not found, $retcode = 200, found, 0 -> server not found.
+        if ($retcode >= 400 || $retcode == 0){
+            $grav_messages = $this->grav['messages'];
+            $grav_messages->add("Error! Remote File '$url' Not Found", 'error');
+            $grav_messages->add("Audio File metadata calucation failed!", 'error');
+            return null;
+        }
         
         // Download file to temp location.
         if ($remote_file = fopen($url, 'rb')) {
