@@ -1,3 +1,14 @@
+# v2.1.0
+## 10/23/2017
+1. [](#new)
+    * External hosting of audio is now supported. (Thanks to apotropaic)
+
+2. [](#improved)
+    * Audio metadata calculated on page save rather than initial page view.  Defaults to local for calculations.
+
+3. [](#bugfix)
+
+
 # v2.0.0
 ## 10/03/2017
 1. [](#new)

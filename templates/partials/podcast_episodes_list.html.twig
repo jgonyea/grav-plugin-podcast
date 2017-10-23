@@ -12,8 +12,8 @@
                 </div>
                 <a href ="{{ episode.url }}">
                 <h2>{{ episode.title }}
-                    {% if (((episode.header.podcast.audio)|first).duration) %}
-                        <small>( {{ ((episode.header.podcast.audio)|first).duration }} )</small>
+                    {% if (episode.header.podcast.audio.meta.duration) %}
+                        <small>( {{ episode.header.podcast.audio.meta.duration }} )</small>
                     {% else %}
                         <small>( No Audio )</small>
                     {% endif %}
@@ -29,13 +29,11 @@
                         No summary available.
                     {% endif %}
                 </p>
-                <p class = "podcast-episode-audio">
-
-                    {{ page.find(episode.route).media[ (((episode.header.podcast.audio)|first).name) ].html}}
-
-
-                </p>
-
+                {% if episode.header.podcast.audio.meta %}
+                    <p class = "podcast-episode-audio">
+                        <audio controls="1" alt="episode.title"><source src="{{episode.header.podcast.audio.meta.guid}}">Your browser does not support the audio tag.</audio>
+                    </p>
+                {% endif %}
             </li>
         {% endfor %}
     </ul>

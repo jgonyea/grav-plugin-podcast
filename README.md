@@ -95,8 +95,9 @@ These should be created as child pages of either a podcast channel or a podcast 
 
 ## Credits
 
-* RSS structure based on [iTunes RSS Feed Sample](https://help.apple.com/itc/podcasts_connect/#/itcbaf351599)
+* Thanks to apotropaic for his help with remote file support.
 * Thanks to [flaviocopes](https://github.com/flaviocopes) who assisted me with the initial groundwork from the feeds plugin
+* RSS structure based on [iTunes RSS Feed Sample](https://help.apple.com/itc/podcasts_connect/#/itcbaf351599)
 
 ## To Do
 Submit any issues you find to the [issue queue](https://github.com/jgonyea/grav-plugin-podcast/issues).

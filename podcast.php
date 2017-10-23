@@ -91,29 +91,41 @@ class PodcastPlugin extends Plugin
         // Else cleanup media entry in markdown header.
         
         if (isset($header->podcast['audio']['local'])) {
-            // Need to create a temporary array to perform the array_shift on.
+            // Create a temporary array to perform the array_shift on.
             $local_audio = $header->podcast['audio']['local'];
             $local_audio = array_shift($local_audio);
             
             $audio_meta['guid'] = $local_audio['path'];
+            $audio_meta['type'] = $this->retreiveAudioType($audio_meta['guid']);
             $audio_meta['duration'] = $this->retreiveAudioDuration($audio_meta['guid']);
             $audio_meta['enclosure_length'] = filesize($audio_meta['guid']);
-        } elseif (isset($header->podcast['audio']['remote'])) {
+        }
+        if (isset($header->podcast['audio']['remote']) && !isset($audio_meta)) {
             // Download fle from external url to temporary location.
             $path = $this->getRemoteAudio($header->podcast['audio']['remote']);
 
             if ($path) {
                 $audio_meta['guid'] = $header->podcast['audio']['remote'];
+                $audio_meta['type'] = $this->retreiveAudioType($path);
                 $audio_meta['duration'] = $this->retreiveAudioDuration($path);
                 $audio_meta['enclosure_length'] = $this->retreiveAudioLength($path);
 
                 // Delete temporary remote file.
                 unlink($path);
-            }
-            else{
+            } else {
                 // Remove previously calculated meta if remote file is not found.
                 unset($header->podcast['audio']['meta']);
             }
+        }
+        
+        // Reset the guid if using an external file source.
+        if (isset($header->podcast['audio']['remote']) && isset($header->podcast['audio']['meta'])) {
+            $audio_meta['guid'] = $header->podcast['audio']['remote'];
+        }
+        
+        // Prepare $obj to return new header data.
+        if (isset($audio_meta)) {
+            $header->podcast['audio']['meta'] = $audio_meta;
         } else {
             // Cleanup any leftover data if neither local or remote file are set.
             if (isset($header->podcast['audio']['meta'])) {
@@ -121,10 +133,6 @@ class PodcastPlugin extends Plugin
             }
         }
         
-        // Prepare $obj to return new header data.
-        if (isset($audio_meta)) {
-            $header->podcast['audio']['meta'] = $audio_meta;
-        }
         $obj->header($header);
         
         return $obj;
@@ -144,6 +152,20 @@ class PodcastPlugin extends Plugin
         return ($id3['filesize']);
     }
 
+    /**
+     * Retrieve audio metadata filetype.
+     *
+     * @param string $file
+     *    Path to audio file.
+     * @return type
+     *    Audio filesize
+     */
+    public static function retreiveAudioType($file)
+    {
+        $id3 = GetID3Plugin::analyzeFile($file);
+        return ($id3['mime_type']);
+    }
+    
     /**
      * Retrieve audio metadata duration.
      *
@@ -176,11 +198,11 @@ class PodcastPlugin extends Plugin
         $retcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
         
-        // $retcode >= 400 -> not found, $retcode = 200, found, 0 -> server not found.
-        if ($retcode >= 400 || $retcode == 0){
+        // $retcode >= 400 -> not found; 200 -> found; 0 -> server not found.
+        if ($retcode >= 400 || $retcode == 0) {
             $grav_messages = $this->grav['messages'];
-            $grav_messages->add("Error! Remote File '$url' Not Found", 'error');
-            $grav_messages->add("Audio File metadata calucation failed!", 'error');
+            $grav_messages->add("HTTP Error ($retcode) while attempting to locate remote file '$url' .", 'error');
+            $grav_messages->add("Audio File metadata calculation failed!", 'error');
             return null;
         }
         

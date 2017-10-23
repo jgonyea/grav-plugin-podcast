@@ -7,7 +7,12 @@
     {% endif %}
     <h3>Posted {{ header.date|date('Y-m-d')|nicetime(false) }}</h3>
     {{ page.content }}
-    {{ page.media[ (page.header.podcast.audio|first).name ].html() }}
+    {% if page.header.podcast.audio.meta %}
+        <p class = "podcast-episode-audio">
+            <audio controls="1" alt="episode.title"><source src="{{page.header.podcast.audio.meta.guid}}">Your browser does not support the audio tag.</audio>
+            <br/><a href ="{{page.header.podcast.audio.meta.guid}}">Download Audio</a>
+        </p>
+    {% endif %}
 
 
 {% endblock %}
