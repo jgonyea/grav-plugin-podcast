@@ -1,3 +1,15 @@
+# v2.1.1
+## 08/05/2017
+
+1. [](#new)
+    * No new features.
+
+2. [](#improved)
+    * No new improvements.
+
+3. [](#bugfix)
+    * Removed broken podcast-host blueprint
+
 # v2.1.0
 ## 10/23/2017
 1. [](#new)
