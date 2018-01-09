@@ -87,7 +87,7 @@ class PodcastPlugin extends Plugin
         $header = $obj->header();
 
         // Use local file for meta calculations, if present.
-        // Else use remote file for meta, if present.
+        // Else use remote file for meta, if present and set to recalculate.
         // Else cleanup media entry in markdown header.
         
         if (isset($header->podcast['audio']['local'])) {
@@ -100,7 +100,7 @@ class PodcastPlugin extends Plugin
             $audio_meta['duration'] = $this->retreiveAudioDuration($audio_meta['guid']);
             $audio_meta['enclosure_length'] = filesize($audio_meta['guid']);
         }
-        if (isset($header->podcast['audio']['remote']) && !isset($audio_meta)) {
+        if (isset($header->podcast['audio']['remote']) && !isset($audio_meta) && $header->podcast['audio']['remote']['recalculate']) {
             // Download fle from external url to temporary location.
             $path = $this->getRemoteAudio($header->podcast['audio']['remote']);
 

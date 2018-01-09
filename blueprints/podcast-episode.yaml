@@ -50,6 +50,16 @@ form:
                     type: text
                     label: Remote Podcast URL
                     help: Remote files will take precendence over locally hosted when viewed on a page.
+                header.podcast.audio.remote.recalculate:
+                    type: toggle
+                    label: Recalculate Remote Metadata
+                    help: Set to Yes to recalculate.  Set to No to skip downloading and calculating metadata.
+                    options:
+                        1: PLUGIN_ADMIN.YES
+                        0: PLUGIN_ADMIN.NO
+                    validate:
+                        type: bool
+                    default: 1
         itunesMetaTab:
           type: tab
           ordering@: 2
