@@ -29,3 +29,8 @@ form:
         0: Disabled
       validate:
         type: bool
+    max_upload:
+      type: text
+      label: Max Podcast Filesize (MB)
+      help: 'Make sure to set "upload_max_filesize" and "post_max_size" in your php.ini as well.'
+      default: 50

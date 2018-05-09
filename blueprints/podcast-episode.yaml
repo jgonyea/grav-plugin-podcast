@@ -32,20 +32,20 @@ form:
                 locally_hosted:
                     type: spacer
                     title: Locally Hosted Files
-                    text: If you host your MP3 audio files on <strong>this</strong> server, upload the media below
+                    text: If you host your audio files on <strong>this</strong> server, upload the media below
                 header.podcast.audio.local:
                     type: file
                     label: Local Podcast Audio
                     destination: '@self'
                     multiple: false
-                    filesize: 50
+                    config-filesize@: plugins.podcast.max_upload
                     limit: 1
                     accept:
-                      - .mp3
+                      - 'audio/*'
                 external_cdn:
                     type: spacer
                     title: External Files
-                    text: If you host your MP3 audio files on <strong>another</strong> server/CDN, fill in the field below
+                    text: If you host your audio files on <strong>another</strong> server/CDN, fill in the field below
                 header.podcast.audio.remote:
                     type: text
                     label: Remote Podcast URL
@@ -69,7 +69,7 @@ form:
               label: Episode Image
               destination: 'self@'
               multiple: false
-              fileszie: 5
+              filesize: 5
               accept:
                 - image/*
             header.podcast.itunes.explicit:
