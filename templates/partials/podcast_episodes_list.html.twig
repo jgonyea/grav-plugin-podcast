@@ -22,9 +22,9 @@
                 <p class = "episode-date">
                     {{ (episode.modified)|date('Y-m-d')|nicetime(false) }}
                 </p>
-                <p pass = "episode-description">
+                <p class = "episode-description">
                     {% if episode.summary %}
-                        {{ (episode.summary)|truncate(120) }}
+                        {{ (episode.summary)|striptags|truncate(120) }}
                     {% else %}
                         No summary available.
                     {% endif %}
