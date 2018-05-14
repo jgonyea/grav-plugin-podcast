@@ -1,3 +1,17 @@
+# v2.1.2
+## 05/14/2018
+
+1. [](#new)
+    * New podcast configuration field for max podcast filesize.
+
+2. [](#improved)
+    * More audio tags supported (audio/* vs. just mp3).
+
+3. [](#bugfix)
+    * Fixed various typos.
+    * Fixed media paths for episodes to use base_url's.
+    * Fixed truncation of summaries.
+
 # v2.1.1
 ## 08/05/2017
 
