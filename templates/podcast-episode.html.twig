@@ -9,8 +9,9 @@
     {{ page.content }}
     {% if page.header.podcast.audio.meta %}
         <p class = "podcast-episode-audio">
-            <audio controls="1" alt="episode.title"><source src="{{page.header.podcast.audio.meta.guid}}">Your browser does not support the audio tag.</audio>
-            <br/><a href ="{{page.header.podcast.audio.meta.guid}}">Download Audio</a>
+            {% set media_url = base_url ~ "/" ~ page.header.podcast.audio.meta.guid %}
+            <audio controls="1" alt="episode.title"><source src="{{media_url}}">Your browser does not support the audio tag.</audio>
+            <br/><a href ="{{media_url}}">Download Audio</a>
         </p>
     {% endif %}
 
