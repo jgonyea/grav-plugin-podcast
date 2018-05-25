@@ -1,3 +1,13 @@
+# v2.1.3
+## 05/25/2018
+
+1. [](#new)
+
+2. [](#improved)
+
+3. [](#bugfix)
+    * Fixed remote media urls in the media player.
+
 # v2.1.2
 ## 05/14/2018
 

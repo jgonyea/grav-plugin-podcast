@@ -31,7 +31,13 @@
                 </p>
                 {% if episode.header.podcast.audio.meta %}
                     <p class = "podcast-episode-audio">
-                        <audio controls="1" alt="episode.title"><source src="{{base_url}}/{{episode.header.podcast.audio.meta.guid}}">Your browser does not support the audio tag.</audio>
+                        {% if episode.header.podcast.audio.remote is null or episode.header.podcast.audio.remote is empty %}
+                        {% set media_url = base_url ~ "/" ~ episode.header.podcast.audio.meta.guid %}
+                        {% else %}
+                            {% set media_url = episode.header.podcast.audio.meta.guid %}
+                        {% endif %}
+                        <audio controls="1" alt="episode.title"><source src="{{media_url}}">Your browser does not support the audio tag.</audio>
+                        <br/><a href ="{{media_url}}">Download Audio</a>
                     </p>
                 {% endif %}
             </li>
