@@ -1,3 +1,13 @@
+# v2.1.4
+## 02/11/2019
+
+1. [](#new)
+
+2. [](#improved)
+
+3. [](#bugfix)
+    * Updated gemfiles.  Fixes ffi security warning.
+
 # v2.1.3
 ## 05/25/2018
 
