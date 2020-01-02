@@ -41,7 +41,7 @@
 <enclosure length="{{episode.header.podcast.audio.meta.enclosure_length}}" type="{{episode.header.podcast.audio.meta.type}}" url="{{base_url_absolute}}/{{episode.header.podcast.audio.meta.guid|absolute_url}}"/>
 <guid>{{base_url_absolute}}/{{episode.header.podcast.audio.meta.guid|absolute_url}}</guid>
 {% endif %}
-<pubDate>{{ episode.header.publish_date ? episode.header.publish_date|date('D, d M Y H:i:s Z') : episode.date|date('D, d M Y H:i:s Z')}}</pubDate>
+<pubDate>{{ episode.header.publish_date ? episode.header.publish_date|date('r') : episode.date|date('r')}}</pubDate>
 <itunes:duration>{{episode.header.podcast.audio.meta.duration}}</itunes:duration>
 <itunes:explicit>{{episode.header.podcast.itunes.explicit}}</itunes:explicit>
 </item>
