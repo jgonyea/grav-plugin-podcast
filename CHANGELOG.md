@@ -1,3 +1,15 @@
+# v2.1.5
+## 01/28/2020
+
+1. [](#new)
+
+2. [](#improved)
+
+3. [](#bugfix)
+    * Fixed multi-language support while saving a podcast episode
+    * Fixed incompatibility with Spotify ellipsis support
+    * Added check for image on channel page if no image exists
+
 # v2.1.4
 ## 02/11/2019
 

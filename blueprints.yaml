@@ -1,12 +1,12 @@
 name: Podcast
-version: 2.1.4
+version: 2.1.5
 description: Creates Podcast page types and related podcast RSS feeds
 icon: microphone
 author:
   name: Jeremy Gonyea
   email: jeremy.gonyea@gmail.com
 homepage: https://github.com/jgonyea/grav-plugin-podcast
-keywords: grav, plugin, etc, podcast
+keywords: grav, plugin, podcast, music
 bugs: https://github.com/jgonyea/grav-plugin-podcast/issues
 docs: https://github.com/jgonyea/grav-plugin-podcast/blob/develop/README.md
 license: MIT

@@ -80,7 +80,7 @@ class PodcastPlugin extends Plugin
     {
         $obj = $event['object'];
         // Process only podcast episodes page types.
-        if (!($obj instanceof \Grav\Common\Page\Page) || $obj->name() != 'podcast-episode.md') {
+        if (!($obj instanceof \Grav\Common\Page\Page) || $obj->template() != 'podcast-episode') {
             return;
         }
 

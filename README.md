@@ -101,4 +101,3 @@ These should be created as child pages of either a podcast channel or a podcast 
 
 ## To Do
 Submit any issues you find to the [issue queue](https://github.com/jgonyea/grav-plugin-podcast/issues).
-A Trello board of current progress can be found [here](https://trello.com/b/jIKLMt5K/grav-plugin-podcast).

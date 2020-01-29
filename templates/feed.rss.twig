@@ -32,7 +32,7 @@
 <title>{{episode.title}}</title>
 <itunes:author>{{ episode.header.podcast.itunes.author }}</itunes:author>
 <itunes:subtitle>{{ episdoe.header.podcast.subtitle }}</itunes:subtitle>
-<itunes:summary>{{episode.content|striptags|safe_truncate(120)}}</itunes:summary>
+<itunes:summary>{{episode.content|striptags|truncate(120, true, " ", "&#x2026;")}}</itunes:summary>
 <itunes:image href="{{base_url_absolute}}/{{ (episode.header.podcast.itunes.image)|first.path|absolute_url }}"/>
 {% if (episode.header.podcast.audio.remote) %}
 <enclosure length="{{episode.header.podcast.audio.meta.enclosure_length}}" type="{{episode.header.podcast.audio.meta.type}}" url="{{episode.header.podcast.audio.remote}}"/>
