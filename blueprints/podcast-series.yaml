@@ -14,7 +14,7 @@ form:
           ordering@: 0
           title: Podcast Series Content
           fields:
-            uploads:
+            header.media_order:
               unset@: true
             header.title:
               type: text

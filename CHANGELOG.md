@@ -1,3 +1,15 @@
+# v2.1.6
+## 09/20/2020
+
+1. [](#new)
+    * Added podcast episode number to feed.
+
+2. [](#improved)
+    * Updated News category options
+
+3. [](#bugfix)
+    * Updated field name to disable page media upload field on channels, series, and episodes.
+
 # v2.1.5
 ## 01/28/2020
 

@@ -11,19 +11,23 @@ form:
       fields:
         content:
           type: tab
-          ordering@: 0
           title: Podcast
           fields:
-            uploads:
-              unset@: true
             header.title:
-              ordering@: 0
+              ordering@: 1
               type: text
               label: Episode Title
             header.subtitle:
-              ordering@: 1
+              ordering@: 2
               type: text
               label: Episode subtitle
+            header.podcast.episode_number:
+              ordering@: 3
+              type: text
+              label: Episode number
+              size: x-small
+            header.media_order:
+              unset@: true
         podcastAudio:
             type: tab
             title: Podcast Audio
