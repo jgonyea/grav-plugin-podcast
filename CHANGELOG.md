@@ -1,3 +1,13 @@
+# v2.1.7
+## 10/19/2020
+
+1. [](#new)
+
+2. [](#improved)
+
+3. [](#bugfix)
+    * Added missing twig brackets (thanks to [PalmTreeVI](https://github.com/PalmTreeVI))
+
 # v2.1.6
 ## 09/20/2020
 

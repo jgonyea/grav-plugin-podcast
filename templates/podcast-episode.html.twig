@@ -14,8 +14,8 @@
             {% else %}
                 {% set media_url = page.header.podcast.audio.meta.guid %}
             {% endif %}
-            <audio controls="1" alt="episode.title"><source src="{{media_url}}">Your browser does not support the audio tag.</audio>
-            <br/><a href ="{{media_url}}">Download Audio</a>
+            <audio controls="1" alt="{{ episode.title }}"><source src="{{ media_url }}">Your browser does not support the audio tag.</audio>
+            <br/><a href ="{{ media_url }}">Download Audio</a>
         </p>
     {% endif %}
 
