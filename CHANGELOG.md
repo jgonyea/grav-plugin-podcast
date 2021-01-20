@@ -1,3 +1,13 @@
+# v2.1.8
+## 01/20/2021
+
+1. [](#new)
+
+2. [](#improved)
+
+3. [](#bugfix)
+    * Grav 1.7 compatibility fix for podcast-episode content field.
+
 # v2.1.7
 ## 10/19/2020
 

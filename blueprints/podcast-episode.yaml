@@ -1,7 +1,7 @@
 title: Podcast
 '@extends':
     type: default
-    context: blueprints://podcast-episode
+    context: blueprints://pages
 
 form:
   fields:
