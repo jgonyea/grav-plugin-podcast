@@ -1,5 +1,5 @@
 name: Podcast
-version: 2.1.8
+version: 2.1.9
 description: Creates Podcast page types and related podcast RSS feeds
 icon: microphone
 author:
@@ -31,6 +31,6 @@ form:
         type: bool
     max_upload:
       type: text
-      label: Max Podcast Filesize (MB)
-      help: 'Make sure to set "upload_max_filesize" and "post_max_size" in your php.ini as well.'
+      label: PLUGIN_PODCAST.CONFIG.MAX_UPLOAD_LABEL
+      help: PLUGIN_PODCAST.CONFIG.MAX_UPLOAD_HELP
       default: 50

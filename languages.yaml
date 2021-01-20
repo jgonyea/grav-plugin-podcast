@@ -1,0 +1,7 @@
+en:
+  PLUGIN_PODCAST:
+    CONFIG:
+      MAX_UPLOAD_LABEL: Max Podcast Filesize (MB)
+      MAX_UPLOAD_HELP: 'Set "upload_max_filesize" and "post_max_size" in php.ini to at least this value or higher.'
+    PODCAST: Podcast
+    SERIES: Series

@@ -1,3 +1,13 @@
+# v2.1.9
+## 01/20/2021
+
+1. [](#new)
+    * Adding a languages.yaml file to begin work on multi-language support.
+2. [](#improved)
+
+3. [](#bugfix)
+    * Multilanguage fixes for RSS feeds.
+
 # v2.1.8
 ## 01/20/2021
 
