@@ -1,7 +1,7 @@
 {# Need to find if we're at the channel or a series page #}
-{% if page.name == 'podcast-channel.md' %}
+{% if page.template == 'podcast-channel' %}
 {% set channel = page %}
-{% elseif page.name == 'podcast-series.md' %}
+{% elseif page.template == 'podcast-series' %}
 {% set channel = page.parent %}
 {% endif %}
 {% if channel %}

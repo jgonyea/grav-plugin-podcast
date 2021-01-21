@@ -1,5 +1,5 @@
 name: Podcast
-version: 2.1.9
+version: 2.1.10
 description: Creates Podcast page types and related podcast RSS feeds
 icon: microphone
 author:
@@ -21,12 +21,12 @@ form:
   fields:
     enabled:
       type: toggle
-      label: Plugin status
+      label: PLUGIN_ADMIN.PLUGIN_STATUS
       highlight: 1
       default: 0
       options:
-        1: Enabled
-        0: Disabled
+        1: PLUGIN_ADMIN.ENABLED
+        0: PLUGIN_ADMIN.DISABLED
       validate:
         type: bool
     max_upload:

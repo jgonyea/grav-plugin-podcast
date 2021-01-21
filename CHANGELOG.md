@@ -1,3 +1,13 @@
+# v2.1.10
+## 01/21/2021
+
+1. [](#new)
+
+2. [](#improved)
+    * Changed some more settings in the plugin blueprint to utilize the core's ML labels.
+3. [](#bugfix)
+    * Fixes for 0byte sized feeds for RSS feeds by using `page.template` vs `page.name`
+
 # v2.1.9
 ## 01/20/2021
 
