@@ -2,6 +2,8 @@
 namespace Grav\Plugin;
 
 use Grav\Common\Grav;
+use Grav\Common\Page\Header;
+use Grav\Common\Page\Interfaces\PageInterface;
 use Grav\Common\Plugin;
 use RocketTheme\Toolbox\Event\Event;
 use RocketTheme\Toolbox\File\File;
@@ -14,6 +16,11 @@ use Grav\Plugin\GetID3Plugin;
  */
 class PodcastPlugin extends Plugin
 {
+    /** @var array */
+    public $features = [
+        'blueprints' => 0, // Use priority 0
+    ];
+
     /**
      * @return array
      *
@@ -81,24 +88,23 @@ class PodcastPlugin extends Plugin
      */
     public function onAdminSave($event)
     {
-        $obj = $event['object'];
-        // Process only podcast-* page types.
-        $obj_class = get_class($obj);
-        if (($obj_class != 'Grav\Common\Page\Page' && $obj_class != 'Grav\Common\Flex\Types\Pages\PageObject')){
+        $page = $event['object'];
+
+        // Process only onAdminSave events on pages.
+        if (!$page instanceof PageInterface) {
             return;
         }
-        $header = $obj->header();
+        $header = $page->header();
 
         // Set auto dates on all podcast-* page types.
-        if ( str_starts_with($obj->template(), 'podcast-') && !isset($header->date)) {
+        if (str_starts_with($page->template(), 'podcast-') && !isset($header->date)) {
             $date = date($this->grav['config']->get('system.pages.dateformat.default', 'H:i d-m-Y'));
             $header['date'] = $date;
         }
 
-        // Return with just auto-date updated field if not podcast-episode.
-        if ($obj->template() != 'podcast-episode') {
-            $new_header = $header->toArray();
-            $obj->header($new_header);
+        // Return with just updated auto-date field if not podcast-episode.
+        if ($page->template() != 'podcast-episode') {
+            $header = new Header((array)$header);
             return;
         }
 
@@ -108,14 +114,13 @@ class PodcastPlugin extends Plugin
 
         if (isset($header->podcast['audio']['local']['select'])) {
             $local['select'] = $header->podcast['audio']['local']['select'];
-            $media = $obj->media()->audios()[$local['select']];
+            $media = $page->media()->audios()[$local['select']];
 
             // Create array for backawards compatability with Grav content created with < v1.7.
             $audio = $header->podcast['audio'];
             $file_path = $media->relativePath();
-            //$file_url = $obj->getRoute()->getUri()->getPath() . DS . $local['select'];
-            $file_url = $obj->getRoute()->getRootPrefix();
-            $file_url .= DS . implode('/', $obj->getRoute()->getRouteParts());
+            $file_url = $page->getRoute()->getRootPrefix();
+            $file_url .= DS . implode('/', $page->getRoute()->getRouteParts());
             $file_url .= DS . $local['select'];
 
             $audio_meta['guid'] = $file_url;
@@ -155,16 +160,16 @@ class PodcastPlugin extends Plugin
             $audio_meta['guid'] = $header->podcast['audio']['remote'];
         }
 
-        // Prepare $obj to return new header data.
-        $new_header = $header->toArray();
+        // Prepare $page to return new header data.
         if (isset($audio_meta)) {
-            $new_header['podcast']['audio']['meta'] = $audio_meta;
+            $header->set('podcast.audio.meta', $audio_meta);
         } else {
            // Cleanup any leftover data if neither local or remote file are set.
-            unset($new_header['podcast']['audio']);
+            $header->undef('podcast.audio');
         }
 
-        $obj->header($new_header);
+        $header = new Header((array)$header);
+        return;
     }
 
     /**
