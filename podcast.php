@@ -82,12 +82,25 @@ class PodcastPlugin extends Plugin
     public function onAdminSave($event)
     {
         $obj = $event['object'];
-        // Process only podcast episodes page types.
+        // Process only podcast-* page types.
         $obj_class = get_class($obj);
-        if (($obj_class != 'Grav\Common\Page\Page' && $obj_class != 'Grav\Common\Flex\Types\Pages\PageObject') || $obj->template() != 'podcast-episode') {
+        if (($obj_class != 'Grav\Common\Page\Page' && $obj_class != 'Grav\Common\Flex\Types\Pages\PageObject')){
             return;
         }
         $header = $obj->header();
+
+        // Set auto dates on all podcast-* page types.
+        if ( str_starts_with($obj->template(), 'podcast-') && !isset($header->date)) {
+            $date = date($this->grav['config']->get('system.pages.dateformat.default', 'H:i d-m-Y'));
+            $header['date'] = $date;
+        }
+
+        // Return with just auto-date updated field if not podcast-episode.
+        if ($obj->template() != 'podcast-episode') {
+            $new_header = $header->toArray();
+            $obj->header($new_header);
+            return;
+        }
 
         // Use local file for meta calculations, if present.
         // Else, use remote file for meta, if present.

@@ -13,7 +13,7 @@ license: MIT
 
 dependencies:
   - admin
-  - auto-date
+  - breadcrumbs
   - feed
   - get-id3
 

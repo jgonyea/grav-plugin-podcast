@@ -27,7 +27,7 @@ You should now have all the plugin files under
 > NOTE: This plugin is a modular component for Grav which requires the following to operate:
 * [Grav Core](http://github.com/getgrav/grav)
 * [Admin](https://github.com/getgrav/grav-plugin-admin)
-* [Auto Date](https://github.com/getgrav/grav-plugin-auto-date)
+* [Breadcrumbs](https://github.com/getgrav/grav-plugin-breadcrumbs)
 * [Feed](https://github.com/getgrav/grav-plugin-feed)
 * [GetId3](https://github.com/jgonyea/grav-plugin-get-id3), along with its accompanying [getID3 php library](http://www.getid3.org/)
 
