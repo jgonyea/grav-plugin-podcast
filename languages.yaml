@@ -5,3 +5,69 @@ en:
       MAX_UPLOAD_HELP: 'Set "upload_max_filesize" and "post_max_size" in php.ini to at least this value or higher.'
     PODCAST: Podcast Channel
     SERIES: Podcast Series
+    EPISODE_CONTENT:
+      HEADER: Episode Content
+      DOWNLOAD: Download Audio
+      WARNING: Your browser does not support the audio tag.
+      OTHER: Other Episodes In
+    ADMIN:
+      CHANNEL:
+        CONTENT:
+          TAB_TITLE: Podcast Page Content
+          PAGE_TITLE_LABEL: Page Title
+        CHANNEL_META:
+          TAB_TITLE: Channel Meta
+          TAB_HELPTEXT: Metadata related to the podcast's channel section.
+          PODCAST_TITLE_LABEL: Podcast Title
+          PODCAST_TITLE_HELPTEXT: Used in the RSS feed.
+          PODCAST_SUBTITLE_LABEL: iTunes Subtitle
+          PODCAST_SUBTITLE_HELPTEXT: 'Example: "A show about everything..."'
+          PODCAST_DESCRIPTION_LABEL: Channel Description
+          PODCAST_LINK_LABEL: Channel URL
+          PODCAST_LINK_HELPTEXT: Used in the RSS feed.
+          PODCAST_LANG_LABEL: Channel Language
+          PODCAST_LANG_HELPTEXT: Used only for the RSS feed.
+          PODCAST_COPYRIGHT_LABEL: Copyright
+        ITUNES_META:
+          TAB_TITLE: iTunes Meta
+          TAB_HELPTEXT: Metadata related to the podcast's iTunes section.
+          ITUNES_AUTHOR_LABEL: Author
+          ITUNES_AUTHOR_HELPTEXT: 'Example: "John Doe"'
+          ITUNES_OWNER_LABEL: Owner
+          ITUNES_OWNER_HELPTEXT: 'Example: "John Doe"'
+          ITUNES_OWNER_EMAIL_LABEL: Owner Email
+          ITUNES_OWNER_EMAIL_HELPTEXT: 'Example: "jdoe@example.com"'
+          ITUNES_IMAGE_LABEL: Channel Image
+          ITUNES_CATEGORY_LABEL: Category
+          ITUNES_SUBCATEGORY_LABEL: Sub-Category
+          ITUNES_EXPLICIT_LABEL: Explicit Content
+          ITUNES_EXPLICIT_HELPTEXT: Does this podcast contain content that might be inappropriate for children?
+      SERIES:
+        CONTENT:
+          TAB_TITLE: Podcast Series Content
+          PAGE_TITLE_LABEL: Series Title
+          SERIES_IMAGE_LABEL: Series Image
+          SERIES_IMAGE_HELPTEXT: Upload and save images below in the Page Media field.  Then select one in this dropdown to act as the series main image.
+      EPISODE:
+        CONTENT:
+          TAB_TITLE: Podcast Episode
+          PAGE_TITLE_LABEL: Episode Title
+          SUBTITLE_LABEL: Episode Title
+          EPISODE_NUMBER_LABEL: Episode Number
+        PODCAST_AUDIO:
+          TAB_TITLE: Podcast Audio
+          LOCAL_HOSTED_LABEL: Locally Hosted Files
+          LOVAL_HOSTED_HELPTEXT: If you host your audio files on <strong>this</strong> server, upload the media on the Podcast tab.
+          EXTERNAL_HOSTED_LABEL: External Files
+          EXTERNAL_HOSTED_HELPTEXT: If you host your audio files on <strong>another</strong> server/CDN, fill in the field below
+          EXTERNAL_URL_LABEL: Remote Podcast URL
+          EXTERNAL_URL_HELPTEXT: Remote files will take precendence over locally hosted when viewed on a page.
+        ITUNES_META:
+          TAB_TITLE: iTunes Episode Meta
+          TAB_HELPTEXT: Metadata related to the podcast episode
+          AUTHOR_LABEL: Episode Author
+          AUTHOR_HELPTEXT: 'Example: "John Doe"'
+          IMAGE_LABEL: Episode Image
+          IMAGE_HELPTEXT: Upload and save images below in the Page Media field on the Podcast Episode tab.  Then select one in this dropdown to act as the series main image.
+          EXPLICIT_LABEL: Explicit Content
+          EXPLICIT_HELPTEXT: Does this podcast contain content that might be inappropriate for children?

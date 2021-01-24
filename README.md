@@ -1,7 +1,7 @@
 # Podcast Plugin
 
 The **Podcast** Plugin is for [Grav CMS](http://github.com/getgrav/grav). This plugin creates the following:
-- Page templates for Podcast Channel, Podcast Series, and Podcast Episode
+- Admin Page templates for Podcast Channel, Podcast Series, and Podcast Episode
 - An iTunes compatible podcast RSS feed, both at the Podcast Channel (all episodes) and Podcast Series (only a series' episodes)
 
 ## Installation
@@ -25,14 +25,13 @@ You should now have all the plugin files under
     /your/site/grav/user/plugins/podcast
 
 > NOTE: This plugin is a modular component for Grav which requires the following to operate:
+* [Grav Core](http://github.com/getgrav/grav)
+* [Admin](https://github.com/getgrav/grav-plugin-admin)
 * [Auto Date](https://github.com/getgrav/grav-plugin-auto-date)
-* [Error](https://github.com/getgrav/grav-plugin-error)
 * [Feed](https://github.com/getgrav/grav-plugin-feed)
 * [GetId3](https://github.com/jgonyea/grav-plugin-get-id3), along with its accompanying [getID3 php library](http://www.getid3.org/)
-* [Grav](http://github.com/getgrav/grav)
-* [Problems](https://github.com/getgrav/grav-plugin-problems)
 
-> While technically not required, using the [Admin](https://github.com/getgrav/grav-plugin-admin) plugin will assist in adding new content.
+...and any other required plugins the above list requires.
 
 ## Configuration
 

@@ -1,3 +1,17 @@
+# v3.0.0
+## 01/23/2021
+
+1. [](#new)
+    * Grav v1.7 support.  Grav v1.6 is no longer supported.
+    * Individual file field uploads are no longer supported in Grav v1.7.  Instead, use the general media upoader and then the filepicker fields to select the appropriate audio/ image files.
+2. [](#improved)
+    * Better multi-language support while creating new content via the admin plugin.
+    * Twig formatting is improved.
+    * Updated README to indicate that admin is now required.  If this becomes a problem, I can revisit the requirements.
+    * Removed `max_upload` audio file size value from plugin configuration.
+3. [](#bugfix)
+    * Episode subtitle in the rss feed now points to the correct field in the admin form.  You may need to re-save this data on v2 Podcast episodes.
+
 # v2.1.10
 ## 01/21/2021
 

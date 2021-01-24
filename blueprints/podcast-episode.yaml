@@ -11,78 +11,75 @@ form:
       fields:
         content:
           type: tab
-          title: Podcast
+          title: PLUGIN_PODCAST.ADMIN.EPISODE.CONTENT.TAB_TITLE
           fields:
             header.title:
               ordering@: 1
               type: text
-              label: Episode Title
-            header.subtitle:
+              label: PLUGIN_PODCAST.ADMIN.EPISODE.CONTENT.PAGE_TITLE_LABEL
+            header.podcast.itunes.subtitle:
               ordering@: 2
               type: text
-              label: Episode subtitle
+              label: PLUGIN_PODCAST.ADMIN.EPISODE.CONTENT.SUBTITLE_LABEL
             header.podcast.episode_number:
               ordering@: 3
               type: text
-              label: Episode number
+              label: PLUGIN_PODCAST.ADMIN.EPISODE.CONTENT.EPISODE_NUMBER_LABEL
               size: x-small
-            header.media_order:
-              unset@: true
         podcastAudio:
             type: tab
-            title: Podcast Audio
+            title: PLUGIN_PODCAST.ADMIN.EPISODE.PODCAST_AUDIO.TAB_TITLE
             ordering@: 1
             fields:
                 locally_hosted:
                     type: spacer
-                    title: Locally Hosted Files
-                    text: If you host your audio files on <strong>this</strong> server, upload the media below
-                header.podcast.audio.local:
-                    type: file
+                    title: PLUGIN_PODCAST.ADMIN.EPISODE.PODCAST_AUDIO.LOCAL_HOSTED_LABEL
+                    text: PLUGIN_PODCAST.ADMIN.EPISODE.PODCAST_AUDIO.LOVAL_HOSTED_HELPTEXT
+                header.podcast.audio.local.select:
+                    type: filepicker
                     label: Local Podcast Audio
-                    destination: '@self'
-                    multiple: false
-                    config-filesize@: plugins.podcast.max_upload
-                    limit: 1
                     accept:
-                      - 'audio/*'
+                      - .mp3
+                      - .wav
+                      - .ogg
                 external_cdn:
                     type: spacer
-                    title: External Files
-                    text: If you host your audio files on <strong>another</strong> server/CDN, fill in the field below
+                    title: PLUGIN_PODCAST.ADMIN.EPISODE.PODCAST_AUDIO.EXTERNAL_HOSTED_LABEL
+                    text: PLUGIN_PODCAST.ADMIN.EPISODE.PODCAST_AUDIO.EXTERNAL_HOSTED_HELPTEXT
                 header.podcast.audio.remote:
                     type: text
-                    label: Remote Podcast URL
-                    help: Remote files will take precendence over locally hosted when viewed on a page.
+                    label: PLUGIN_PODCAST.ADMIN.EPISODE.PODCAST_AUDIO.EXTERNAL_URL_LABEL
+                    help: PLUGIN_PODCAST.ADMIN.EPISODE.PODCAST_AUDIO.EXTERNAL_URL_HELPTEXT
         itunesMetaTab:
           type: tab
           ordering@: 2
-          title: iTunes Episode Meta
+          title: PLUGIN_PODCAST.ADMIN.EPISODE.ITUNES_META.TAB_TITLE
           fields:
             helptext:
               type: spacer
-              title:
-              text: Metadata related to the podcast episode
+              text: PLUGIN_PODCAST.ADMIN.EPISODE.ITUNES_META.TAB_HELPTEXT
               underline: true
             header.podcast.itunes.author:
               type: text
-              label: Episode Author
-              help: 'Example: "John Doe"'
+              label: PLUGIN_PODCAST.ADMIN.EPISODE.ITUNES_META.AUTHOR_LABEL
+              help: PLUGIN_PODCAST.ADMIN.EPISODE.ITUNES_META.AUTHOR_HELPTEXT
             header.podcast.itunes.image:
-              type: file
-              label: Episode Image
-              destination: 'self@'
-              multiple: false
-              filesize: 5
+              type: filepicker
+              label: PLUGIN_PODCAST.ADMIN.EPISODE.ITUNES_META.IMAGE_LABEL
+              help: PLUGIN_PODCAST.ADMIN.EPISODE.ITUNES_META.IMAGE_HELPTEXT
               accept:
-                - image/*
+                - .png
+                - .bmp
+                - .jpeg
+                - .jpg
             header.podcast.itunes.explicit:
               type: toggle
-              label: Explicit Content
-              highlight: 0
+              label: PLUGIN_PODCAST.ADMIN.EPISODE.ITUNES_META.EXPLICIT_LABEL
+              help: PLUGIN_PODCAST.ADMIN.EPISODE.ITUNES_META.EXPLICIT_HELPTEXT
               default: no
-              help: Does this podcast contain content that might be inappropriate for children?
               options:
-                  yes: Yes
-                  no: No
+                  yes: PLUGIN_ADMIN.YES
+                  no: PLUGIN_ADMIN.NO
+              validate:
+                type: bool
 

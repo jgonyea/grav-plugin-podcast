@@ -1,0 +1,12 @@
+{% set mini_episodes = page.parent.children() %}
+<div class="episodes-mini-list">
+    <h3>{{ 'PLUGIN_PODCAST.EPISODE_CONTENT.OTHER'|t|e }} '{{ page.parent.title }}'</h3>
+    <ul>
+        {% for e in mini_episodes|slice(0, 5) %}
+            <li><a href="{{ e.url() }}">{{ e.title }}</a></li>
+        {% endfor %}
+        {% if (mini_episodes|length > 1) %}
+            <li><a href="{{page.parent.url()}}">More >></a></li>
+        {% endif %}
+    </ul>
+</div>

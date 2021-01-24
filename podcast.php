@@ -75,30 +75,49 @@ class PodcastPlugin extends Plugin
         $this->grav['assets']
             ->addCss('plugin://podcast/assets/css/podcast.css');
     }
-    
+
+    /**
+     * Modifies the page header being saved to include getID3 metadata.
+     */
     public function onAdminSave($event)
     {
         $obj = $event['object'];
         // Process only podcast episodes page types.
-        if (!($obj instanceof \Grav\Common\Page\Page) || $obj->template() != 'podcast-episode') {
+        $obj_class = get_class($obj);
+        if (($obj_class != 'Grav\Common\Page\Page' && $obj_class != 'Grav\Common\Flex\Types\Pages\PageObject') || $obj->template() != 'podcast-episode') {
             return;
         }
-
         $header = $obj->header();
 
         // Use local file for meta calculations, if present.
-        // Else use remote file for meta, if present.
-        // Else cleanup media entry in markdown header.
-        
-        if (isset($header->podcast['audio']['local'])) {
-            // Create a temporary array to perform the array_shift on.
-            $local_audio = $header->podcast['audio']['local'];
-            $local_audio = array_shift($local_audio);
-            
-            $audio_meta['guid'] = $local_audio['path'];
-            $audio_meta['type'] = $this->retreiveAudioType($audio_meta['guid']);
-            $audio_meta['duration'] = $this->retreiveAudioDuration($audio_meta['guid']);
-            $audio_meta['enclosure_length'] = filesize($audio_meta['guid']);
+        // Else, use remote file for meta, if present.
+        // Else, cleanup media entry in markdown header.
+
+        if (isset($header->podcast['audio']['local']['select'])) {
+            $local['select'] = $header->podcast['audio']['local']['select'];
+            $media = $obj->media()->audios()[$local['select']];
+
+            // Create array for backawards compatability with Grav content created with < v1.7.
+            $audio = $header->podcast['audio'];
+            $file_path = $media->relativePath();
+            //$file_url = $obj->getRoute()->getUri()->getPath() . DS . $local['select'];
+            $file_url = $obj->getRoute()->getRootPrefix();
+            $file_url .= DS . implode('/', $obj->getRoute()->getRouteParts());
+            $file_url .= DS . $local['select'];
+
+            $audio_meta['guid'] = $file_url;
+            $audio_meta['type'] = $this->retreiveAudioType($file_path);
+            $audio_meta['duration'] = $this->retreiveAudioDuration($file_path);
+            $audio_meta['enclosure_length'] = filesize($file_path);
+
+            $local_file = [
+                'name' => $local['select'],
+                'type' => $audio_meta['type'],
+                'size' => $audio_meta['enclosure_length'],
+                'path' => $file_url,
+            ];
+            $local[$file_path] = $local_file;
+            $header->offsetSet('podcast.audio.local', $local);
         }
         if (isset($header->podcast['audio']['remote']) && !isset($audio_meta)) {
             // Download fle from external url to temporary location.
@@ -117,27 +136,24 @@ class PodcastPlugin extends Plugin
                 unset($header->podcast['audio']['meta']);
             }
         }
-        
+
         // Reset the guid if using an external file source.
         if (isset($header->podcast['audio']['remote']) && isset($header->podcast['audio']['meta'])) {
             $audio_meta['guid'] = $header->podcast['audio']['remote'];
         }
-        
+
         // Prepare $obj to return new header data.
+        $new_header = $header->toArray();
         if (isset($audio_meta)) {
-            $header->podcast['audio']['meta'] = $audio_meta;
+            $new_header['podcast']['audio']['meta'] = $audio_meta;
         } else {
-            // Cleanup any leftover data if neither local or remote file are set.
-            if (isset($header->podcast['audio']['meta'])) {
-                unset($header->podcast['audio']);
-            }
+           // Cleanup any leftover data if neither local or remote file are set.
+            unset($new_header['podcast']['audio']);
         }
-        
-        $obj->header($header);
-        
-        return $obj;
+
+        $obj->header($new_header);
     }
-    
+
     /**
      * Retrieve audio metadata filesize.
      *
@@ -165,7 +181,7 @@ class PodcastPlugin extends Plugin
         $id3 = GetID3Plugin::analyzeFile($file);
         return ($id3['mime_type']);
     }
-    
+
     /**
      * Retrieve audio metadata duration.
      *
@@ -197,7 +213,7 @@ class PodcastPlugin extends Plugin
         curl_exec($ch);
         $retcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
-        
+
         // $retcode >= 400 -> not found; 200 -> found; 0 -> server not found.
         if ($retcode >= 400 || $retcode == 0) {
             $grav_messages = $this->grav['messages'];
@@ -205,21 +221,21 @@ class PodcastPlugin extends Plugin
             $grav_messages->add("Audio File metadata calculation failed!", 'error');
             return null;
         }
-        
+
         // Download file to temp location.
         if ($remote_file = fopen($url, 'rb')) {
             $local_file = tempnam('/tmp', 'podcast');
             $handle = fopen($local_file, "w");
             $contents = stream_get_contents($remote_file);
- 
+
             fwrite($handle, $contents);
             fclose($remote_file);
             fclose($handle);
- 
+
             return $local_file;
         }
     }
-    
+
     /**
      * Finds list of available iTunes categories.
      *

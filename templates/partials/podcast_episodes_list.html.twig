@@ -1,6 +1,6 @@
 <div id = "episodes">
+    {% if (episodes|length > 0)%}
     <ul>
-                    
         {% for episode in episodes %}
             <li>
                 <div class="episode-image">
@@ -19,10 +19,10 @@
                     {% endif %}
                 </h2>
                 </a>
-                <p class = "episode-date">
+                <p class="episode-date">
                     {{ (episode.modified)|date('Y-m-d')|nicetime(false) }}
                 </p>
-                <p class = "episode-description">
+                <p class="episode-description">
                     {% if episode.summary %}
                         {{ (episode.summary)|striptags|truncate(120) }}
                     {% else %}
@@ -31,16 +31,15 @@
                 </p>
                 {% if episode.header.podcast.audio.meta %}
                     <p class = "podcast-episode-audio">
-                        {% if episode.header.podcast.audio.remote is null or episode.header.podcast.audio.remote is empty %}
-                        {% set media_url = base_url ~ "/" ~ episode.header.podcast.audio.meta.guid %}
-                        {% else %}
-                            {% set media_url = episode.header.podcast.audio.meta.guid %}
-                        {% endif %}
-                        <audio controls="1" alt="episode.title"><source src="{{media_url}}">Your browser does not support the audio tag.</audio>
-                        <br/><a href ="{{media_url}}">Download Audio</a>
+                        <audio controls="1" alt="episode.title"><source src="{{ episode.header.podcast.audio.meta.guid }}">Your browser does not support the audio tag.</audio>
+                        <br/><a href ="{{ episode.header.podcast.audio.meta.guid }}">Download Audio</a>
                     </p>
                 {% endif %}
             </li>
         {% endfor %}
     </ul>
+    {% else %}
+    <p> No episodes </p>
+    {% endif %}
+
 </div>

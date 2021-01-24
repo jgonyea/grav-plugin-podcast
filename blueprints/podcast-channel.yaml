@@ -12,13 +12,11 @@ form:
         content:
           type: tab
           ordering@: 0
-          title: Podcast Page Content
+          title: PLUGIN_PODCAST.ADMIN.CHANNEL.CONTENT.TAB_TITLE
           fields:
-            header.media_order:
-              unset@: true
             header.title:
               type: text
-              label: Page Title
+              label: PLUGIN_PODCAST.ADMIN.CHANNEL.CONTENT.PAGE_TITLE_LABEL
 
             header.feed.rss:
               type: hidden
@@ -30,84 +28,84 @@ form:
         channelMetaTab:
           type: tab
           ordering@: 1
-          title: Channel Meta
+          title: PLUGIN_PODCAST.ADMIN.CHANNEL.CHANNEL_META.TAB_TITLE
           fields:
             helptext:
               type: spacer
               title:
-              text: Metadata related to the podcast's channel section.
+              text: PLUGIN_PODCAST.ADMIN.CHANNEL.CHANNEL_META.TAB_HELPTEXT
               underline: true
-            uploads:
-              unset@: true
             header.podcast.title:
               type: text
-              label: Podcast Title
+              label: PLUGIN_PODCAST.ADMIN.CHANNEL.CHANNEL_META.PODCAST_TITLE_LABEL
+              help: PLUGIN_PODCAST.ADMIN.CHANNEL.CHANNEL_META.PODCAST_TITLE_HELPTEXT
             header.podcast.itunes.subtitle:
               type: text
-              label: iTunes Subtitle
-              help: 'Example: "A show about everything..."'
+              label: PLUGIN_PODCAST.ADMIN.CHANNEL.CHANNEL_META.PODCAST_SUBTITLE_LABEL
+              help: PLUGIN_PODCAST.ADMIN.CHANNEL.CHANNEL_META.PODCAST_SUBTITLE_HELPTEXT
             header.podcast.description:
               type: markdown
-              label: Channel Description
-              ordering@: 0
+              label: PLUGIN_PODCAST.ADMIN.CHANNEL.CHANNEL_META.PODCAST_DESCRIPTION_LABEL
             header.podcast.link:
               type: text
-              label: Channel URL
+              label: PLUGIN_PODCAST.ADMIN.CHANNEL.CHANNEL_META.PODCAST_LINK_LABEL
+              help: PLUGIN_PODCAST.ADMIN.CHANNEL.CHANNEL_META.PODCAST_LINK_HELPTEXT
               default: 'https://www.example.com'
             header.podcast.channelLanguage:
               type: select
-              label: Channel Language
+              label: PLUGIN_PODCAST.ADMIN.CHANNEL.CHANNEL_META.PODCAST_LANG_LABEL
+              help:  PLUGIN_PODCAST.ADMIN.CHANNEL.CHANNEL_META.PODCAST_LANG_HELPTEXT
               default: 'en'
               data-options@: '\Grav\Plugin\PodcastPlugin::getLanguageOptions'
             header.podcast.copyright:
               type: text
-              label: Copyright
-              default: 2017 Example.com
+              label: PLUGIN_PODCAST.ADMIN.CHANNEL.CHANNEL_META.PODCAST_COPYRIGHT_LABEL
+              default: 2021 Example.com
 
         itunesMetaTab:
           type: tab
           ordering@: 2
-          title: iTunes Meta
+          title: PLUGIN_PODCAST.ADMIN.CHANNEL.ITUNES_META.TAB_TITLE
           fields:
             helptext:
               type: spacer
               title:
-              text: Metadata related to the podcast's itunes section.
+              text: PLUGIN_PODCAST.ADMIN.CHANNEL.ITUNES_META.TAB_HELPTEXT
               underline: true
             header.podcast.itunes.author:
               type: text
-              label: Author
-              help: 'Example: "John Doe"'
+              label: PLUGIN_PODCAST.ADMIN.CHANNEL.ITUNES_META.ITUNES_AUTHOR_LABEL
+              help: PLUGIN_PODCAST.ADMIN.CHANNEL.ITUNES_META.ITUNES_AUTHOR_HELPTEXT
             header.podcast.itunes.owner.name:
               type: text
-              label: Owner Name
-              help: 'Example: "John Doe"'
+              label: PLUGIN_PODCAST.ADMIN.CHANNEL.ITUNES_META.ITUNES_OWNER_LABEL
+              help: PLUGIN_PODCAST.ADMIN.CHANNEL.ITUNES_META.ITUNES_OWNER_HELPTEXT
             header.podcast.itunes.owner.email:
               type: email
-              label: Owner Email
-              help: 'Example: "jdoe@example.com"'
+              label: PLUGIN_PODCAST.ADMIN.CHANNEL.ITUNES_META.ITUNES_OWNER_EMAIL_LABEL
+              help: PLUGIN_PODCAST.ADMIN.CHANNEL.ITUNES_META.ITUNES_OWNER_EMAIL_HELPTEXT
             header.podcast.itunes.image:
-              type: file
-              label: Channel Image
-              destination: 'self@'
-              multiple: false
-              fileszie: 5
+              type: filepicker
+              label:  PLUGIN_PODCAST.ADMIN.CHANNEL.ITUNES_META.ITUNES_IMAGE_LABEL
               accept:
-                - image/*
+                - .bmp
+                - .png
+                - .jpg
+                - .jpeg
             header.podcast.itunes.category:
               type: select
+              label: PLUGIN_PODCAST.ADMIN.CHANNEL.ITUNES_META.ITUNES_CATEGORY_LABEL
               size: long
               classes: fancy
-              label: Category
               data-options@: '\Grav\Plugin\PodcastPlugin::getCategoryOptions'
             header.podcast.itunes.subcategory:
               type: select
-              label: Sub-Category
+              label: PLUGIN_PODCAST.ADMIN.CHANNEL.ITUNES_META.ITUNES_SUBCATEGORY_LABEL
               data-options@: '\Grav\Plugin\PodcastPlugin::getSubCategoryOptions'
 
             header.podcast.itunes.explicit:
               type: toggle
-              label: Explicit Content
+              label: PLUGIN_PODCAST.ADMIN.CHANNEL.ITUNES_META.ITUNES_EXPLICIT_LABEL
               highlight: 0
               default: no
               help: Does this podcast contain content that might be inappropriate for children?

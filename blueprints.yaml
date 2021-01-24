@@ -1,5 +1,5 @@
 name: Podcast
-version: 2.1.10
+version: 3.0.0
 description: Creates Podcast page types and related podcast RSS feeds
 icon: microphone
 author:
@@ -12,6 +12,7 @@ docs: https://github.com/jgonyea/grav-plugin-podcast/blob/develop/README.md
 license: MIT
 
 dependencies:
+  - admin
   - auto-date
   - feed
   - get-id3
@@ -29,8 +30,3 @@ form:
         0: PLUGIN_ADMIN.DISABLED
       validate:
         type: bool
-    max_upload:
-      type: text
-      label: PLUGIN_PODCAST.CONFIG.MAX_UPLOAD_LABEL
-      help: PLUGIN_PODCAST.CONFIG.MAX_UPLOAD_HELP
-      default: 50

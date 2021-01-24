@@ -20,7 +20,7 @@
     <itunes:name>{{ channel.header.podcast.itunes.owner.name }}</itunes:name>
     <itunes:email>{{ channel.header.podcast.itunes.owner.email }}</itunes:email>
 </itunes:owner>
-<itunes:image href="{{ base_url_absolute}}/{{ ((channel.header.podcast.itunes.image)|first.path) }}"/>
+<itunes:image href="{{ uri.base }}{{ channel.media[page.header.podcast.itunes.image].url(true) }}"/>
 <itunes:category text="{{ channel.header.podcast.itunes.category }}">
     <itunes:category text="{{ channel.header.podcast.itunes.subcategory }}"/>
 </itunes:category>
@@ -31,23 +31,23 @@
 <item>
     <title>{{ episode.title }}</title>
     <link>{{ episode.url(true) }}</link>
-    {% if episode.header.podcast.episode_number %}
+    {% if episode.header.podcast.episode_number -%}
     <itunes:episode>{{ episode.header.podcast.episode_number }}</itunes:episode>
-    {% endif %}
+    {% endif -%}
     <itunes:author>{{ episode.header.podcast.itunes.author }}</itunes:author>
-    <itunes:subtitle>{{ episdoe.header.podcast.subtitle }}</itunes:subtitle>
-    <itunes:summary>{{episode.content|striptags|truncate(120, true, " ", "&#x2026;")}}</itunes:summary>
-    <itunes:image href="{{base_url_absolute}}/{{ (episode.header.podcast.itunes.image)|first.path|absolute_url }}"/>
-    {% if (episode.header.podcast.audio.remote) %}
-    <enclosure length="{{episode.header.podcast.audio.meta.enclosure_length}}" type="{{episode.header.podcast.audio.meta.type}}" url="{{episode.header.podcast.audio.remote}}"/>
-    <guid>{{episode.header.podcast.audio.remote}}</guid>
-    {% else %}
-    <enclosure length="{{episode.header.podcast.audio.meta.enclosure_length}}" type="{{episode.header.podcast.audio.meta.type}}" url="{{base_url_absolute}}/{{episode.header.podcast.audio.meta.guid|absolute_url}}"/>
-    <guid>{{base_url_absolute}}/{{episode.header.podcast.audio.meta.guid|absolute_url}}</guid>
-    {% endif %}
-    <pubDate>{{ episode.header.publish_date ? episode.header.publish_date|date('r') : episode.date|date('r')}}</pubDate>
-    <itunes:duration>{{episode.header.podcast.audio.meta.duration}}</itunes:duration>
-    <itunes:explicit>{{episode.header.podcast.itunes.explicit}}</itunes:explicit>
+    <itunes:subtitle>{{ episode.header.podcast.itunes.subtitle }}</itunes:subtitle>
+    <itunes:summary>{{ episode.content|striptags|truncate(120, true, " ", "&#x2026;")}}</itunes:summary>
+    <itunes:image href="{{ uri.base }}/{{ episode.media[episode.header.podcast.itunes.image].url(true) }}"/>
+    {% if ( episode.header.podcast.audio.remote ) -%}
+    <enclosure length="{{ episode.header.podcast.audio.meta.enclosure_length }}" type="{{ episode.header.podcast.audio.meta.type }}" url="{{ episode.header.podcast.audio.remote }}"/>
+    <guid>{{ episode.header.podcast.audio.remote }}</guid>
+    {% else -%}
+    <enclosure length="{{ episode.header.podcast.audio.meta.enclosure_length }}" type="{{ episode.header.podcast.audio.meta.type }}" url="{{ uri.base }}{{ episode.header.podcast.audio.meta.guid }}"/>
+    <guid>{{ uri.base }}{{ episode.header.podcast.audio.meta.guid }}</guid>
+    {% endif -%}
+    <pubDate>{{ episode.header.publish_date ? episode.header.publish_date|date('r') : episode.date|date('r') }}</pubDate>
+    <itunes:duration>{{ episode.header.podcast.audio.meta.duration }}</itunes:duration>
+    <itunes:explicit>{{ episode.header.podcast.itunes.explicit }}</itunes:explicit>
 </item>
 {% endif %}
 {% endfor %}
