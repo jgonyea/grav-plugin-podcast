@@ -2,42 +2,42 @@
 
 {% block content %}
 
-{% if page.parent.template == 'podcast-channel' %}
-{% set episodes = page.siblings %}
-{% elseif page.template == 'podcast-series' %}
-{% set channel = page.parent %}
-{% endif %}
+<div class="podcast-container">
 
-<div class="episode-container">
-
-    <div class="episode-nav">
+    <div class="podcast-nav">
         {% include 'partials/breadcrumbs.html.twig'%}
     </div>
 
-    <div class="episode-flex-wrapper">
-        <div class="episode-flex-child episode-top">
+    <div class="podcast-flex-wrapper">
+        <div class="podcast-flex-child podcast-flex-full">
             <h1>{{ page.title }} {% if (header.podcast.audio.meta.guid) %}<small>({{ header.podcast.audio.meta.duration }})</small>{% endif %}</h1>
             {% if (header.podcast.itunes.subtitle) -%}
-                <h2>{{ header.podcast.itunes.subtitle }}</h2
+                <h2>{{ header.podcast.itunes.subtitle }}</h2>
             {% endif %}
-
-            <div class="episode-content-wrapper">
-                {% if (header.podcast.audio.meta.guid) %}
-                    <div class="podcast-episode-audio">
-                        <audio controls="1" alt="{{ episode.title }}"><source src="{{ page.header.podcast.audio.meta.guid }}">{{ 'PLUGIN_PODCAST.EPISODE_CONTENT.WARNING'|t|e }}</audio></br>
-                        <a href ="{{ header.podcast.audio.meta.guid }}">{{ 'PLUGIN_PODCAST.EPISODE_CONTENT.DOWNLOAD'|t|e }}</a> | Posted {{ header.date|date('Y-m-d')|nicetime(false) }}
-                    </div>
-                {% else %}
-                    <p>No audio for this episode</p>
-                {% endif %}
         </div>
 
-        <div class="episode-flex-child episode-content">
-            <h3>{{ 'PLUGIN_PODCAST.EPISODE_CONTENT.HEADER'|t|e }}</h3>
-            {{ page.content|raw }}
+        <div class="podcast-flex-child podcast-flex-full">
+            {% if (header.podcast.audio.meta.guid) %}
+                <div class="podcast-episode-audio">
+                    <audio controls="1" alt="{{ episode.title }}"><source src="{{ page.header.podcast.audio.meta.guid }}">{{ 'PLUGIN_PODCAST.EPISODE_CONTENT.WARNING'|t|e }}</audio></br>
+                    <a href ="{{ header.podcast.audio.meta.guid }}">{{ 'PLUGIN_PODCAST.EPISODE_CONTENT.DOWNLOAD'|t|e }}</a> | Posted {{ header.date|date('Y-m-d')|nicetime(false) }}
+                </div>
+            {% else %}
+                <div><p>No audio for this episode</p></div>
+            {% endif %}
         </div>
 
-        <div class="episode-flex-child">
+        <div class="podcast-flex-child podcast-page-content">
+            {% if not page.content %}
+                <p>{{ 'PLUGIN_PODCAST.EPISODE_CONTENT.EMPTY'|t|e }}</p>
+            {% else %}
+                <h3>{{ 'PLUGIN_PODCAST.EPISODE_CONTENT.HEADER'|t|e }}</h3>
+                {% if(header.podcast.itunes.image) %} {{ page.media[header.podcast.itunes.image].lightbox(600,400).zoomCrop(200,200).html(header.podcast.itunes.image ,'','podcast-content-image')|raw }} {% endif %}
+                {{ page.content|raw }}
+            {% endif %}
+        </div>
+
+        <div class="podcast-flex-child">
             {% include 'partials/podcast_episodes_mini_list.html.twig'%}
         </div>
     </div>

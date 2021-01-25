@@ -1,38 +1,46 @@
 {% extends 'partials/base.html.twig' %}
 
 {% block content %}
-    {% set series = page.parent.collection({ 'items': '@self.descendants', 'order': {'by': 'date', 'dir': 'desc'}} ).ofType('podcast-series') %}
-    {% set episodes = page.collection({ 'items': '@self.descendants', 'order': {'by': 'date', 'dir': 'desc'}} ).ofType('podcast-episode') %}
-    <div class="podcast-channel-header">
-        <div class = "podcast-channel-image">
-            {% if not (header.series.image) and (page.parent.header.podcast.itunes.image)%}
-                {{ page.parent.media[page.parent.header.podcast.itunes.image].resize(200, 200).html()|raw }}
-            {% else %}
-                {{ page.media[header.series.image].resize(200, 200).html()|raw }}
-            {% endif %}
 
+<div class="podcast-container">
+
+    <div class="podcast-nav">
+        {% include 'partials/breadcrumbs.html.twig'%}
+    </div>
+
+    <div class="podcast-flex-wrapper">
+        <div class="podcast-flex-child podcast-flex-full">
+            <h1>{{ page.title }}</h1>
+            {% if (header.podcast.itunes.subtitle) -%}
+                <h2>{{ header.podcast.itunes.subtitle }}</h2
+            {% endif %}
         </div>
-        <div class="channel-meta">
-            <h1>{{ page.parent.header.title }} - {{header.title}}</h1>
-            <p class = "owner">by {{ page.parent.header.podcast.itunes.owner.name }}</p>
+
+        <div class="podcast-flex-child podcast-page-content">
+            <h3>{{ 'PLUGIN_PODCAST.SERIES_CONTENT.HEADER'|t|e }}</h3>
+            {% if(header.series.image) %} {{ page.media[header.series.image].lightbox(600,400).zoomCrop(200,200).html(header.podcast.itunes.image,'','podcast-content-image')|raw }} {% endif %}
+
             {% if not page.content %}
-                {% set description = page.parent.header.podcast.description %}
+                <p>{{ 'PLUGIN_PODCAST.EPISODE_CONTENT.EMPTY'|t|e }}</p>
             {% else %}
-                {% set description = page.content() %}
+                {{ page.content|raw }}
             {% endif %}
-            <p class = "description">{{ description|raw }}</p>
         </div>
-        <div class="channel-links">
-            <a href="{{ base_url }}{{ page.route }}.rss"><i class="fa fa-rss" aria-hidden="true"></i>{{ 'PLUGIN_PODCAST.SERIES'|t }} | {{ page.title }}</a>
 
+        {% set series = page.collection({ 'items': '@self.siblings', 'order': {'by': 'date', 'dir': 'desc'}} ).ofType('podcast-series') %}
+        {% if(series|length > 0) %}
+        <div class="podcast-flex-child">
+            {% include 'partials/podcast_series_mini_list.html.twig' %}
+        </div>
+        {% endif %}
+
+        {% set episodes = page.collection({ 'items': '@self.children', 'order': {'by': 'date', 'dir': 'desc'}} ).ofType('podcast-episode') %}
+        <div class="podcast-flex-child podcast-flex-full">
+             {% include 'partials/podcast_episodes_list.html.twig' %}
         </div>
 
     </div>
 
-
-    {% include 'partials/podcast_episodes_list.html.twig' %}
-    {% include 'partials/podcast_series_list.html.twig' %}
-    <div class="clearfix"></div>
-
+</div>
 
 {% endblock %}

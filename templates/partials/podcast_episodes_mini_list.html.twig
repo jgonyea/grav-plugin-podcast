@@ -1,12 +1,18 @@
-{% set mini_episodes = page.parent.children() %}
+{% set options = { 
+    items: {'@self.siblings':''}, 
+    'filter': {'type': 'podcast-episode'}, 
+    'order': {'by': 'date', 'dir': 'desc'}, 
+    'limit': 5 } %}
+{% set mini_episodes = page.collection(options) %}
+
 <div class="episodes-mini-list">
-    <h3>{{ 'PLUGIN_PODCAST.EPISODE_CONTENT.OTHER'|t|e }} '{{ page.parent.title }}'</h3>
+    <h3>{{ 'PLUGIN_PODCAST.WORDS.LATEST'|t|e }} {{ page.parent.title }} {{ 'PLUGIN_PODCAST.WORDS.EPISODE'|t|e|pluralize }}</h3>
     <ul>
-        {% for e in mini_episodes|slice(0, 5) %}
+        {% for e in mini_episodes %}
             <li><a href="{{ e.url() }}">{{ e.title }}</a></li>
         {% endfor %}
         {% if (mini_episodes|length > 1) %}
-            <li><a href="{{page.parent.url()}}">More >></a></li>
+            <li><a href="{{ page.parent.url() }}">{{ 'PLUGIN_PODCAST.WORDS.MORE'|t|e }} >></a></li>
         {% endif %}
     </ul>
 </div>

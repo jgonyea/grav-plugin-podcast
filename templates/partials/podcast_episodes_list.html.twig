@@ -1,39 +1,38 @@
-<div id = "episodes">
+<div class = "podcast-full-list">
     {% if (episodes|length > 0)%}
+    <h2>{{ 'PLUGIN_PODCAST.WORDS.LATEST'|t|e }} {{ 'PLUGIN_PODCAST.WORDS.EPISODE'|t|e|pluralize }}</h2>
+    
+    <div class="channel-links">
+        <a href="{{ base_url }}{{ page.route }}.rss">RSS <i class="fa fa-rss" aria-hidden="true"></i> | {{ page.title }}</a>
+    </div>
+    
     <ul>
-        {% for episode in episodes %}
+        {% for e in episodes %}
             <li>
-                <div class="episode-image">
-                    {% if ((episode.header.podcast.itunes.image)|first) %}
-                        {{ page.find(episode.route).media[ (((episode.header.podcast.itunes.image)|first).name) ].cropResize(200, 200).html}}
+                <a href ="{{ e.url }}">
+                    {% if ((e.header.podcast.itunes.image)|first) %}
+                        {{ e.media[e.header.podcast.itunes.image].zoomCrop(200, 200).html(e.header.podcast.itunes.image,'','podcast-content-image')|raw }}
                     {% else %}
-                        <img src="{{ url("plugin://podcast/assets/images/default.jpg") }}" />
+                            <img src="{{ url("plugin://podcast/assets/images/default.jpg") }}" class="podcast-content-image" />
                     {% endif %}
-                </div>
-                <a href ="{{ episode.url }}">
-                <h2>{{ episode.title }}
-                    {% if (episode.header.podcast.audio.meta.duration) %}
-                        <small>( {{ episode.header.podcast.audio.meta.duration }} )</small>
-                    {% else %}
-                        <small>( No Audio )</small>
-                    {% endif %}
-                </h2>
+                    <h3>{{ e.title }}
+                        {% if (e.header.podcast.audio.meta.duration) %}
+                            <small>( {{ e.header.podcast.audio.meta.duration }} )</small>
+                        {% endif %}
+                    </h2>
                 </a>
                 <p class="episode-date">
-                    {{ (episode.modified)|date('Y-m-d')|nicetime(false) }}
+                    {{ (e.modified)|date('Y-m-d')|nicetime(false) }}{% if e.header.podcast.audio.meta %} | <a href ="{{ e.header.podcast.audio.meta.guid }}">Download Audio</a>{% endif %}
                 </p>
                 <p class="episode-description">
-                    {% if episode.summary %}
-                        {{ (episode.summary)|striptags|truncate(120) }}
+                    {% if e.summary %}
+                        {{ (e.summary)|striptags|truncate(300)|raw }}
                     {% else %}
-                        No summary available.
+                        {{ 'PLUGIN_PODCAST.EPISODE_CONTENT.EMPTY'|t|e }}
                     {% endif %}
                 </p>
-                {% if episode.header.podcast.audio.meta %}
-                    <p class = "podcast-episode-audio">
-                        <audio controls="1" alt="episode.title"><source src="{{ episode.header.podcast.audio.meta.guid }}">Your browser does not support the audio tag.</audio>
-                        <br/><a href ="{{ episode.header.podcast.audio.meta.guid }}">Download Audio</a>
-                    </p>
+                {% if (e.parent.template == 'podcast-series') %}
+                <p><a href="{{ e.parent.url }}">{{ 'PLUGIN_PODCAST.WORDS.SERIES'|t|e }} | {{ e.parent.title}}</a> </p>
                 {% endif %}
             </li>
         {% endfor %}

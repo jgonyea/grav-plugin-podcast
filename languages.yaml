@@ -3,16 +3,20 @@ en:
     CONFIG:
       MAX_UPLOAD_LABEL: Max Podcast Filesize (MB)
       MAX_UPLOAD_HELP: 'Set "upload_max_filesize" and "post_max_size" in php.ini to at least this value or higher.'
-    PODCAST: Podcast Channel
-    SERIES: Podcast Series
-    
+    WORDS:
+      CHANNEL: CHANNEL
+      EPISODE: Episode
+      LATEST: Latest
+      MORE: More
+      PODCAST: Podcast
+      SERIES: Series
     SERIES_CONTENT:
       HEADER: Series Description
     EPISODE_CONTENT:
       HEADER: Episode Content
       DOWNLOAD: Download Audio
       WARNING: Your browser does not support the audio tag.
-      OTHER: Other Episodes In
+      EMPTY: No content available.
     ADMIN:
       CHANNEL:
         CONTENT:

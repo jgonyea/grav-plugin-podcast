@@ -1,0 +1,29 @@
+{% if series is defined %}
+    {# Using passed in series Page collection #}
+{% else %}
+    {# Generate new series Page collection based on page template #}
+    {% if page.template == 'podcast-channel' %}
+        {% set target = {'@self.children':''} %}
+    {% else %}
+        {% set target = {'@self.siblings':''} %}
+    {% endif %}
+    {% set options = { 
+        items: target, 
+        'filter': {'type': 'podcast-series'}, 
+        'order': {'by': 'date', 'dir': 'desc'}, 
+        'limit': 5 } 
+    %}
+    {% set series = page.collection(options) %}
+{% endif %}
+
+<div class="episodes-mini-list">
+    <h3>{{ 'PLUGIN_PODCAST.WORDS.LATEST'|t|e }} {{ 'PLUGIN_PODCAST.WORDS.SERIES'|t|pluralize }}</h3>
+    <ul>
+        {% for s in series %}
+            <li><a href="{{ s.url() }}">{{ s.title }}</a></li>
+        {% endfor %}
+        {% if (series|length > 1) %}
+            <li><a href="{{ page.parent.url() }}">{{ 'PLUGIN_PODCAST.WORDS.MORE'|t|e }} >></a></li>
+        {% endif %}
+    </ul>
+</div>
