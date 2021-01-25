@@ -59,7 +59,7 @@ en:
         CONTENT:
           TAB_TITLE: Podcast Episode
           PAGE_TITLE_LABEL: Episode Title
-          SUBTITLE_LABEL: Episode Title
+          SUBTITLE_LABEL: Episode Subtitle
           EPISODE_NUMBER_LABEL: Episode Number
         PODCAST_AUDIO:
           TAB_TITLE: Podcast Audio
