@@ -10,7 +10,7 @@
         {% for e in episodes %}
             <li>
                 <a href ="{{ e.url }}">
-                    {% if ((e.header.podcast.itunes.image)|first) %}
+                    {% if (e.header.podcast.itunes.image) %}
                         {{ e.media[e.header.podcast.itunes.image].zoomCrop(200, 200).html(e.header.podcast.itunes.image,'','podcast-content-image')|raw }}
                     {% else %}
                             <img src="{{ url("plugin://podcast/assets/images/default.jpg") }}" class="podcast-content-image" />

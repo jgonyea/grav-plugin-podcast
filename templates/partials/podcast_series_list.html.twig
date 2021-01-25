@@ -2,12 +2,16 @@
     {% if (series|length > 0)%}
     <h2>{{ 'PLUGIN_PODCAST.WORDS.LATEST'|t|e }} {{ 'PLUGIN_PODCAST.WORDS.SERIES'|t|e|pluralize }}</h2>
     
+    <div class="channel-links">
+        All Series
+    </div>
+
     <ul>
         {% for s in series %}
             <li>
                 <a href ="{{ s.url }}">
-                    {% if ((s.header.podcast.itunes.image)|first) %}
-                        {{ s.media[s.header.podcast.itunes.image].zoomCrop(200, 200).html(s.header.podcast.itunes.image,'','podcast-content-image')|raw }}
+                    {% if (s.header.series.image) %}
+                        {{ s.media[s.header.series.image].zoomCrop(200, 200).html(s.header.series.image,'','podcast-content-image')|raw }}
                     {% endif %}
                     <h3>{{ s.title }}
                         {% if (s.header.podcast.audio.meta.duration) %}
