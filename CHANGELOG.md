@@ -1,3 +1,14 @@
+# v3.0.1
+## 01/25/2021
+
+1. [](#new)
+
+2. [](#improved)
+
+3. [](#bugfix)
+    * Series images now loading properly
+    * Subtitle field label now say "Subtitle" vs "Title" in languages.yaml
+    * Small fix for mini list of episodes if no parent series (e.g. parent page is a channel page)
 # v3.0.0
 ## 01/25/2021
 
