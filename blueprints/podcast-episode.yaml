@@ -80,6 +80,4 @@ form:
               options:
                   yes: PLUGIN_ADMIN.YES
                   no: PLUGIN_ADMIN.NO
-              validate:
-                type: bool
 

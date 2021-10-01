@@ -1,3 +1,13 @@
+# v3.0.2
+## 10/01/2021
+
+1. [](#new)
+
+2. [](#improved)
+
+3. [](#bugfix)
+    * Invalid "Explicit content" flag validation check removed
+
 # v3.0.1
 ## 01/25/2021
 
