@@ -1,3 +1,14 @@
+# v3.0.3
+## 10/02/2021
+
+1. [](#new)
+
+2. [](#improved)
+
+3. [](#bugfix)
+    * Fix for Series and Channel pages rss feeds.
+    * Fix for incorrect publish date time calculations.
+
 # v3.0.2
 ## 10/01/2021
 
