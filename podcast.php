@@ -12,6 +12,7 @@ use Grav\Plugin\GetID3Plugin;
 
 /**
  * Class PodcastPlugin
+ * 
  * @package Grav\Plugin
  */
 class PodcastPlugin extends Plugin
@@ -96,13 +97,22 @@ class PodcastPlugin extends Plugin
         }
         $header = $page->header();
 
-        // Set auto dates on all podcast-* page types.
-        if (str_starts_with($page->template(), 'podcast-') && !isset($header->date)) {
-            $date = date($this->grav['config']->get('system.pages.dateformat.default', 'H:i d-m-Y'));
-            $header['date'] = $date;
+        if ( str_starts_with($page->template(), 'podcast-') ) {
+            // Set autodate field on all podcast-* page types.
+            if (!isset($header->date)){
+                $date = date($this->grav['config']->get('system.pages.dateformat.default', 'H:i d-m-Y'));
+                $header['date'] = $date;
+            }
+
+            // Fix for Feed plugin 1.8.2+ requiring 'content' instead of 'feed' in the header.
+            if ( isset($header['feed']) == true ) {
+                $header['content'] = $header['feed'];
+                $header->undef('feed');
+            }
+
         }
 
-        // Return with just updated auto-date field if not podcast-episode.
+        // Return with just updated header content if not podcast-episode.
         if ($page->template() != 'podcast-episode') {
             $header = new Header((array)$header);
             return;
@@ -164,7 +174,7 @@ class PodcastPlugin extends Plugin
         if (isset($audio_meta)) {
             $header->set('podcast.audio.meta', $audio_meta);
         } else {
-           // Cleanup any leftover data if neither local or remote file are set.
+            // Cleanup any leftover data if neither local or remote file are set.
             $header->undef('podcast.audio');
         }
 

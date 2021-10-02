@@ -18,10 +18,10 @@ form:
               type: text
               label: PLUGIN_PODCAST.ADMIN.CHANNEL.CONTENT.PAGE_TITLE_LABEL
 
-            header.feed.rss:
+            header.content.rss:
               type: hidden
               default: 'true'
-            header.feed.items:
+            header.content.items:
               type: hidden
               default: '@self.descendants'
 
