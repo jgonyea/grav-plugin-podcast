@@ -1,13 +1,22 @@
 <div class = "podcast-full-list">
     {% if (episodes|length > 0)%}
     <h2>{{ 'PLUGIN_PODCAST.WORDS.LATEST'|t|e }} {{ 'PLUGIN_PODCAST.WORDS.EPISODE'|t|e|pluralize }}</h2>
-    
+
     <div class="channel-links">
         <a href="{{ base_url }}{{ page.route }}.rss">RSS <i class="fa fa-rss" aria-hidden="true"></i> | {{ page.title }}</a>
     </div>
-    
+
     <ul>
         {% for e in episodes %}
+            {# Datestamp Fallback Calculation (Published date field -> General date field -> File modified metadata) #}
+            {% if (e.header.publish_date) %}
+                {% set datestamp = e.header.publish_date %}
+            {% elseif (e.header.date) %}
+                {% set datestamp = e.header.date %}
+            {% else %}
+                {% set datestamp = e.modified %}
+            {% endif %}
+
             <li>
                 <a href ="{{ e.url }}">
                     {% if (e.header.podcast.itunes.image) %}
@@ -22,7 +31,7 @@
                     </h2>
                 </a>
                 <p class="episode-date">
-                    {{ (e.modified)|date('Y-m-d')|nicetime(false) }}{% if e.header.podcast.audio.meta %} | <a href ="{{ e.header.podcast.audio.meta.guid }}">Download Audio</a>{% endif %}
+                    {{ (datestamp)|nicetime(false) }}{% if e.header.podcast.audio.meta %} | <a href ="{{ e.header.podcast.audio.meta.guid }}">Download Audio</a>{% endif %}
                 </p>
                 <p class="episode-description">
                     {% if e.summary %}

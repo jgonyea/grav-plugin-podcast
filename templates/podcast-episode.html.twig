@@ -1,6 +1,16 @@
 {% extends 'partials/base.html.twig' %}
 
 {% block content %}
+    {# Datestamp Fallback Calculation (Published date field -> General date field -> File modified metadata) #}
+    {% if (header.publish_date) %}
+        {% set episode_datestamp = header.publish_date %}
+        {{ dump('Found a published date')}}
+    {% elseif (header.date) %}
+        {% set episode_datestamp = header.date %}
+        {{ dump('Found a date')}}
+    {% else %}
+        {% set episode_datestamp = page.modified %}
+    {% endif %}
 
 <div class="podcast-container">
 
@@ -20,7 +30,7 @@
             {% if (header.podcast.audio.meta.guid) %}
                 <div class="podcast-episode-audio">
                     <audio controls="1" alt="{{ episode.title }}"><source src="{{ page.header.podcast.audio.meta.guid }}">{{ 'PLUGIN_PODCAST.EPISODE_CONTENT.WARNING'|t|e }}</audio></br>
-                    <a href ="{{ header.podcast.audio.meta.guid }}">{{ 'PLUGIN_PODCAST.EPISODE_CONTENT.DOWNLOAD'|t|e }}</a> | Posted {{ header.date|date('Y-m-d')|nicetime(false) }}
+                    <a href ="{{ header.podcast.audio.meta.guid }}">{{ 'PLUGIN_PODCAST.EPISODE_CONTENT.DOWNLOAD'|t|e }}</a> | Published {{ episode_datestamp|nicetime(false) }}
                 </div>
             {% else %}
                 <div><p>No audio for this episode</p></div>
