@@ -1,3 +1,14 @@
+# v3.0.4
+## 10/04/2021
+
+1. [](#new)
+
+2. [](#improved)
+    * Issue #44 Series and Episode author information is prepopulated based on info in the currently signed in Grav user.
+
+3. [](#bugfix)
+
+
 # v3.0.3
 ## 10/02/2021
 

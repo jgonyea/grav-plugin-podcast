@@ -63,6 +63,7 @@ form:
               type: text
               label: PLUGIN_PODCAST.ADMIN.EPISODE.ITUNES_META.AUTHOR_LABEL
               help: PLUGIN_PODCAST.ADMIN.EPISODE.ITUNES_META.AUTHOR_HELPTEXT
+              data-default@: ['\Grav\Plugin\PodcastPlugin::getCurrentUserInfo', 'fullname']
             header.podcast.itunes.image:
               type: filepicker
               label: PLUGIN_PODCAST.ADMIN.EPISODE.ITUNES_META.IMAGE_LABEL

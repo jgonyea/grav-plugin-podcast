@@ -327,4 +327,19 @@ class PodcastPlugin extends Plugin
         }
         return $options;
     }
+
+    /**
+     * Returns property of current user for admin blueprints.
+     *
+     * @return string
+     *     Property of the currently signed in user.
+     */
+    public static function getCurrentUserInfo($property)
+    {
+        if (!$property) {
+            return "";
+        }
+        $grav = Grav::instance();
+        return $grav['user']->get($property);
+    }
 }

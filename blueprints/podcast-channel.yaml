@@ -80,10 +80,12 @@ form:
               type: text
               label: PLUGIN_PODCAST.ADMIN.CHANNEL.ITUNES_META.ITUNES_OWNER_LABEL
               help: PLUGIN_PODCAST.ADMIN.CHANNEL.ITUNES_META.ITUNES_OWNER_HELPTEXT
+              data-default@: ['\Grav\Plugin\PodcastPlugin::getCurrentUserInfo', 'fullname']
             header.podcast.itunes.owner.email:
               type: email
               label: PLUGIN_PODCAST.ADMIN.CHANNEL.ITUNES_META.ITUNES_OWNER_EMAIL_LABEL
               help: PLUGIN_PODCAST.ADMIN.CHANNEL.ITUNES_META.ITUNES_OWNER_EMAIL_HELPTEXT
+              data-default@: ['\Grav\Plugin\PodcastPlugin::getCurrentUserInfo', 'email']
             header.podcast.itunes.image:
               type: filepicker
               label:  PLUGIN_PODCAST.ADMIN.CHANNEL.ITUNES_META.ITUNES_IMAGE_LABEL
