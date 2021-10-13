@@ -53,7 +53,7 @@
 .podcast-full-list li {
     padding: .1em 1em 1em 1em;
     min-height: 20em;
-    background: #eee;
+    background: inherit;
     border-radius: 2em;
     margin-bottom: 2em;
 }
