@@ -28,7 +28,7 @@
                         {% if (e.header.podcast.audio.meta.duration) %}
                             <small>( {{ e.header.podcast.audio.meta.duration }} )</small>
                         {% endif %}
-                    </h2>
+                    </h3>
                 </a>
                 <p class="episode-date">
                     {{ (datestamp)|nicetime(false) }}{% if e.header.podcast.audio.meta %} | <a href ="{{ e.header.podcast.audio.meta.guid }}">Download Audio</a>{% endif %}

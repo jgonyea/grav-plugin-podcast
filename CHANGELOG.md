@@ -1,3 +1,14 @@
+# v3.0.5
+## 02/05/2021
+
+1. [](#new)
+
+2. [](#improved)
+    * Removed admin plugin as dependency.
+
+3. [](#bugfix)
+    * Fixed an h3 closing tag
+
 # v3.0.4
 ## 10/04/2021
 

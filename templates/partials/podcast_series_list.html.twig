@@ -1,6 +1,6 @@
 <div class = "podcast-full-list">
     {% if (series|length > 0)%}
-    <h2>{{ 'PLUGIN_PODCAST.WORDS.LATEST'|t|e }} {{ 'PLUGIN_PODCAST.WORDS.SERIES'|t|e|pluralize }}</h2>
+    <h2>{{ 'PLUGIN_PODCAST.WORDS.LATEST'|t|e }} {{ 'PLUGIN_PODCAST.WORDS.SERIES'|t|e }}</h2>
     
     <div class="channel-links">
         All Series
@@ -17,7 +17,7 @@
                         {% if (s.header.podcast.audio.meta.duration) %}
                             <small>( {{ s.header.podcast.audio.meta.duration }} )</small>
                         {% endif %}
-                    </h2>
+                    </h3>
                 </a>
                 <p class="series-description">
                     {% if s.summary %}
