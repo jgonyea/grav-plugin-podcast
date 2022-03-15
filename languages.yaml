@@ -78,3 +78,41 @@ en:
           IMAGE_HELPTEXT: Upload and save images below in the Page Media field on the Podcast Episode tab.  Then select one in this dropdown to act as the series main image.
           EXPLICIT_LABEL: Explicit Content
           EXPLICIT_HELPTEXT: Does this podcast contain content that might be inappropriate for children?
+fr:
+  PLUGIN_PODCAST:
+    CONFIG:
+      MAX_UPLOAD_LABEL: Taille maximale des fichiers podcast (Mo)
+      MAX_UPLOAD_HELP: 'Définissez «upload_max_filesize» et «post_max_size» dans php.ini à au moins cette valeur ou plus.'
+    WORDS:
+      CHANNEL: CANAL
+      EPISODE: Épisode
+      LATEST: Dernier
+      MORE: Plus
+      PODCAST: Podcast
+      SERIES: Séries
+    SERIES_CONTENT:
+      HEADER: Description de la série
+    EPISODE_CONTENT:
+      HEADER: Contenu de l'épisode
+      DOWNLOAD: Télécharger le fichier audio
+      WARNING: Votre navigateur ne prend pas en charge la balise audio.
+      EMPTY: Aucun contenu disponible.
+pt:
+  PLUGIN_PODCAST:
+    CONFIG:
+      MAX_UPLOAD_LABEL: Tamanho máximo do arquivo podcast (MB)
+      MAX_UPLOAD_HELP: 'Defina “upload_max_filesize” e “post_max_size” em php.ini para ao menos este valor ou maior.'
+    WORDS:
+      CHANNEL: CHANNEL
+      EPISODE: Episódio
+      LATEST: Último
+      MORE: Mais
+      PODCAST: Podcast
+      SERIES: Séries
+    SERIES_CONTENT:
+      HEADER: Descrição da série
+    EPISODE_CONTENT:
+      HEADER: Conteúdo do episódio
+      DOWNLOAD: Baixar áudio
+      WARNING: Seu navegador não suporta a etiqueta de áudio.
+      EMPTY: Nenhum conteúdo disponível.
