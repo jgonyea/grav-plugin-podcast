@@ -94,6 +94,7 @@ These should be created as child pages of either a podcast channel or a podcast 
 
 ## Credits
 
+* Thanks to [aleclerc7](https://github.com/aleclerc7) for his initial French and Portugese language translations.
 * Thanks to apotropaic for his help with remote file support.
 * Thanks to [flaviocopes](https://github.com/flaviocopes) who assisted me with the initial groundwork from the feeds plugin
 * RSS structure based on [iTunes RSS Feed Sample](https://help.apple.com/itc/podcasts_connect/#/itcbaf351599)

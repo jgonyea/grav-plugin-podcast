@@ -1,3 +1,14 @@
+# v3.0.6
+## 03/16/2021
+
+1. [](#new)
+
+2. [](#improved)
+    * French and Portugese languages added.
+
+3. [](#bugfix)
+    * Fixed a harcoded text string.
+
 # v3.0.5
 ## 02/05/2021
 
