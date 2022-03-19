@@ -1,3 +1,16 @@
+# v3.0.7
+## 03/19/2021
+
+1. [](#new)
+
+2. [](#improved)
+    * Some minor PSR2 fixes.
+    * Updated a few hardcoded paths to use Grav's locator instead.
+    * Remote files are now downloaded to Grav's tmp folder instead of the system's /tmp folder.
+
+3. [](#bugfix)
+    * Bandaid fixed feed.rss.twig override clobbering regular rss feeds.
+
 # v3.0.6
 ## 03/16/2021
 

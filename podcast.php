@@ -4,6 +4,7 @@ namespace Grav\Plugin;
 use Grav\Common\Grav;
 use Grav\Common\Page\Header;
 use Grav\Common\Page\Interfaces\PageInterface;
+use Grav\Common\Flex\Types\Pages\PageObject;
 use Grav\Common\Plugin;
 use RocketTheme\Toolbox\Event\Event;
 use RocketTheme\Toolbox\File\File;
@@ -12,7 +13,7 @@ use Grav\Plugin\GetID3Plugin;
 
 /**
  * Class PodcastPlugin
- * 
+ *
  * @package Grav\Plugin
  */
 class PodcastPlugin extends Plugin
@@ -32,7 +33,7 @@ class PodcastPlugin extends Plugin
      *         callable (or function) as well as the priority. The
      *         higher the number the higher the priority.
      */
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             'onPluginsInitialized' => ['onPluginsInitialized', 0],
@@ -42,7 +43,7 @@ class PodcastPlugin extends Plugin
     /**
      * Initialize the plugin
      */
-    public function onPluginsInitialized()
+    public function onPluginsInitialized(): void
     {
         // If in an Admin page.
         if ($this->isAdmin()) {
@@ -75,41 +76,48 @@ class PodcastPlugin extends Plugin
      */
     public function onTwigTemplatePaths()
     {
-        $this->grav['twig']->twig_paths[] = __DIR__ . '/templates';
+        $this->grav['twig']->twig_paths[] = $this->grav['locator']->findResource('plugin://' . $this->name . '/templates');
     }
 
-    public function onTwigSiteVariables()
+    /**
+     * Adds podcast stylesheet to page.
+     */
+    public function onTwigSiteVariables(): void
     {
-        $this->grav['assets']
-            ->addCss('plugin://podcast/assets/css/podcast.css');
+        $this->grav['assets']->addCss('plugin://' . $this->name . '/assets/css/podcast.css');
     }
 
     /**
      * Modifies the page header being saved to include getID3 metadata.
      */
-    public function onAdminSave($event)
+    public function onAdminSave(Event $event): void
     {
+
+        /** @var PageObject $page */
         $page = $event['object'];
 
         // Process only onAdminSave events on pages.
         if (!$page instanceof PageInterface) {
             return;
         }
+        /** @var Header $header */
         $header = $page->header();
 
-        if ( str_starts_with($page->template(), 'podcast-') ) {
+        if (str_starts_with($page->template(), 'podcast-')) {
             // Set autodate field on all podcast-* page types.
-            if (!isset($header->date)){
+            if (!isset($header->date)) {
                 $date = date($this->grav['config']->get('system.pages.dateformat.default', 'H:i d-m-Y'));
                 $header['date'] = $date;
             }
 
             // Fix for Feed plugin 1.8.2+ requiring 'content' instead of 'feed' in the header.
-            if ( isset($header['feed']) == true ) {
+            if (isset($header['feed']) == true) {
                 $header['content'] = $header['feed'];
                 $header->undef('feed');
             }
-
+        } else {
+            // Refrain from editing pages not of template "podcast-*".
+            return;
         }
 
         // Return with just updated header content if not podcast-episode.
@@ -188,9 +196,9 @@ class PodcastPlugin extends Plugin
      * @param string $file
      *    Path to audio file.
      * @return type
-     *    Audio filesize
+     *    Audio filesize, in bytes.
      */
-    public static function retreiveAudioLength($file)
+    public static function retreiveAudioLength($file): int
     {
         $id3 = GetID3Plugin::analyzeFile($file);
         return ($id3['filesize']);
@@ -201,10 +209,10 @@ class PodcastPlugin extends Plugin
      *
      * @param string $file
      *    Path to audio file.
-     * @return type
-     *    Audio filesize
+     * @return string
+     *    Audio file type.
      */
-    public static function retreiveAudioType($file)
+    public static function retreiveAudioType($file): string
     {
         $id3 = GetID3Plugin::analyzeFile($file);
         return ($id3['mime_type']);
@@ -218,7 +226,7 @@ class PodcastPlugin extends Plugin
      * @return string
      *     Audio file duration.
      */
-    public static function retreiveAudioDuration($file)
+    public static function retreiveAudioDuration($file): string
     {
         $id3 = GetID3Plugin::analyzeFile($file);
         return ($id3['playtime_string']);
@@ -232,7 +240,7 @@ class PodcastPlugin extends Plugin
      * @return string
      *     filepath to temp file.
      */
-    public function getRemoteAudio($url)
+    public function getRemoteAudio($url): string
     {
         // Make sure the url is reachable.
         $ch = curl_init($url);
@@ -252,7 +260,8 @@ class PodcastPlugin extends Plugin
 
         // Download file to temp location.
         if ($remote_file = fopen($url, 'rb')) {
-            $local_file = tempnam('/tmp', 'podcast');
+            $tmp_dir = $this->grav['locator']->findResource('tmp://', true, true);
+            $local_file = tempnam($tmp_dir, 'podcast');
             $handle = fopen($local_file, "w");
             $contents = stream_get_contents($remote_file);
 
@@ -270,9 +279,9 @@ class PodcastPlugin extends Plugin
      * @return array
      *     Array of options for select list.
      */
-    public static function getCategoryOptions()
+    public static function getCategoryOptions(): array
     {
-        $options = array();
+        $options = [];
         $data_file_path = __DIR__ . DS . 'data' . DS . 'iTunesCategories.yaml';
         $file = File::instance($data_file_path);
         $data = Yaml::parse($file->content());
@@ -291,9 +300,9 @@ class PodcastPlugin extends Plugin
      * @return array
      *     Array of options for select list.
      */
-    public static function getSubCategoryOptions()
+    public static function getSubCategoryOptions(): array
     {
-        $options = array();
+        $options = [];
         $data_file_path = __DIR__ . DS . 'data' . DS . 'iTunesCategories.yaml';
         $file = File::instance($data_file_path);
         $data = Yaml::parse($file->content());
@@ -316,9 +325,9 @@ class PodcastPlugin extends Plugin
      * @return array
      *     Array of options for select list.
      */
-    public static function getLanguageOptions()
+    public static function getLanguageOptions(): array
     {
-        $options = array();
+        $options = [];
         $data_file_path = __DIR__ . DS . 'data' . DS . 'languages.yaml';
         $file = File::instance($data_file_path);
         $languages = Yaml::parse($file->content());
