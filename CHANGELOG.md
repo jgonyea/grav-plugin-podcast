@@ -1,3 +1,13 @@
+# v3.0.8
+## 03/19/2021
+
+1. [](#new)
+
+2. [](#improved)
+
+3. [](#bugfix)
+    * Issue #57 - Series should now be restricted to the channel they are in.
+
 # v3.0.7
 ## 03/19/2021
 
