@@ -29,6 +29,8 @@ en:
           PODCAST_TITLE_HELPTEXT: Used in the RSS feed.
           PODCAST_SUBTITLE_LABEL: iTunes Subtitle
           PODCAST_SUBTITLE_HELPTEXT: 'Example: "A show about everything..."'
+          PODCAST_SUMMARY_LABEL: iTunes Summary
+          PODCAST_SUMMARY_HELPTEXT: iTunes summary (if empty, will fallback to podcast page content, then channel description)
           PODCAST_DESCRIPTION_LABEL: Channel Description
           PODCAST_LINK_LABEL: Channel URL
           PODCAST_LINK_HELPTEXT: Used in the RSS feed.

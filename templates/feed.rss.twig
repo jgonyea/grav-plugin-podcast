@@ -14,7 +14,7 @@
 <copyright>{{ channel.header.podcast.copyright }}</copyright>
 <itunes:subtitle>{{ channel.header.podcast.itunes.subtitle }}</itunes:subtitle>
 <itunes:author>{{ channel.header.podcast.itunes.author }}</itunes:author>
-<itunes:summary>{{ (channel.content ? channel.content : channel.header.podcast.description)|striptags }}</itunes:summary>
+<itunes:summary>{{ channel.header.podcast.itunes.summary ?: (channel.content ? channel.content : channel.header.podcast.description)|striptags }}</itunes:summary>
 <description>{{ channel.header.podcast.description|striptags }}</description>
 <itunes:owner>
     <itunes:name>{{ channel.header.podcast.itunes.owner.name }}</itunes:name>

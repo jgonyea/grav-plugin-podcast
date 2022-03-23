@@ -43,6 +43,10 @@ form:
               type: text
               label: PLUGIN_PODCAST.ADMIN.CHANNEL.CHANNEL_META.PODCAST_SUBTITLE_LABEL
               help: PLUGIN_PODCAST.ADMIN.CHANNEL.CHANNEL_META.PODCAST_SUBTITLE_HELPTEXT
+            header.podcast.itunes.summary:
+              type: textarea
+              label: PLUGIN_PODCAST.ADMIN.CHANNEL.CHANNEL_META.PODCAST_SUMMARY_LABEL
+              help: PLUGIN_PODCAST.ADMIN.CHANNEL.CHANNEL_META.PODCAST_SUMMARY_HELPTEXT
             header.podcast.description:
               type: markdown
               label: PLUGIN_PODCAST.ADMIN.CHANNEL.CHANNEL_META.PODCAST_DESCRIPTION_LABEL
