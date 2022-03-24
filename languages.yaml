@@ -12,8 +12,11 @@ en:
       SERIES: Series
     SERIES_CONTENT:
       HEADER: Series Description
+      LATEST_SERIES: Latest series
     EPISODE_CONTENT:
       HEADER: Episode Content
+      LATEST_EPISODES: Latest episodes
+      LATEST_EPISODES_IN: Latest episodes in
       DOWNLOAD: Download Audio
       WARNING: Your browser does not support the audio tag.
       EMPTY: No content available.
@@ -92,8 +95,11 @@ fr:
       SERIES: Séries
     SERIES_CONTENT:
       HEADER: Description de la série
+      LATEST_SERIES: Dernières séries
     EPISODE_CONTENT:
       HEADER: Contenu de l'épisode
+      LATEST_EPISODES: Derniers épisodes
+      LATEST_EPISODES_IN: Derniers épisodes dans
       DOWNLOAD: Télécharger le fichier audio
       WARNING: Votre navigateur ne prend pas en charge la balise audio.
       EMPTY: Aucun contenu disponible.
@@ -111,8 +117,11 @@ pt:
       SERIES: Séries
     SERIES_CONTENT:
       HEADER: Descrição da série
+      LATEST_SERIES: Últimas séries
     EPISODE_CONTENT:
       HEADER: Conteúdo do episódio
+      LATEST_EPISODES: Últimos episódios
+      LATEST_EPISODES_IN: Últimos episódios em
       DOWNLOAD: Baixar áudio
       WARNING: Seu navegador não suporta a etiqueta de áudio.
       EMPTY: Nenhum conteúdo disponível.
