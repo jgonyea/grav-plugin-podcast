@@ -35,6 +35,8 @@ en:
           PODCAST_LANG_LABEL: Channel Language
           PODCAST_LANG_HELPTEXT: Used only for the RSS feed.
           PODCAST_COPYRIGHT_LABEL: Copyright
+          PODTRAC: Add Podtrac Prefix
+          PODTRAC_HELP: Add required prefix for Podtrac to work. (See podtrac.com to create an account and register your RSS feed.)
         ITUNES_META:
           TAB_TITLE: iTunes Meta
           TAB_HELPTEXT: Metadata related to the podcast's iTunes section.

@@ -42,8 +42,12 @@
     <enclosure length="{{ episode.header.podcast.audio.meta.enclosure_length }}" type="{{ episode.header.podcast.audio.meta.type }}" url="{{ episode.header.podcast.audio.remote }}"/>
     <guid>{{ episode.header.podcast.audio.remote }}</guid>
     {% else -%}
-    <enclosure length="{{ episode.header.podcast.audio.meta.enclosure_length }}" type="{{ episode.header.podcast.audio.meta.type }}" url="{{ uri.base }}{{ episode.header.podcast.audio.meta.guid }}"/>
-    <guid>{{ uri.base }}{{ episode.header.podcast.audio.meta.guid }}</guid>
+    {# Downloads Pro plugin support: if the same file is available in Downloads Pro, we use this URL. #}
+    {%- set podcast_url = grav.downloads.getPage(episode).getDownloadUrl(episode.header.podcast.audio.local.select) ?: episode.header.podcast.audio.meta.guid %}
+    {# Podtrac support: if enabled, will add the required URL prefix and insert the correct file format (extension). #}
+    {%- set podcast_url = (channel.header.podcast.podtrac ? 'https://dts.podtrac.com/redirect.' ~ episode.header.podcast.audio.meta.guid|split('.')|last ~ '/' ~ uri.host : uri.base) ~ podcast_url -%}
+    <enclosure length="{{ episode.header.podcast.audio.meta.enclosure_length }}" type="{{ episode.header.podcast.audio.meta.type }}" url="{{ podcast_url }}"/>
+    <guid>{{ podcast_url }}</guid>
     {% endif -%}
     <pubDate>{{ episode.header.publish_date ? episode.header.publish_date|date('r') : episode.date|date('r') }}</pubDate>
     <itunes:duration>{{ episode.header.podcast.audio.meta.duration }}</itunes:duration>
