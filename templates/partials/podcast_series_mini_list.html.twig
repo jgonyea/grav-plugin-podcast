@@ -17,7 +17,7 @@
 {% endif %}
 
 <div class="episodes-mini-list">
-    <h3>{{ 'PLUGIN_PODCAST.WORDS.LATEST'|t|e }} {{ 'PLUGIN_PODCAST.WORDS.SERIES'|t|pluralize }}</h3>
+    <h3>{{ 'PLUGIN_PODCAST.SERIES_CONTENT.LATEST_SERIES'|t }}</h3>
     <ul>
         {% for s in series %}
             <li><a href="{{ s.url() }}">{{ s.title }}</a></li>

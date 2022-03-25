@@ -1,6 +1,6 @@
 <div class = "podcast-full-list">
     {% if (episodes|length > 0)%}
-    <h2>{{ 'PLUGIN_PODCAST.WORDS.LATEST'|t|e }} {{ 'PLUGIN_PODCAST.WORDS.EPISODE'|t|e|pluralize }}</h2>
+    <h2>{{ 'PLUGIN_PODCAST.EPISODE_CONTENT.LATEST_EPISODES'|t|e }}</h2>
 
     <div class="channel-links">
         <a href="{{ base_url }}{{ page.route }}.rss">RSS <i class="fa fa-rss" aria-hidden="true"></i> | {{ page.title }}</a>
