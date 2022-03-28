@@ -61,6 +61,17 @@ form:
               type: text
               label: PLUGIN_PODCAST.ADMIN.CHANNEL.CHANNEL_META.PODCAST_COPYRIGHT_LABEL
               default: 2021 Example.com
+            header.podcast.podtrac:
+              type: toggle
+              toggleable: true
+              label: PLUGIN_PODCAST.ADMIN.CHANNEL.CHANNEL_META.PODTRAC
+              help: PLUGIN_PODCAST.ADMIN.CHANNEL.CHANNEL_META.PODTRAC_HELP
+              highlight: 1
+              options:
+                  1: 'Yes'
+                  0: 'No'
+              validate:
+                  type: bool
 
         itunesMetaTab:
           type: tab

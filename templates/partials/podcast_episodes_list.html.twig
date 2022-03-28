@@ -31,7 +31,8 @@
                     </h3>
                 </a>
                 <p class="episode-date">
-                    {{ (datestamp)|nicetime(false) }}{% if e.header.podcast.audio.meta %} | <a href ="{{ e.header.podcast.audio.meta.guid }}"> {{ 'PLUGIN_PODCAST.EPISODE_CONTENT.DOWNLOAD'|t|e }}</a>{% endif %}
+                    {# If there is a matching file in Downloads Pro, we use it. #}
+                    {{ (datestamp)|nicetime(false) }}{% if e.header.podcast.audio.meta %} | <a href ="{{ grav.downloads.getPage().getDownloadUrl(e.header.podcast.audio.local.select) ?: e.header.podcast.audio.meta.guid }}"> {{ 'PLUGIN_PODCAST.EPISODE_CONTENT.DOWNLOAD'|t|e }}</a>{% endif %}
                 </p>
                 <p class="episode-description">
                     {% if e.summary %}
