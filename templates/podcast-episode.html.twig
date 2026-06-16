@@ -28,9 +28,11 @@
 
         <div class="podcast-flex-child podcast-flex-full">
             {% if (header.podcast.audio.meta.guid) %}
+                {# If there is a matching file in Downloads Pro, we use it. #}
+                {%- set podcast_url = grav.downloads.getPage().getDownloadUrl(header.podcast.audio.local.select) ?: header.podcast.audio.meta.guid %}
                 <div class="podcast-episode-audio">
-                    <audio controls="1" alt="{{ episode.title }}"><source src="{{ page.header.podcast.audio.meta.guid }}">{{ 'PLUGIN_PODCAST.EPISODE_CONTENT.WARNING'|t|e }}</audio></br>
-                    <a href ="{{ header.podcast.audio.meta.guid }}">{{ 'PLUGIN_PODCAST.EPISODE_CONTENT.DOWNLOAD'|t|e }}</a> | Published {{ episode_datestamp|nicetime(false) }}
+                    <audio controls="1" alt="{{ episode.title }}"><source src="{{ podcast_url }}">{{ 'PLUGIN_PODCAST.EPISODE_CONTENT.WARNING'|t|e }}</audio></br>
+                    <a href ="{{ podcast_url }}">{{ 'PLUGIN_PODCAST.EPISODE_CONTENT.DOWNLOAD'|t|e }}</a> | Published {{ episode_datestamp|nicetime(false) }}
                 </div>
             {% else %}
                 <div><p>No audio for this episode</p></div>
