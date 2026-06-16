@@ -20,7 +20,10 @@ en:
       DOWNLOAD: Download Audio
       WARNING: Your browser does not support the audio tag.
       EMPTY: No content available.
+      PUBLISHED: Published
     ADMIN:
+      SETTINGS:
+        AUTO_INLCUDE_ASSETS: "If false you will need to include the CSS and JS manually in your Twig templates when required"
       CHANNEL:
         CONTENT:
           TAB_TITLE: Podcast Page Content
@@ -149,7 +152,10 @@ de:
       DOWNLOAD: Audio herunterladen
       WARNING: Ihr Browser unterstützt das Audiowiedergabe-Tag nicht.
       EMPTY: Kein Inhalt verfügbar.
+      PUBLISHED: Veröffentlicht
     ADMIN:
+      SETTINGS:
+        AUTO_INLCUDE_ASSETS: Wenn deaktiviert bitte CSS von Hand in die Twig-Templates einbinden falls nötig
       CHANNEL:
         CONTENT:
           TAB_TITLE: Inhalt der Podcast-Seite

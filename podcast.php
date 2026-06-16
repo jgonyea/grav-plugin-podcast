@@ -60,6 +60,7 @@ class PodcastPlugin extends Plugin
         ]);
     }
 
+
     /**
      * Add blueprint directory to page templates.
      */
@@ -84,7 +85,9 @@ class PodcastPlugin extends Plugin
      */
     public function onTwigSiteVariables(): void
     {
-        $this->grav['assets']->addCss('plugin://' . $this->name . '/assets/css/podcast.css');
+        if ($this->config()['autoIncludeAssets']) {
+            $this->grav['assets']->addCss('plugin://' . $this->name . '/assets/css/podcast.css');
+        }
     }
 
     /**

@@ -29,3 +29,14 @@ form:
         0: PLUGIN_ADMIN.DISABLED
       validate:
         type: bool
+    autoIncludeAssets:
+      type: toggle
+      label: Always Include Assets
+      help: "If false you will need to include the CSS and JS manually in your Twig templates when required"
+      highlight: 1
+      default: 1
+      options:
+        1: PLUGIN_ADMIN.ENABLED
+        0: PLUGIN_ADMIN.DISABLED
+      validate:
+        type: bool
